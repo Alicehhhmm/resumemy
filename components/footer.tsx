@@ -26,7 +26,7 @@ export const Footer = () => {
                 'bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80'
             )}
         >
-            <div className='mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-8 lg:px-20'>
+            <div className='mx-20 py-4 sm:px-6 md:px-8 lg:px-20'>
                 <div className='py-8'>
                     <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4'>
                         <div className='space-y-3'>
@@ -35,7 +35,7 @@ export const Footer = () => {
                         </div>
                         {WebLinkSettings.map(section => (
                             <div key={section.type} className='space-y-3'>
-                                <h3 className='text-sm font-semibold text-muted-foreground'>
+                                <h3 className='text-sm font-semibold text-foreground'>
                                     {section.type === 'me' ? 'Connect' : 'Navigation'}
                                 </h3>
                                 <ul className='space-y-2'>
@@ -56,7 +56,7 @@ export const Footer = () => {
                             </div>
                         ))}
                         <div className='space-y-3'>
-                            <h3 className='text-sm font-semibold text-muted-foreground'>Theme</h3>
+                            <h3 className='text-sm font-semibold text-foreground'>Theme</h3>
                             <div className='flex items-center gap-2'>
                                 <ThemeToggle />
                             </div>

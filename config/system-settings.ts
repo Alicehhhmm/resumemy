@@ -30,6 +30,11 @@ export const WebLinkSettings = [
                 link: '',
                 blank: true,
             },
+            {
+                name: 'Gmail',
+                link: '',
+                blank: false,
+            },
         ],
     },
 

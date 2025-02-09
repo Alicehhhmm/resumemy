@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { WebLinkSettings } from '@/config/system-settings'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Github, Facebook } from 'lucide-react'
+import { Github, Facebook, Mail } from 'lucide-react'
 
 export const Footer = () => {
     const currentYear = new Date().getFullYear()
@@ -12,6 +12,8 @@ export const Footer = () => {
                 return <Github className='h-4 w-4' />
             case 'juejin':
                 return <Facebook className='h-4 w-4' />
+            case 'gmail':
+                return <Mail className='h-4 w-4' />
             default:
                 return null
         }

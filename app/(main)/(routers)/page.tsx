@@ -1,7 +1,10 @@
+import { Footer } from '@/components/footer'
+
 export default function Home() {
     return (
-        <div className='h-full bg-white dark:bg-[#313333]'>
-            <h1>Home app pages1</h1>
+        <div className='h-full flex flex-col bg-white dark:bg-[#313333]'>
+            <main className='flex-1'>{/* 页面内容 */}</main>
+            <Footer />
         </div>
     )
 }

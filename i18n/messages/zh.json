@@ -1,0 +1,10 @@
+{
+    "common": {
+        "title": "Norush 个人网站",
+        "description": "Norush 的个人网站"
+    },
+    "HomePage": {
+        "title": "你好世界！",
+        "about": "前往关于页面"
+    }
+}

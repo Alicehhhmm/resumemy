@@ -1,0 +1,10 @@
+{
+    "common": {
+        "title": "Norush resume",
+        "description": "Norush's personal website"
+    },
+    "HomePage": {
+        "title": "Hello world!",
+        "about": "Go to the about page"
+    }
+}

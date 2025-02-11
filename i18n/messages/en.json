@@ -4,6 +4,13 @@
         "description": "Norush's personal website"
     },
     "system": {
+        "theme": "Theme",
+        "light": "Light",
+        "dark": "Dark",
+        "en": "English",
+        "zh": "Chinese",
+        "contact": "Contact",
+        "navigation": "Navigation",
         "nav": {
             "group": {
                 "navigation": "Navigation",

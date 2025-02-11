@@ -33,7 +33,7 @@ const NavItem = memo(({ name, path, subMenu }: NavItemProps) => {
     }, [])
 
     const baseItemStyles =
-        'relative flex items-center h-[60px] px-4 py-2 text-sm transition-all duration-200 ease-in-out hover:text-primary'
+        'relative flex items-center h-[60px] px-3 py-2 text-sm transition-all duration-200 ease-in-out hover:text-primary'
     const activeItemStyles = cn(
         'text-primary font-medium',
         'after:absolute after:bottom-0 after:left-0 after:right-0',

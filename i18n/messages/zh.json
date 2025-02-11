@@ -4,6 +4,13 @@
         "description": "Norush 的个人网站"
     },
     "system": {
+        "theme": "主题",
+        "light": "亮色",
+        "dark": "暗色",
+        "en": "英文",
+        "zh": "中文",
+        "contact": "联系",
+        "navigation": "导航",
         "nav": {
             "group": {
                 "navigation": "导航",

@@ -53,6 +53,16 @@ export const NavItemSettings = [
         key: 'categories',
         path: '/categories',
         name: 'system.nav.categories',
+        subMenu: [
+            {
+                type: 'react',
+                label: 'system.submenu.react',
+            },
+            {
+                type: 'vue',
+                label: 'system.submenu.vue',
+            }
+        ]
     },
     {
         key: 'projects',

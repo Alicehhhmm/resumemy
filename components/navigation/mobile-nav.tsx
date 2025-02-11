@@ -8,8 +8,10 @@ import { cn } from '@/lib/utils'
 import { LangToggle } from '@/components/lang-toggle'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { NavItemSettings } from '@/config/system-settings'
+import { useLang } from '@/hooks/use-lang'
 
 export const MobileNav = () => {
+    const { t } = useLang()
     const [isOpen, setIsOpen] = useState(false)
     const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
 
@@ -58,7 +60,7 @@ export const MobileNav = () => {
                                         'flex items-center justify-between py-3',
                                         'text-base font-medium text-foreground/95',
                                         'hover:bg-accent/5 active:bg-accent/10',
-                                        'rounded-lg px-3 -mx-1',
+                                        'rounded-lg px-2 -mx-1',
                                         'transition-colors duration-200 ease-out',
                                         'active:scale-[0.98] transform'
                                     )}
@@ -71,7 +73,7 @@ export const MobileNav = () => {
                                         }
                                     }}
                                 >
-                                    <span className='tracking-tight'>{item.name}</span>
+                                    <span className='tracking-tight'>{t(item.name)}</span>
                                     {item.subMenu && (
                                         <div className='flex items-center gap-1.5'>
                                             <span className='text-xs text-muted-foreground/80'>{item.subMenu.length}项</span>
@@ -103,7 +105,7 @@ export const MobileNav = () => {
                                                         'hover:text-primary transition-all duration-150',
                                                         'hover:translate-x-1.5',
                                                         'active:translate-x-0.5',
-                                                        'border-l border-transparent pl-3 -ml-px',
+                                                        'border-l border-transparent pl-2 -ml-px',
                                                         'hover:border-primary/50'
                                                     )}
                                                     onClick={e => {
@@ -111,7 +113,7 @@ export const MobileNav = () => {
                                                         setIsOpen(false)
                                                     }}
                                                 >
-                                                    {subItem.type}
+                                                    {t(subItem.label)}
                                                 </Link>
                                             ))}
                                         </div>

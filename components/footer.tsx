@@ -39,7 +39,7 @@ export const Footer = () => {
                         {WebLinkSettings.map(section => (
                             <div key={section.type} className='space-y-3'>
                                 <h3 className='text-sm font-semibold text-foreground'>
-                                    {section.type === 'me' ? 'Connect' : 'Navigation'}
+                                    {section.type === 'me' ? t('system.contact') : t('system.navigation')}
                                 </h3>
                                 <ul className='space-y-2'>
                                     {section.children.map(link => (
@@ -59,7 +59,7 @@ export const Footer = () => {
                             </div>
                         ))}
                         <div className='space-y-3'>
-                            <h3 className='text-sm font-semibold text-foreground'>Theme</h3>
+                            <h3 className='text-sm font-semibold text-foreground'>{t('system.theme')}</h3>
                             <div className='flex items-center gap-2'>
                                 <ThemeToggle />
                             </div>

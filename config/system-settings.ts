@@ -11,7 +11,7 @@ export const WebLinkSettings = [
         type: 'Navigation',
         children: [
             {
-                name: 'Home',
+                name: 'system.nav.home',
                 link: '/',
                 blank: false,
             }
@@ -21,17 +21,17 @@ export const WebLinkSettings = [
         type: 'me',
         children: [
             {
-                name: 'GitHub',
+                name: 'system.links.github',
                 link: 'https://github.com/Alicehhhmm',
                 blank: true,
             },
             {
-                name: 'Juejin',
+                name: 'system.links.juejin',
                 link: '',
                 blank: true,
             },
             {
-                name: 'Gmail',
+                name: 'system.links.gmail',
                 link: '',
                 blank: false,
             },
@@ -47,48 +47,60 @@ export const NavItemSettings = [
     {
         key: 'blog',
         path: '/blog',
-        name: 'Blog',
+        name: 'system.nav.blog',
     },
     {
         key: 'categories',
         path: '/categories',
-        name: 'Categories',
+        name: 'system.nav.categories',
     },
     {
         key: 'projects',
         path: '/projects',
-        name: 'Projects',
+        name: 'system.nav.projects',
         subMenu: [
             {
-                type: 'Demos',
+                type: 'demo',
+                label: 'system.submenu.demos',
             },
             {
-                type: 'React Ecosystem',
+                type: 'react',
+                label: 'system.submenu.react',
             },
             {
-                type: 'Vue Ecosystem',
+                type: 'vue',
+                label: 'system.submenu.vue',
             },
             {
-                type: 'Webgl Ecosystem',
+                type: 'webgl',
+                label: 'system.submenu.webgl',
             },
             {
-                type: 'Rust Ecosystem',
+                type: 'rust',
+                label: 'system.submenu.rust',
             }
         ],
     },
     {
         key: 'design',
         path: '/design',
-        name: 'Design',
+        name: 'system.nav.design',
         subMenu: [
             {
-                type: 'Portfolio Ui/UX',
+                type: 'Portfolio',
+                label: 'system.submenu.portfolio',
             },
             {
-                type: 'Portfolio Web',
+                type: 'Ui/UX',
+                label: 'system.submenu.uiux',
             },
             {
-                type: 'Portfolio Mobile',
+                type: 'Web',
+                label: 'system.submenu.web',
+            },
+            {
+                type: 'Mobile',
+                label: 'system.submenu.mobile',
             }
         ],
     }

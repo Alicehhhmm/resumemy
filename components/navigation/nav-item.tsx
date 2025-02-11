@@ -6,16 +6,20 @@ import { ChevronDown } from 'lucide-react'
 import { useState, useCallback, memo } from 'react'
 
 import { cn } from '@/lib/utils'
+import { useLang } from '@/hooks/use-lang'
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 export interface NavItemProps {
     key: string
     name: string
     path: string
-    subMenu?: Array<{ type: string }>
+    subMenu?: Array<{ type: string; label: string }>
 }
 
 const NavItem = memo(({ name, path, subMenu }: NavItemProps) => {
+    const { t } = useLang()
+
     const pathname = usePathname()
     const isActive = pathname === path
     const [isOpen, setIsOpen] = useState(false)
@@ -47,7 +51,7 @@ const NavItem = memo(({ name, path, subMenu }: NavItemProps) => {
     if (!subMenu?.length) {
         return (
             <Link href={path} className={cn(baseItemStyles, isActive ? activeItemStyles : inactiveItemStyles)}>
-                {name}
+                {t(name)}
             </Link>
         )
     }
@@ -57,7 +61,7 @@ const NavItem = memo(({ name, path, subMenu }: NavItemProps) => {
             <DropdownMenu open={isOpen}>
                 <DropdownMenuTrigger className='focus:outline-none'>
                     <div className={cn(baseItemStyles, isActive ? activeItemStyles : inactiveItemStyles, 'group')}>
-                        {name}
+                        {t(name)}
                         <ChevronDown className={cn('ml-1 h-4 w-4 transition-transform duration-300 ease-in-out')} />
                     </div>
                 </DropdownMenuTrigger>
@@ -93,7 +97,7 @@ const NavItem = memo(({ name, path, subMenu }: NavItemProps) => {
                                 `data-[state=open]:delay-[${index * 50}ms]`
                             )}
                         >
-                            {item.type}
+                            {t(item.label)}
                         </DropdownMenuItem>
                     ))}
                 </DropdownMenuContent>

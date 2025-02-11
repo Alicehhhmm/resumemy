@@ -7,6 +7,7 @@ import { NavItemSettings } from '@/config/system-settings'
 
 export const NavHeader = () => {
     const headmap = NavItemSettings
+
     return (
         <div className='w-full h-[60px] border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80'>
             <div className='h-full px-4 sm:px-6 lg:px-20 flex items-center justify-between'>

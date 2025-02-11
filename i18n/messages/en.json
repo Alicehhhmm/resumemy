@@ -3,6 +3,36 @@
         "title": "Norush resume",
         "description": "Norush's personal website"
     },
+    "system": {
+        "nav": {
+            "group": {
+                "navigation": "Navigation",
+                "profile": "Me"
+            },
+            "home": "Home",
+            "blog": "Blog",
+            "categories": "Categories",
+            "projects": "Projects",
+            "design": "Design"
+        },
+        "links": {
+            "github": "GitHub",
+            "juejin": "Juejin",
+            "gmail": "Gmail"
+        },
+        "submenu": {
+            "demos": "Demos",
+            "react": "React Ecosystem",
+            "vue": "Vue Ecosystem",
+            "webgl": "WebGL Ecosystem",
+            "rust": "Rust Ecosystem",
+
+            "portfolio": "portfolio",
+            "uiux": "uiux",
+            "web": "web design",
+            "mobile": "mobile design"
+        }
+    },
     "HomePage": {
         "title": "Hello world!",
         "about": "Go to the about page"

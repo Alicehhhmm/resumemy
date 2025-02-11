@@ -3,6 +3,36 @@
         "title": "Norush 个人网站",
         "description": "Norush 的个人网站"
     },
+    "system": {
+        "nav": {
+            "group": {
+                "navigation": "导航",
+                "profile": "我的"
+            },
+            "home": "首页",
+            "blog": "博客",
+            "categories": "分类",
+            "projects": "项目",
+            "design": "设计"
+        },
+        "links": {
+            "github": "GitHub",
+            "juejin": "掘金",
+            "gmail": "Gmail"
+        },
+        "submenu": {
+            "demos": "案例",
+            "react": "React 生态",
+            "vue": "Vue 生态",
+            "webgl": "WebGL 生态",
+            "rust": "Rust 生态",
+
+            "portfolio": "作品集",
+            "uiux": "uiux",
+            "web": "Web端",
+            "mobile": "移动端"
+        }
+    },
     "HomePage": {
         "title": "你好世界！",
         "about": "前往关于页面"

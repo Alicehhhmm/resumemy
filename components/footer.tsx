@@ -1,10 +1,13 @@
+import { Github, Facebook, Mail } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
 import { WebLinkSettings } from '@/config/system-settings'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Github, Facebook, Mail } from 'lucide-react'
+import { useLang } from '@/hooks/use-lang'
 
 export const Footer = () => {
     const currentYear = new Date().getFullYear()
+    const { t } = useLang()
 
     const getIcon = (name: string) => {
         switch (name.toLowerCase()) {
@@ -48,7 +51,7 @@ export const Footer = () => {
                                                 rel='noopener'
                                             >
                                                 {getIcon(link.name)}
-                                                {link.name}
+                                                {t(link.name)}
                                             </a>
                                         </li>
                                     ))}

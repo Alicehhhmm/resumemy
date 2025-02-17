@@ -1,0 +1,22 @@
+[
+    {
+        "code": "zh",
+        "localName": "简体中文",
+        "name": "Simplified Chinese",
+        "langDir": "ltr",
+        "dateFormat": "YYYY/MM/DD",
+        "hrefLang": "zh-Hans",
+        "enabled": true,
+        "default": true
+    },
+    {
+        "code": "en",
+        "localName": "English",
+        "name": "English",
+        "langDir": "ltr",
+        "dateFormat": "MM.DD.YYYY",
+        "hrefLang": "en-GB",
+        "enabled": true,
+        "default": false
+    }
+]

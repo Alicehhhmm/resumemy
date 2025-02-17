@@ -1,26 +1,15 @@
-import { notFound } from 'next/navigation'
-import { Open_Sans } from 'next/font/google'
+import { getTranslations } from 'next-intl/server'
 
-import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
-import { routing } from '@/i18n/routing'
+import { cn } from '@/lib/utils'
+import { OPEN_SANS, IBM_PLEX_MONO } from '@/config/next.fonts'
+import { RThemeProvider } from '@/components/providers/theme-providers'
+import { LocaleProvider } from '@/components/providers/locale-provider'
 
 import '@/styles/globals.css'
-import { cn } from '@/lib/utils'
-import { RThemeProvider } from '@/components/providers/theme-providers'
-
-const font = Open_Sans({
-    variable: '--font-open-sans',
-    subsets: ['latin'],
-})
 
 type RootProps = {
     children: React.ReactNode
     params: { locale: string }
-}
-
-export function generateStaticParams() {
-    return routing.locales.map(locale => ({ locale }))
 }
 
 export async function generateMetadata({ params }: Omit<RootProps, 'children'>) {
@@ -36,26 +25,14 @@ export async function generateMetadata({ params }: Omit<RootProps, 'children'>) 
 export default async function RootLayout({ children, params }: RootProps) {
     const { locale } = await params
 
-    // Ensure that the incoming `locale` is valid
-    if (!routing.locales.includes(locale as any)) {
-        notFound()
-    }
-
-    // Enable static rendering
-    setRequestLocale(locale)
-
-    // Providing all messages to the client
-    // side is the easiest way to get started
-    const messages = await getMessages()
-
     return (
         <html lang={locale} suppressHydrationWarning>
-            <body className={cn(font.className, `antialiased`, `bg-white dark:bg-[#313333]`)}>
-                <NextIntlClientProvider messages={messages}>
+            <body className={cn(OPEN_SANS.className, IBM_PLEX_MONO.variable, `antialiased`, `bg-white dark:bg-[#313333]`)}>
+                <LocaleProvider locale={locale}>
                     <RThemeProvider attribute='class' defaultTheme='light' enableSystem storageKey='rose-theme'>
                         {children}
                     </RThemeProvider>
-                </NextIntlClientProvider>
+                </LocaleProvider>
             </body>
         </html>
     )

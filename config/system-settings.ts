@@ -47,6 +47,16 @@ export const WebLinkSettings = [
             },
         ],
     },
+    {
+        type: 'repositories-source',
+        children: [
+            {
+                name: 'system.links.resumemy',
+                link: 'https://github.com/Alicehhhmm/resumemy',
+                blank: true,
+            },
+        ],
+    }
 
 ]
 

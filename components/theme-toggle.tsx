@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes'
 import { Monitor, Moon, Sun, Laptop } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-export const ThemeToggle = () => {
+export const ThemeToggle = ({ className }: { className?: string }) => {
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
 
@@ -21,8 +21,9 @@ export const ThemeToggle = () => {
     // 样式配置
     const baseStyle = cn(
         'rounded-lg p-2 transition-all duration-300 ease-out',
-        'hover:bg-gray-100 dark:hover:bg-gray-800/30',
-        'transform hover:scale-105 active:scale-95'
+        'hover:bg-gray-100 dark:hover:bg-fluo-background',
+        'transform hover:scale-105 active:scale-95',
+        className
     )
     const activeStyle = 'text-blue-500 scale-110'
     const inactiveStyle = 'text-gray-600/90 dark:text-gray-400/90'

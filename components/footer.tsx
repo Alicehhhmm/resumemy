@@ -61,7 +61,7 @@ export const Footer = () => {
                         <div className='space-y-3'>
                             <h3 className='text-sm font-semibold text-foreground'>{t('system.theme')}</h3>
                             <div className='flex items-center gap-2'>
-                                <ThemeToggle />
+                                <ThemeToggle className='max-sm:h-8 max-sm:w-8' />
                             </div>
                         </div>
                     </div>

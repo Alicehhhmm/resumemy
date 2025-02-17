@@ -25,7 +25,9 @@
         "links": {
             "github": "GitHub",
             "juejin": "Juejin",
-            "gmail": "Gmail"
+            "gmail": "Gmail",
+            "twitter": "Twitter",
+            "linkedin": "LinkedIn"
         },
         "submenu": {
             "demos": "Demos",

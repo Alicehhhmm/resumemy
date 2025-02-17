@@ -4,7 +4,8 @@ import { cn } from '@/lib/utils'
 import { WebLinkSettings } from '@/config/system-settings'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { useLang } from '@/hooks/use-lang'
-import { Github, Facebook, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
+import { GitHub, JueJin, LinkedIn, Twitter } from '@/components/icons/social'
 
 export const FooterSimple = () => {
     const currentYear = new Date().getFullYear()
@@ -13,11 +14,15 @@ export const FooterSimple = () => {
     const getIcon = (name: string) => {
         switch (name.toLowerCase()) {
             case 'system.links.github':
-                return <Github className='h-5 w-5' />
+                return <GitHub className='h-5 w-5' />
             case 'system.links.juejin':
-                return <Facebook className='h-5 w-5' />
+                return <JueJin className='h-5 w-5' />
             case 'system.links.gmail':
                 return <Mail className='h-5 w-5' />
+            case 'system.links.twitter':
+                return <Twitter className='h-5 w-5' />
+            case 'system.links.linkedin':
+                return <LinkedIn className='h-5 w-5' />
             default:
                 return null
         }

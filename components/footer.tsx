@@ -1,4 +1,5 @@
-import { Github, Facebook, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
+import { GitHub, JueJin, LinkedIn, Twitter } from '@/components/icons/social'
 
 import { cn } from '@/lib/utils'
 import { WebLinkSettings } from '@/config/system-settings'
@@ -11,12 +12,16 @@ export const Footer = () => {
 
     const getIcon = (name: string) => {
         switch (name.toLowerCase()) {
-            case 'github':
-                return <Github className='h-4 w-4' />
-            case 'juejin':
-                return <Facebook className='h-4 w-4' />
-            case 'gmail':
-                return <Mail className='h-4 w-4' />
+            case 'system.links.github':
+                return <GitHub className='h-5 w-5' />
+            case 'system.links.juejin':
+                return <JueJin className='h-5 w-5' />
+            case 'system.links.gmail':
+                return <Mail className='h-5 w-5' />
+            case 'system.links.twitter':
+                return <Twitter className='h-5 w-5' />
+            case 'system.links.linkedin':
+                return <LinkedIn className='h-5 w-5' />
             default:
                 return null
         }

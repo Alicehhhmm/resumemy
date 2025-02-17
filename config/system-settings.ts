@@ -33,7 +33,17 @@ export const WebLinkSettings = [
             {
                 name: 'system.links.gmail',
                 link: '',
-                blank: false,
+                blank: true,
+            },
+            {
+                name: 'system.links.twitter',
+                link: '',
+                blank: true,
+            },
+            {
+                name: 'system.links.linkedin',
+                link: '',
+                blank: true,
             },
         ],
     },

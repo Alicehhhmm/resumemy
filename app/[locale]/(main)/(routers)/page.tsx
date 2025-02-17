@@ -7,7 +7,7 @@ export default function Home() {
     const t = useTranslations('HomePage')
 
     return (
-        <div className='h-full flex flex-col bg-white dark:bg-[#313333]'>
+        <div className='h-full flex flex-col bg-white dark:bg-fluo-background'>
             <main className='flex-1'>
                 {/* 页面内容 */}
                 <h1>{t('title')}</h1>

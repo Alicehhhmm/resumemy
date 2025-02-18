@@ -1,21 +1,23 @@
-import { useTranslations } from 'next-intl'
-import { Link } from '@/i18n/routing'
-import { BunIcon, NpmIcon, PnpmIcon, YarnIcon } from '@/components/icons/package-manager'
+import { HexagonGrid, RectangleGrid } from '@/components/special-effects'
+
+import { hexToRGBA } from '@/utils/color-change'
+import GlowingBackdrop from '@/components/layout/GlowingBackdrop'
 
 export default function Home() {
-    const t = useTranslations('HomePage')
+    const background = `radial-gradient(circle, ${hexToRGBA('#ffffff')}, transparent)`
 
     return (
-        <div className='h-full flex flex-col bg-white dark:bg-fluo-background'>
-            <main className='flex-1'>
-                {/* 页面内容 */}
-                <h1>{t('title')}</h1>
-                <Link href='/about'>{t('about')}</Link>
-                <BunIcon />
-                <NpmIcon />
-                <PnpmIcon />
-                <YarnIcon />
-            </main>
+        <div className='flex-1 h-[calc(100vh-146.4px)] bg-fluo-background dark:bg-fluo-background'>
+            <div className='relative w-full h-full'>
+                {/* <HexagonGrid style={{ background }} className='w-full h-full' /> */}
+                <GlowingBackdrop></GlowingBackdrop>
+                <div className='absolute top-0 bottom-0 left-0 right-0 bg-transparent py-10 px-20'>
+                    <div className='flex justify-between items-center'>
+                        <div className='bg-green-500 w-full h-60 '></div>
+                        <div className='bg-pink-500 w-full h-60 '></div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

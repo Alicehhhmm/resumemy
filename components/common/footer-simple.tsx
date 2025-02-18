@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { WebLinkSettings } from '@/config/system-settings'
-import { ThemeToggle } from '@/components/theme-toggle'
+import { ThemeToggle } from '@/components/common/theme-toggle'
 import { useLang } from '@/hooks/use-lang'
 import { Mail } from 'lucide-react'
 import { GitHub, JueJin, LinkedIn, Twitter } from '@/components/icons/social'

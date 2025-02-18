@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavHeader } from '@/components/navigation/nav-header'
-import { Footer } from '@/components/footer'
-import { FooterSimple } from '@/components/footer-simple'
+import { Footer } from '@/components/common/footer'
+import { FooterSimple } from '@/components/common/footer-simple'
 
 const MainLayout = async ({ children }: { children: React.ReactNode }) => {
     return (

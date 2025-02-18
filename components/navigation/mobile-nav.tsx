@@ -5,8 +5,8 @@ import { useState } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { LangToggle } from '@/components/lang-toggle'
-import { ThemeToggle } from '@/components/theme-toggle'
+import { LangToggle } from '@/components/common/lang-toggle'
+import { ThemeToggle } from '@/components/common/theme-toggle'
 import { NavItemSettings } from '@/config/system-settings'
 import { useLang } from '@/hooks/use-lang'
 

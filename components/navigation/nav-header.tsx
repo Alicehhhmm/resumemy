@@ -1,13 +1,13 @@
-import { ThemeToggleBtn } from '@/components/theme-toggle'
+import { ThemeToggleBtn } from '@/components/common/theme-toggle'
 import { NavItem } from '@/components/navigation/nav-item'
 import { GitHub } from '@/components/icons/social'
-import { LangToggle } from '@/components/lang-toggle'
+import { LangToggle } from '@/components/common/lang-toggle'
 import { MobileNav } from '@/components/navigation/mobile-nav'
 
 import { getRepositoryLink } from '@/config/lib'
 import { NavItemSettings } from '@/config/system-settings'
 import { useLang } from '@/hooks/use-lang'
-import { ActionLink } from '@/components/action-link'
+import { ActionLink } from '@/components/common/action-link'
 
 export const NavHeader = () => {
     const headmap = NavItemSettings

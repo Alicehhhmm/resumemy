@@ -1,7 +1,7 @@
 import { HexagonGrid, RectangleGrid } from '@/components/special-effects'
 
 import { hexToRGBA } from '@/utils/color-change'
-import GlowingBackdrop from '@/components/layout/GlowingBackdrop'
+import GlowingBackdrop from '@/components/common/GlowingBackdrop'
 
 export default function Home() {
     const background = `radial-gradient(circle, ${hexToRGBA('#ffffff')}, transparent)`
@@ -13,8 +13,8 @@ export default function Home() {
                 <GlowingBackdrop></GlowingBackdrop>
                 <div className='absolute top-0 bottom-0 left-0 right-0 bg-transparent py-10 px-20'>
                     <div className='flex justify-between items-center'>
-                        <div className='bg-green-500 w-full h-60 '></div>
-                        <div className='bg-pink-500 w-full h-60 '></div>
+                        {/* <div className='bg-green-500 w-full h-60 '></div> */}
+                        {/* <div className='bg-pink-500 w-full h-60 '></div> */}
                     </div>
                 </div>
             </div>

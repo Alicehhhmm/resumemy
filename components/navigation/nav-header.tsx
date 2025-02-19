@@ -8,6 +8,7 @@ import { getRepositoryLink } from '@/config/lib'
 import { NavItemSettings } from '@/config/system-settings'
 import { useLang } from '@/hooks/use-lang'
 import { ActionLink } from '@/components/common/action-link'
+import Link from 'next/link'
 
 export const NavHeader = () => {
     const headmap = NavItemSettings
@@ -19,7 +20,9 @@ export const NavHeader = () => {
             <div className='h-full px-4 sm:px-6 lg:px-20 flex items-center justify-between'>
                 {/* Logo */}
                 <div>
-                    <h2 className='text-xl sm:text-2xl font-medium text-foreground'>Resume My</h2>
+                    <Link href={'/'}>
+                        <h2 className='text-xl sm:text-2xl font-medium text-foreground'>Resume My</h2>
+                    </Link>
                 </div>
 
                 <div className='flex items-center gap-2'>

@@ -24,8 +24,6 @@ body,
         --fluo-gradual: #bdfa5c; /* 深荧光绿渐变 */
         --fluo-gradual-start: #bdfa5c; /* 渐变起始色 */
         --fluo-gradual-end: #1db854; /* 渐变结束色 */
-        --gradient-direction: 45deg; /* 渐变方向 */
-        --fluo-gradient: linear-gradient(var(--gradient-direction), #bdfa5c, #1db854);
 
         --background: 0 0% 100%;
         --foreground: 240 10% 3.9%;

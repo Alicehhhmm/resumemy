@@ -1,6 +1,4 @@
-// TODO: Supports switching dynamic theme layouts
-
-// default layout
-// Home layout
-// Blog layout
-// Article Layout
+export { DefaultLayout } from './default-layout'
+export { HomeLayout } from './home-layout'
+export { BlogLayout } from './blog-layout'
+export { ArticleLayout } from './article-layout'

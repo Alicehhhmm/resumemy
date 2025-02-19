@@ -1,12 +1,17 @@
 import React from 'react'
 
-const BlogLayout = async ({ children }: { children: React.ReactNode }) => {
+import WithLayout from '@/components/layout/with-layout'
+
+interface BlogMainLayoutProps {
+    children: React.ReactNode
+}
+
+const BlogMainLayout = async ({ children }: BlogMainLayoutProps) => {
     return (
-        <div className='h-full'>
-            <h1>BlogLayout</h1>
-            <main className='pt-[60px] h-full'>{children}</main>
-        </div>
+        <>
+            <WithLayout layout={'blog'}>{children}</WithLayout>
+        </>
     )
 }
 
-export default BlogLayout
+export default BlogMainLayout

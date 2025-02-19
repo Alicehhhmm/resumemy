@@ -1,6 +1,6 @@
 const BlogIDPage = () => {
     return (
-        <div className=''>
+        <div className='h-full'>
             <h1>BlogPage: ID</h1>
         </div>
     )

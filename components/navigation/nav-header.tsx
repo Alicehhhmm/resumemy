@@ -15,7 +15,7 @@ export const NavHeader = () => {
     const resumeLink = getRepositoryLink('repositories-source', 'system.links.resumemy')
 
     return (
-        <div className='w-full h-[60px] border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80'>
+        <div className='w-full h-[60px] fixed top-0 left-0 right-0 z-30 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80'>
             <div className='h-full px-4 sm:px-6 lg:px-20 flex items-center justify-between'>
                 {/* Logo */}
                 <div>

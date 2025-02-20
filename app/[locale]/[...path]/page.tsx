@@ -1,46 +1,97 @@
 import { notFound } from 'next/navigation'
+
+import { dynamicRouter } from '@/core/dynamic-route.mjs'
+import { availableLocaleCodes, defaultLocale } from '@/core/next.locales.mjs'
+import { ENABLE_STATIC_EXPORT, ENABLE_STATIC_EXPORT_LOCALE } from '@/core/dynamic-route-constants'
+
 import { WithLayout } from '@/components/layout'
 import { routing } from '@/i18n/routing'
 import { getTranslations } from 'next-intl/server'
 import { Layouts } from '@/types/layouts'
 
-type Params = {
+type DynamicPageParamsProps = {
     params: {
         locale: string
         path?: string[]
-        title?: string
     }
 }
 
-// 安全的静态生成配置
+/**
+ * [中文文档]
+ * 根据国际化配置生成静态路径
+ *
+ * @behavior
+ * - 静态导出禁用时:
+ *   - ENABLE_STATIC_EXPORT=false: 返回空数组启用动态渲染
+ * - 静态导出启用时:
+ *   - ENABLE_STATIC_EXPORT_LOCALE=true ? 生成所有语言路径 : 否则仅生成默认语言路径
+ * @returns {Array<{locale: string, path: string[], ...}>}
+ * @example 启用多语言静态导出
+ * [
+ *   { locale: 'zh-CN', path: ['blog'] },
+ *   { locale: 'zh-CN', path: ['docs', 'intro'] },
+ *   { locale: 'en-US', path: ['about'] }
+ * ]
+ *
+ * @example 仅默认语言
+ * [
+ *   { locale: 'en-US', path: ['home'] },
+ *   { locale: 'en-US', path: ['contact'] }
+ * ]
+ * -------------------------------------------------------------------------------
+ * @see https://nextjs.org/docs/app/api-reference/functions/generate-static-params
+ */
 export async function generateStaticParams() {
-    // TODO:
-    // 1.创建博客文章所在目录下，所有文件夹路径名称组成的动态路由数组
-    // 2.获取生成的动态数组，将其生成静态页面的路由路径
-    const result = [
-        { locale: 'zh', path: ['posts'] },
-        { locale: 'en', path: ['posts'] },
-        { locale: 'zh', path: ['blog'] },
-        { locale: 'en', path: ['blog'] },
-    ]
+    console.log('Generates ENABLE_STATIC_EXPORT@', ENABLE_STATIC_EXPORT)
+    // When static export disabled
+    if (!ENABLE_STATIC_EXPORT) {
+        return []
+    }
 
-    return result
+    // When static export enabled
+    const locales = ENABLE_STATIC_EXPORT_LOCALE ? availableLocaleCodes : [defaultLocale.code]
+
+    // 获取当前语言模式下，所有映射的路由路径
+    const getRoutesForLocale = async (locale: string) => {
+        const routes = await dynamicRouter.getRoutesByLanguage(locale)
+        // [ 'blog', 'blog\\new\\new-welcon' ]
+        return routes.map(pathname => dynamicRouter.mapPathToRoute(locale, pathname))
+    }
+
+    // Generates all possible routes for all available locales
+    const routes = await Promise.all(locales.map(getRoutesForLocale))
+    console.log('Generates routes@', routes)
+    // [
+    //     [ { locale: 'zh', path: [Array] }, { locale: 'zh', path: [Array] } ]
+    //  ]
+
+    // routes.flat().sort()
+    // [
+    //     { locale: 'zh', path: [ '' ] },
+    //     { locale: 'zh', path: [ 'demo' ] },
+    //     { locale: 'zh', path: [ 'blog' ] },
+    //     { locale: 'zh', path: [ 'demo', 'new' ] },
+    //     { locale: 'zh', path: [ 'demo', 'less' ] },
+    //     { locale: 'zh', path: [ 'blog', 'new', 'new-welcon' ] }
+    //   ]
+    return routes.flat().sort()
 }
 
-const DynamicPage = ({ params }: Params) => {
-    const { locale, path = [] } = params
+const DynamicPage = async ({ params }: DynamicPageParamsProps) => {
+    const { locale, path = [] } = await params
 
     // 1. 验证语言配置
     if (!routing.locales.includes(locale)) {
         return notFound()
     }
+    console.log('DynamicPage params@', path)
 
     const [staticPath] = path
 
     // TODO:
     // 1.将当前路径转给存储所有静态页面路径的对接，判断是否存在
     // 2.如果存在，定义一个方法，将当前路径传递给对应的页面布局组件
-    if (['posts', 'blog'].includes(staticPath)) {
+    if (['posts', 'blog', 'demo'].includes(staticPath)) {
         return (
             <WithLayout layout={'blog'}>
                 <div className=''>
@@ -54,7 +105,10 @@ const DynamicPage = ({ params }: Params) => {
     return notFound()
 }
 
+// @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic
 export const dynamicParams = false
+
+// @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
 export const revalidate = 300
 
 export default DynamicPage

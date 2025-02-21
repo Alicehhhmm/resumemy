@@ -1,13 +1,11 @@
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
+import { setRequestLocale } from 'next-intl/server'
 import { dynamicRouter } from '@/core/dynamic-route.mjs'
-import { availableLocaleCodes, defaultLocale } from '@/core/next.locales.mjs'
+import { availableLocaleCodes, allLocaleCodes, defaultLocale } from '@/core/next.locales.mjs'
 import { ENABLE_STATIC_EXPORT, ENABLE_STATIC_EXPORT_LOCALE } from '@/core/dynamic-route-constants'
 
 import { WithLayout } from '@/components/layout'
-import { routing } from '@/i18n/routing'
-import { getTranslations } from 'next-intl/server'
-import { Layouts } from '@/types/layouts'
 
 type DynamicPageParamsProps = {
     params: {
@@ -64,12 +62,27 @@ export async function generateStaticParams() {
     return routes.flat().sort()
 }
 
+/**
+ * 该页面用于动态渲染，根据 pages 文件夹下的目录结构自动生成动态路由。
+ * 路径中的每个文件夹名称将作为路由的路径名称，最终映射到对应的页面组件。
+ * 例如：pages/[Locale]/demo/tamplate.mdx 将会生成动态路由路径: /zh/demo/tamplate
+ * @returns {JSX.Element} 返回对应的页面布局组件或404页面
+ */
 const DynamicPage = async ({ params }: DynamicPageParamsProps) => {
     const { locale, path = [] } = await params
 
-    // 1. 验证语言配置
-    if (!routing.locales.includes(locale)) {
-        return notFound()
+    // 验证语言配置是否有效
+    if (!availableLocaleCodes.includes(locale)) {
+        setRequestLocale(defaultLocale.code)
+
+        if (!allLocaleCodes.includes(locale)) {
+            return notFound()
+        }
+
+        // Redirect to the default locale path
+        const pathname = dynamicRouter.getPathname(path)
+
+        return redirect(`/${defaultLocale.code}/${pathname}`)
     }
 
     const [staticPath] = path
@@ -78,13 +91,31 @@ const DynamicPage = async ({ params }: DynamicPageParamsProps) => {
     // 1.将当前路径转给存储所有静态页面路径的对接，判断是否存在
     // 2.如果存在，定义一个方法，将当前路径传递给对应的页面布局组件
     if (['posts', 'blog', 'demo'].includes(staticPath)) {
-        return (
-            <WithLayout layout={'blog'}>
-                <div className=''>
-                    <h1>博客页面{staticPath}</h1>
-                </div>
-            </WithLayout>
-        )
+        return <WithLayout layout={'blog'}></WithLayout>
+    }
+
+    // TODO: 针对mdx文件的动态布局:
+    // 1.根据获取的 frontmatter 中的 layout 字段，动态渲染对应的布局组件
+    // 2.如果 frontmatter 中没有 layout 字段，则使用默认布局组件
+    // 3.如果 mdx 文件使用组件, 将根据返回的文件信息: content 直接渲染对应的组件
+
+    // const { source, filename } = await dynamicRouter.getMarkdownFile(
+    //     locale,
+    //     pathname
+    //   );
+    // mocks
+    const source = 'mdx source'
+    const filename = 'mdx filename'
+
+    if (source.length && filename.length) {
+        // 获取文件内容
+        // const {content,frontmatter } = await dynamicRouter.getMarkdownContent(source, filename);
+
+        // mocks
+        const frontmatter: any = { layout: 'article' }
+        const content = <div className='p-2 bg-amber-500'>mdx components content</div>
+
+        return <WithLayout layout={frontmatter.layout}>{content}</WithLayout>
     }
 
     // 404

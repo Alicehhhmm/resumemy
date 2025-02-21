@@ -1,0 +1,95 @@
+---
+title: 响应式网格组件使用文档
+---
+
+import ResponsiveGrid from '../components/ResponsiveGrid'
+import CardComponentDemo from '../components/CardComponentDemo';
+## 基础用法
+
+默认参数展示三列响应式布局：
+
+<ResponsiveGrid>
+    <div style={{ padding: '1rem', background: '#f0f4ff' }}>区块1</div>
+    <div style={{ padding: '1rem', background: '#fff4f0' }}>区块2</div>
+    <div style={{ padding: '1rem', background: '#f4fff0' }}>区块3</div>
+</ResponsiveGrid>
+
+组件：CardComponentDemo
+
+<CardComponentDemo />
+
+## 自定义参数
+
+### 案例 1：紧凑布局
+
+<ResponsiveGrid minWidth={200} gap='1rem' padding='0.5rem'>
+    {[...Array(6)].map((_, i) => (
+        <div
+            key={i}
+            style={{
+                padding: '1rem',
+                background: `hsl(${i * 60}, 50%, 90%)`,
+            }}
+        >
+            项目 {i + 1}
+        </div>
+    ))}
+</ResponsiveGrid>
+
+### 案例 2：媒体对象布局
+
+<ResponsiveGrid minWidth={320} gap='2rem' breakpoint='1024px'>
+    <div
+        style={{
+            display: 'flex',
+            gap: '1rem',
+            alignItems: 'center',
+            padding: '1.5rem',
+            background: '#fff',
+        }}
+    >
+        <img src='https://via.placeholder.com/120' alt='示例' style={{ borderRadius: '8px' }} />
+        <div>
+            <h3 style={{ marginTop: 0 }}>媒体标题</h3>
+            <p>响应式媒体对象布局示例</p>
+        </div>
+    </div>
+
+    <div
+        style={{
+            padding: '1.5rem',
+            background: '#f8f9fa',
+        }}
+    >
+        <h3>信息面板</h3>
+        <ul style={{ paddingLeft: '1.5rem' }}>
+            <li>响应式布局特性</li>
+            <li>自动断点调整</li>
+            <li>移动端优先</li>
+        </ul>
+    </div>
+
+</ResponsiveGrid>
+
+## 移动端适配
+
+调整浏览器窗口大小查看响应效果：
+
+<ResponsiveGrid breakpoint='480px'>
+    <div
+        style={{
+            padding: '1rem',
+            background: '#ffd70033',
+        }}
+    >
+        移动端单列布局
+    </div>
+    <div
+        style={{
+            padding: '1rem',
+            background: '#87ceeb33',
+        }}
+    >
+        小屏幕自动堆叠
+    </div>
+</ResponsiveGrid>

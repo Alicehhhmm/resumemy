@@ -1,4 +1,8 @@
 ---
-title: 中文模式 Demo
-layout: default
+title: Demo
+slug: Demo
 ---
+
+# Demo
+
+This is a demo md file

@@ -58,22 +58,9 @@ export async function generateStaticParams() {
         return routes.map(pathname => dynamicRouter.mapPathToRoute(locale, pathname))
     }
 
-    // Generates all possible routes for all available locales
+    // Generates all possible routes for all available locales [{ locale: 'zh', path: [ 'demo' ] }, ...]
     const routes = await Promise.all(locales.map(getRoutesForLocale))
-    console.log('Generates routes@', routes)
-    // [
-    //     [ { locale: 'zh', path: [Array] }, { locale: 'zh', path: [Array] } ]
-    //  ]
 
-    // routes.flat().sort()
-    // [
-    //     { locale: 'zh', path: [ '' ] },
-    //     { locale: 'zh', path: [ 'demo' ] },
-    //     { locale: 'zh', path: [ 'blog' ] },
-    //     { locale: 'zh', path: [ 'demo', 'new' ] },
-    //     { locale: 'zh', path: [ 'demo', 'less' ] },
-    //     { locale: 'zh', path: [ 'blog', 'new', 'new-welcon' ] }
-    //   ]
     return routes.flat().sort()
 }
 
@@ -84,7 +71,6 @@ const DynamicPage = async ({ params }: DynamicPageParamsProps) => {
     if (!routing.locales.includes(locale)) {
         return notFound()
     }
-    console.log('DynamicPage params@', path)
 
     const [staticPath] = path
 

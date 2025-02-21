@@ -48,7 +48,6 @@ const getDynamicRouter = async () => {
     const pathnameToFilename = new Map()
 
     // 获取指定文件夹下, 特定语言路径的所有 md(x) 文件
-    // '@/pages/zh/index.mdx
     // [ 'index.mdx', 'blog\\index.md', 'blog\\new\\new-welcon.md' ]
     const websitePages = await getMarkdownFiles(process.cwd(), `${POSTS_FOLDER_NAME}/${defaultLocale.code}`)
 
@@ -67,20 +66,8 @@ const getDynamicRouter = async () => {
 
         // We map the pathname to the filename to be able to quickly
         // resolve the filename for a given pathname
-        // '' => 'index.mdx',
-        // 'demo' => 'demo\\index.md',
         pathnameToFilename.set(pathname, filename)
     })
-
-    // pathnameToFilename
-    // {
-    //     '' => 'index.mdx',
-    //     'demo' => 'demo\\index.md',
-    //     'blog' => 'blog\\index.md',
-    //     'demo\\new' => 'demo\\new\\index.md',
-    //     'demo\\less' => 'demo\\less\\index.md',
-    //     'blog\\new\\new-welcon' => 'blog\\new\\new-welcon.md'
-    //   }
 
     /**
      * ZH: 该方法返回所给语言环境中存在的所有路由的列表

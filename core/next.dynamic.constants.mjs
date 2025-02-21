@@ -9,9 +9,9 @@ import { defaultLocale } from './next.locales.mjs'
  * @type {Array<((route: import('./types').RouteSegment) => boolean)>} A list of Ignored Routes by Regular Expressions
  */
 export const IGNORED_ROUTES = [
-    // This is used to ignore all blog routes except for the English language
+    // 此选项用于忽略除: 默认语言(zh) 之外的所有博客路由
     ({ locale, pathname }) => locale !== defaultLocale.code && /^blog/.test(pathname),
-    // This is used to ignore all pathnames that are empty
+    // 忽略所有空的路径名
     ({ locale, pathname }) => locale.length && !pathname.length,
 ]
 

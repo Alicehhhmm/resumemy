@@ -1410,7 +1410,7 @@ export const HexagonGrid: FC<HexagonGridProps> = props => (
                 gradientUnits='userSpaceOnUse'
                 gradientTransform='translate(608 362.9) rotate(90) scale(447.374 749.527)'
             >
-                <stop stopColor='#D9D9D9' stopOpacity='0.1' />
+                <stop stopColor='#D9D9D9' stopOpacity={props?.stopOpacity ? props?.stopOpacity : '0.1'} />
                 <stop offset='0.802083' stopColor='#D9D9D9' stopOpacity='0' />
             </radialGradient>
         </defs>

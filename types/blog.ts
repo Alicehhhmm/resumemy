@@ -1,0 +1,1 @@
+export type BlogPreviewType = 'default' | 'announcements' | 'release' | 'vulnerability';

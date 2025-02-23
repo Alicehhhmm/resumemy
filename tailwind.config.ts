@@ -150,6 +150,11 @@ export default {
                 md: 'calc(var(--radius) - 2px)',
                 sm: 'calc(var(--radius) - 4px)'
             },
+            spacing: {
+                'navh': 'var(--nr-header-h)',
+                'navf': 'var(--nr-footer-h)',
+                'sdbw': 'var(--nr-sidebar)',
+            },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                 'gradient-subtle': 'linear-gradient(180deg, theme(colors.neutral.100 / 50%) 0%, theme(colors.neutral.100 / 0%) 48.32%)',

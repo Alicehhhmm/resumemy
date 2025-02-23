@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './nrbase.css';
+@import './scrollbar.css';
 
 html,
 body,
@@ -12,19 +14,6 @@ body,
 
 @layer base {
     :root {
-        --fluo: #1db854;
-        --fluo-primary: #1db854; /* 主荧光绿色 */
-        --fluo-deep: #1d9041; /* 深荧光绿色 */
-        --fluo-light: #82f9ac; /* 浅荧光绿色 */
-        --fluo-soft: #b0fbbc; /* 柔和荧光绿色 */
-        --fluo-pale: #e6fff7; /* 淡荧光绿色 */
-        --fluo-mute: #d1f5e8; /* 柔和荧光绿色（更淡） */
-        --fluo-background: #f9faff; /* 荧光背景色 */
-
-        --fluo-gradual: #bdfa5c; /* 深荧光绿渐变 */
-        --fluo-gradual-start: #bdfa5c; /* 渐变起始色 */
-        --fluo-gradual-end: #1db854; /* 渐变结束色 */
-
         --background: 0 0% 100%;
         --foreground: 240 10% 3.9%;
         --card: 0 0% 100%;
@@ -52,15 +41,6 @@ body,
         --radius: 0.5rem;
     }
     .dark {
-        --fluo-: #bdfa5c;
-        --fluo-primary: #00d26e; /* 主荧光绿色（暗色模式） */
-        --fluo-deep: #1d9041; /* 深荧光绿色（暗色模式） */
-        --fluo-light: #2ecf8e; /* 浅荧光绿色（暗色模式） */
-        --fluo-soft: #3ad79c; /* 柔和荧光绿色（暗色模式） */
-        --fluo-pale: #52e0b0; /* 淡荧光绿色（暗色模式） */
-        --fluo-mute: #6adbb9; /* 柔和荧光绿色（更淡，暗色模式） */
-        --fluo-background: #1e2226; /* 荧光背景色（暗色模式） */
-
         --background: 240 10% 3.9%;
         --foreground: 0 0% 98%;
         --card: 240 10% 3.9%;

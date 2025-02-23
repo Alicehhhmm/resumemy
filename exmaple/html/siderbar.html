@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三栏式布局</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 容器样式 */
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar-bg);
+            padding: 1.5rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+
+            /* 玻璃效果 */
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin: 0.5rem 0;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            background: rgba(74, 144, 226, 0.08);
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+
+        /* 内容区域样式 */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .content h1 {
+            font-size: 2.25rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin: 3rem 0 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .content p {
+            color: var(--text-secondary);
+            margin: 1.5rem 0;
+        }
+
+        /* 模拟长内容 */
+        .dummy-content {
+            height: 1000px;
+        }
+
+        /* 粘性布局 */
+        .sidebar,
+        h3,
+        .content {
+            position: sticky;
+            top: 0;
+        }
+
+        h3 {
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+
+        .left-sidebar {
+            order: -1;
+            border-right: 1px solid #ddd;
+        }
+
+        .right-sidebar {
+            order: 2;
+            border-left: 1px solid #ddd;
+        }
+
+        .content {
+            order: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 左侧侧边栏 -->
+        <div class="sidebar left-sidebar">
+            <h3>目录结构 - 左1</h3>
+            <ul>
+                <li><a href="#section1">📖 引言</a></li>
+                <li><a href="#section2">🌍 背景</a></li>
+                <li><a href="#section3">🔧 方法</a></li>
+                <li><a href="#section4">📊 结果</a></li>
+                <li><a href="#section5">🎯 结论</a></li>
+            </ul>
+            <h3>目录结构 - 左2</h3>
+            <ul>
+                <li><a href="#section1">第一节</a></li>
+                <li><a href="#section2">第二节</a></li>
+                <li><a href="#section3">第三节</a></li>
+                <li><a href="#section4">第四节</a></li>
+                <li><a href="#section5">第五节</a></li>
+            </ul>
+            <div class="dummy-content"></div>
+        </div>
+
+        <!-- 中间内容区域 -->
+        <div class="content">
+            <h1>文档阅读内容</h1>
+            <div id="section1">
+                <h2>第一节：引言</h2>
+                <p>这是第一节的内容。欢迎阅读本篇文章。</p>
+                <div class="dummy-content"></div>
+            </div>
+            <div id="section2">
+                <h2>第二节：背景</h2>
+                <p>这是第二节的内容。背景信息很重要。</p>
+                <div class="dummy-content"></div>
+            </div>
+            <div id="section3">
+                <h2>第三节：方法</h2>
+                <p>这是第三节的内容。方法部分详细描述了实现过程。</p>
+                <div class="dummy-content"></div>
+            </div>
+            <div id="section4">
+                <h2>第四节：结果</h2>
+                <p>这是第四节的内容。结果部分展示了项目的成果。</p>
+                <div class="dummy-content"></div>
+            </div>
+            <div id="section5">
+                <h2>第五节：结论</h2>
+                <p>这是第五节的内容。结论部分总结了项目的意义和价值。</p>
+                <div class="dummy-content"></div>
+            </div>
+        </div>
+
+        <!-- 右侧侧边栏 -->
+        <div class="sidebar right-sidebar">
+            <h3>目录结构 - 右</h3>
+            <ul>
+                <li><a href="#section1">第一节</a></li>
+                <li><a href="#section2">第二节</a></li>
+                <li><a href="#section3">第三节</a></li>
+                <li><a href="#section4">第四节</a></li>
+                <li><a href="#section5">第五节</a></li>
+            </ul>
+            <div class="dummy-content"></div>
+        </div>
+    </div>
+</body>
+
+</html>

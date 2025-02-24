@@ -1,0 +1,83 @@
+{
+    "sections": [
+        {
+            "title": "首页",
+            "type": "link",
+            "url": "/",
+            "icon": "Home"
+        },
+        {
+            "title": "开始",
+            "type": "group",
+            "icon": "Rocket",
+            "items": [
+                { "label": "介绍", "href": "/zh/guide/start/introduction", "active": false },
+                { "label": "快速上手", "href": "/zh/guide/start/quick-start", "active": false },
+                { "label": "架构设计", "href": "/zh/guide/start/architecture", "active": false }
+            ]
+        },
+        {
+            "title": "核心特性",
+            "type": "group",
+            "icon": "Zap",
+            "items": [
+                { "label": "资源模块", "href": "/zh/guide/features/asset-module", "active": false },
+                { "label": "闪电CSS", "href": "/zh/guide/features/lightningcss", "active": false },
+                { "label": "SWC编译", "href": "/zh/guide/features/swc-loader", "active": false },
+                { "label": "开发服务器", "href": "/zh/guide/features/dev-server", "active": false },
+                { "label": "模块联邦", "href": "/zh/guide/features/module-federation", "active": false },
+                { "label": "插件系统", "href": "/zh/guide/features/plugin-system", "active": false }
+            ]
+        },
+        {
+            "title": "框架支持",
+            "type": "group",
+            "icon": "Code",
+            "items": [
+                { "label": "React", "href": "/zh/guide/frameworks/react", "active": false },
+                { "label": "Vue", "href": "/zh/guide/frameworks/vue", "active": false },
+                { "label": "Svelte", "href": "/zh/guide/frameworks/svelte", "active": false },
+                { "label": "SolidJS", "href": "/zh/guide/frameworks/solid", "active": false },
+                { "label": "Lit", "href": "/zh/guide/frameworks/lit", "active": false }
+            ]
+        },
+        {
+            "title": "高级优化",
+            "type": "group",
+            "icon": "Gauge",
+            "items": [
+                { "label": "代码分割", "href": "/zh/guide/optimization/code-splitting", "active": false },
+                { "label": "Tree Shaking", "href": "/zh/guide/optimization/tree-shaking", "active": false },
+                { "label": "持久缓存", "href": "/zh/guide/optimization/persistent-cache", "active": false },
+                { "label": "性能分析", "href": "/zh/guide/optimization/profiling", "active": false }
+            ]
+        },
+        {
+            "title": "配置参考",
+            "type": "group",
+            "icon": "Settings",
+            "items": [
+                { "label": "全局配置", "href": "/zh/guide/configuration/global", "active": false },
+                { "label": "构建目标", "href": "/zh/guide/configuration/targets", "active": false },
+                { "label": "模块解析", "href": "/zh/guide/configuration/resolve", "active": false },
+                { "label": "DevServer", "href": "/zh/guide/configuration/dev-server", "active": false }
+            ]
+        },
+        {
+            "title": "迁移指南",
+            "type": "group",
+            "icon": "GitBranch",
+            "items": [
+                { "label": "从Webpack迁移", "href": "/zh/guide/migration/webpack", "active": false },
+                { "label": "从Vite迁移", "href": "/zh/guide/migration/vite", "active": false },
+                { "label": "从Rspack 0.x升级", "href": "/zh/guide/migration/rspack-0.x", "active": false }
+            ]
+        },
+        {
+            "title": "API参考",
+            "type": "link",
+            "url": "/zh/api",
+            "icon": "BookOpen"
+        }
+    ]
+}

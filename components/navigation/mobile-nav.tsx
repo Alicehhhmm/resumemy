@@ -46,7 +46,7 @@ export const MobileNav = () => {
                 className={cn(
                     'fixed inset-0 top-[60px] z-50 h-[calc(100vh-60px)]',
                     'bg-background/95 backdrop-blur-lg shadow-lg',
-                    'transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]',
+                    'transition-[transform,opacity] duration-300 ease-in-out',
                     'dark:bg-background/90',
                     isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
                 )}

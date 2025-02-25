@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Title Color Change Demo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            padding: 20px;
+            border-left: 2px solid #ccc;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background-color 0.3s;
+        }
+
+        h1.sticky {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .content {
+            padding-top: 100px;
+            /* 用于模拟标题下方的空间 */
+        }
+
+        .target-point {
+            margin: 100px 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+        }
+
+        h2 {
+            color: #333;
+            transition: color 0.3s;
+            border: 1px solid #FF5733;
+            background-color: #f0f0f0;
+            padding: 0 10px;
+        }
+
+        .sticky {
+            z-index: 200;
+            position: sticky;
+        }
+
+        /* 样式变化的类 */
+        .highlighted {
+            color: #FF5733;
+            /* 改变标题颜色 */
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 50px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .toc {
+            position: fixed;
+            top: 30px;
+            right: 20px;
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 300;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin: 4px 0;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: #333;
+            transition: 0.3s;
+            padding: 4px 20px;
+            border-radius: 4px;
+        }
+
+        .toc a:hover {
+            color: #FF5733;
+            background-color: #dcdcdc8c;
+
+        }
+
+        .toc a.active {
+            color: #FF5733;
+            font-weight: bold;
+            background-color: #dcdcdc8c;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="mainTitle">阅读文档</h1>
+
+        <div class="content">
+            <h2 id="section1">Lesson 1</h2>
+            <p>这是文档的第一部分内容</p>
+            <p>This is the first part of the document</p>
+            <p> This is a long piece of text ......</p>
+
+            <h2 id="section2">Lesson 2</h2>
+            <p>这是文档的第二部分内容。</p>
+            <p>This is the second part of the document.</p>
+            <p> This is a long piece of text ......</p>
+
+            <h2 id="section3">Lesson 3</h2>
+            <p>这是文档的第三部分内容。</p>
+            <p>This is the third part of the document</p>
+            <p> This is a long piece of text ......</p>
+
+            <div class="spacer" style="height: 1000px;">
+                <!-- 用于增加文档高度 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2>文档结束</h2>
+        <p>感谢阅读！</p>
+    </div>
+
+    <!-- 右侧标题目录 -->
+    <div class="toc">
+        <ul>
+            <li><a id="section1" href="#section1">lesson 1</a></li>
+            <li><a id="section2" href="#section2">lesson 2</a></li>
+            <li><a id="section3" href="#section3">lesson 3</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // 需要监听的文章标题（h2 元素）
+        const titles = document.querySelectorAll('.content h2');
+        const tocLinks = document.querySelectorAll('.toc a');
+
+        // 设置标题到达窗口顶部的阈值（例如：距离窗口顶部170px(顶部标题高度 + 标题距离文档顶部的高度)时触发样式变化）
+        const threshold = 100;
+
+        // 使用 IntersectionObserver
+        titles.forEach((title, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    let visiblePct = `${Math.floor(entry.intersectionRatio * 100)}%`;
+                    // 目标元素顶部边界相对于视口顶部边界的距离-的实时值: entry.boundingClientRect.top
+
+                    // isIntersecting: false ，表示目标元素与观察器的根（root）区域没有交集。(从相交到不相距的过渡)，即不在可见区域的范围内。
+                    // 默认情况下，root 是视口（null），rootMargin 默认值是 "0px"，表示根（视口）的边界没有额外的边距。
+
+                    // 当rootMargin：'-100px 0px 0px 0px'
+                    // 表示观测的边界比 root（默认是视口）的顶部减少了 100px。
+                    // 相当于目标元素需要进入或离开 root 的顶部 100px 以上才会触发观察器的回调intersectionCallback。
+                    // 
+                    // https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting
+
+                    const isVisible = !entry.isIntersecting
+                    let uniqueTiD = title.id
+                    console.log(`--------unique:${uniqueTiD}-------------`);
+
+                    updatedTitle(uniqueTiD)
+
+                    updateToc(uniqueTiD)
+                });
+            }, {
+                rootMargin: `-${threshold}px 0px 0px 0px`, // 调整根边界，提前触发事件
+                threshold: 0.1
+                // threshold: [0, 0.25, 0.5, 0.75, 1]
+            });
+
+            observer.observe(title);
+        });
+
+        // 更新标题
+        const updatedTitle = (currTid) => {
+            titles.forEach(t => {
+                const condition = t.id === currTid
+                if (condition) {
+                    t.classList.add('highlighted', 'sticky');
+                } else {
+                    t.classList.remove('highlighted', 'sticky');
+                }
+            })
+        }
+
+        // 更新右侧目录
+        const updateToc = (TocId) => {
+            tocLinks.forEach((link, index) => {
+                const condition = link.id === TocId
+                if (condition) {
+                    link.classList.add('active');
+                } else {
+
+                    link.classList.remove('active');
+                }
+            });
+
+        }
+
+        window.addEventListener('scroll', () => {
+            console.log(`当前垂直滚动值：${window.scrollY}px`);
+        });
+    </script>
+</body>
+
+</html>

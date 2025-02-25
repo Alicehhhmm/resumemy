@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态目录结构</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu-container {
+            min-width: 600px;
+            padding: 20px 40px;
+            border: 2px solid #e6e6e6;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .controls input,
+        .controls select,
+        .controls button {
+            padding: 10px 16px;
+            font-size: 14px;
+            border: 1px solid #d1d1d1;
+            border-radius: 6px;
+            background-color: #ffffff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .controls input:focus,
+        .controls select:focus,
+        .controls button:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 8px rgba(26, 115, 232, 0.3);
+        }
+
+        .controls button {
+            background-color: #1a73e8;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            background-color: #196ee5;
+        }
+
+        .controls button:active {
+            transform: translateY(1px);
+        }
+
+        .controls button:disabled {
+            background-color: #d8dbe0;
+            color: #ffffff;
+            cursor: not-allowed;
+        }
+
+        .menu>div {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            padding: 10px 16px;
+            margin: 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            border-radius: 6px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .vertical-layout .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+            margin: 0 4px;
+        }
+
+        .vertical-layout .sub-menu {
+            padding-left: 16px;
+        }
+
+        .vertical-layout .folder-icon::after {
+            margin-left: 8px;
+            margin-right: 0;
+            transform: rotate(0deg);
+        }
+
+        .vertical-layout .menu-item.active .folder-icon::after {
+            transform: rotate(180deg);
+        }
+
+        .menu-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item.selected {
+            background-color: #e0f0ff;
+            border-left: 4px solid #1a73e8;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transform: translateX(8px);
+        }
+
+        .folder {
+            color: #1a73e8;
+        }
+
+        .file {
+            color: #2ebea5;
+        }
+
+        .sub-menu {
+            display: none;
+            padding: 10px;
+            padding-top: 0px;
+            margin-top: 10px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .folder.active>.sub-menu {
+            display: block;
+        }
+
+        .icon {
+            margin-right: 12px;
+            font-size: 1.2em;
+            transition: transform 0.2s;
+        }
+
+        .file-name {
+            margin-right: 12px;
+            font-size: 1.2em;
+            transition: transform 0.2s;
+        }
+
+        .folder .icon:hover {
+            transform: scale(1.1);
+        }
+
+        .file-icon {
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .menu-item:hover .file-icon {
+            opacity: 1;
+        }
+
+        .menu-item>.folder-icon::after {
+            content: "▶";
+            font-size: 0.8em;
+            margin-left: 8px;
+            transition: transform 0.2s;
+        }
+
+        .menu-item.active>.folder-icon::after {
+            transform: rotate(90deg);
+        }
+
+        .menu-item.file:hover {
+            background-color: rgba(46, 190, 165, 0.1);
+        }
+
+        .menu-item.folder:hover {
+            background-color: rgba(26, 115, 232, 0.1);
+        }
+
+        .menu-item.folder:active {
+            background-color: rgba(26, 115, 232, 0.2);
+        }
+
+        .menu-item.file:active {
+            background-color: rgba(46, 190, 165, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu-container">
+        <h1 style="text-align: center">动态目录结构</h1>
+        <div class="controls">
+            <input type="text" id="itemName" placeholder="输入名称..." style="width: 200px;">
+            <select id="itemType">
+                <option value="folder">文件夹</option>
+                <option value="file">文件</option>
+            </select>
+            <button onclick="addItem()" style="padding: 10px 24px;">添加</button>
+            <button onclick="toggleLayout()" style="padding: 10px 24px;">切换布局</button>
+            <button onclick="exportData()" style="background-color: #28a745; ">导出数据</button>
+        </div>
+        <div class="menu vertical-layout" id="menu"></div>
+    </div>
+
+    <script>
+        // 数据存储和初始化
+        let menuData = JSON.parse(localStorage.getItem('menuData')) || {
+            name: 'Project',
+            type: 'folder',
+            children: []
+        };
+
+        let selectedFolder = null;    // 当前选中的文件夹
+        let selectedElement = null;   // 当前选中的菜单项元素
+        let isHorizontal = true;      // 当前是否为横向布局（默认为横向）
+
+        //  菜单生成器函数，用于将菜单数据生成为 DOM 元素
+        function generateMenu (container, data) {
+            container.innerHTML = '';
+            const ul = document.createElement('div');
+            createMenuItems(ul, data);
+            container.appendChild(ul);
+        }
+
+        // 递归创建菜单项
+        function createMenuItems (container, items, depth = 0) {
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = `menu-item ${item.type}${item === selectedFolder || item === selectedElement ? ' selected' : ''}`;
+
+                const icon = document.createElement('span');
+                icon.className = 'icon';
+                icon.textContent = item.type === 'folder' ? '📂' : '📄';
+
+                const text = document.createElement('span');
+                text.className = 'file-name';
+                text.textContent = item.name;
+
+                const folderBox = document.createElement('div');
+                folderBox.className = 'folder-box';
+
+                folderBox.appendChild(icon)
+                folderBox.appendChild(text)
+                div.appendChild(folderBox);
+
+                if (item.type === 'folder') {
+                    div.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        div.classList.toggle('active');
+                        selectFolder(item, div);
+                    });
+
+
+                    // 创建非空文件夹, 子菜单项
+                    if (item.children.length !== 0) {
+                        const subMenu = document.createElement('div');
+                        subMenu.className = 'sub-menu';
+                        createMenuItems(subMenu, item.children, depth + 1);
+                        div.appendChild(subMenu);
+                    }
+                } else {
+                    div.addEventListener('click', () => selectFolder(null, div));
+                }
+
+                container.appendChild(div);
+            });
+        }
+
+        // 文件夹选择逻辑
+        function selectFolder (folder, element) {
+            if (selectedElement) {
+                selectedElement.classList.remove('selected');
+            }
+            selectedFolder = folder;
+            selectedElement = element;
+            if (element) {
+                element.classList.add('selected');
+            }
+        }
+
+        // 添加文件夹/文件
+        function addItem () {
+            const nameInput = document.getElementById('itemName');
+            const typeSelect = document.getElementById('itemType');
+
+            const name = nameInput.value.trim();
+            const type = typeSelect.value;
+
+            if (!name) {
+                alert('请输入名称！');
+                return;
+            }
+
+            const newItem = {
+                name,
+                type,
+                ...(type === 'folder' && { children: [] })
+            };
+
+            const parent = selectedFolder || menuData;
+            if (!parent.children) parent.children = [];
+            parent.children.push(newItem);
+
+            saveData();
+            refreshMenu();
+            nameInput.value = '';
+        }
+
+        // 数据持久化到 localStorage
+        function saveData () {
+            localStorage.setItem('menuData', JSON.stringify(menuData));
+        }
+
+        // 导出数据到控制台
+        function exportData () {
+            console.log(JSON.stringify(menuData, null, 2));
+            alert('数据已导出到控制台');
+        }
+
+        // 刷新菜单
+        function refreshMenu () {
+            const menuContainer = document.getElementById('menu');
+            generateMenu(menuContainer, [menuData]);
+        }
+
+        // 切换布局
+        function toggleLayout () {
+            const menu = document.getElementById('menu');
+            if (isHorizontal) {
+                menu.classList.remove('vertical-layout');
+            } else {
+                menu.classList.add('vertical-layout');
+            }
+            isHorizontal = !isHorizontal;
+        }
+
+        // 初始化
+        window.onload = () => {
+            refreshMenu();
+            document.getElementById('menu').classList.add('vertical-layout');
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anchor Navigation 锚点导航-滚动条偏移量配置示例</title>
+    <style>
+        :root {
+            --nav-height: 100px;
+            --toc-width: 200px;
+            /* 目录宽度 */
+            --main-padding: 2rem;
+            /* 主内容区域内边距 */
+            --h2-font-size: 1.8rem;
+            /* 标题字体大小 */
+
+            --primary: #007bff;
+            --hover-color: #ddd;
+        }
+
+        /* 页面基本样式 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            box-sizing: border-box;
+        }
+
+        /* 导航栏样式 */
+        #navbar {
+            width: 100%;
+            height: 100px;
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 主内容区 */
+        .container {
+            display: flex;
+            flex: 1;
+            padding-top: 140px;
+            /* 确保内容不被导航栏遮住 */
+        }
+
+        /* 目录样式 */
+        #toc {
+            width: var(--toc-width);
+            background-color: #f5f5f5;
+            padding: 1rem;
+            position: fixed;
+            top: 140px;
+            right: 0;
+            /* 确保目录不被导航栏遮住 */
+            height: calc(100vh - 140px);
+            overflow-y: auto;
+        }
+
+        #toc h3 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        #toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #toc li {
+            margin: 0.5rem 0;
+        }
+
+        #toc a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        #toc a:hover {
+            font-weight: 700;
+            color: var(--primary);
+            background-color: var(--hover-color);
+        }
+
+        /* 文章内容样式 */
+        #content {
+            flex: 1;
+            margin-left: var(--toc-width);
+            margin-right: calc(var(--toc-width) + 40px);
+            padding: var(--main-padding);
+            line-height: 1.6;
+        }
+
+        #content h2 {
+            scroll-margin-top: 140px;
+            /* 确保标题不被导航栏遮住 */
+            font-size: var(--h2-font-size);
+            cursor: pointer;
+        }
+
+        #content h2 a {
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        #content h2 a:hover {
+            opacity: 1;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        p {
+            max-width: 800px;
+            font-weight: 400;
+            color: #333333c0;
+        }
+
+        .logcontent {
+            height: 500px;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div id="navbar">
+        <h1>Anchor Navbar Fixed</h1>
+    </div>
+
+    <!-- 主内容区 -->
+    <main class="container">
+        <!-- 文章内容 -->
+        <article id="content">
+            <h2 id="section1">
+                <span>Section 1</span>
+                <a href="#section1" aria-hidden="true">#</a>
+            </h2>
+            <p>Long text content</p>
+            <div class="logcontent"></div>
+
+            <h2 id="section2">
+                <span>Section 2</span>
+                <a href="#section2" aria-hidden="true">#</a>
+            </h2>
+            <p>Long text content</p>
+            <div class="logcontent"></div>
+
+            <h2 id="section3">
+                <span>Section 3</span>
+                <a href="#section3" aria-hidden="false">#</a>
+            </h2>
+            <p>Long text content</p>
+            <div class="logcontent"></div>
+
+            <h2 id="section4">
+                <span>Section 4</span>
+                <a href="#section4" aria-hidden="true">#</a>
+            </h2>
+            <p>Long text content</p>
+            <div class="logcontent"></div>
+        </article>
+    </main>
+
+    <!-- 标题目录 -->
+    <nav id="toc">
+        <h3>ON THIS PAGE</h3>
+        <ul>
+            <li><a href="#section1">Section 1</a></li>
+            <li><a href="#section2">Section 2</a></li>
+            <li><a href="#section3">Section 3</a></li>
+            <li><a href="#section4">Section 4</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        // 动态获取导航栏高度: offsetHeight 包括 padding 和 border，所以它能准确返回导航栏的实际高度
+        const navHeight = document.getElementById('navbar').offsetHeight;
+
+        // 动态设置内容和目录的顶部偏移
+        document.documentElement.style.setProperty('--nav-height', `${navHeight}px`);
+
+        // 目录点击事件
+        document.querySelectorAll('#toc a').forEach(anchor => {
+            anchor.addEventListener('click', function(event) {
+                event.preventDefault();
+                const sectionId = this.getAttribute('href').substring(1);
+                const element = document.getElementById(sectionId);
+
+                if (element) {
+                    // 计算目标滚动位置：元素的绝对位置 - 导航栏高度
+                    const targetPosition = element.offsetTop - navHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

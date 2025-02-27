@@ -1,7 +1,7 @@
 /* 完全隐藏滚动条 */
 .scrollbar-hide {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

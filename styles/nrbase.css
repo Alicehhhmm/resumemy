@@ -23,6 +23,7 @@
     --nr-sidebar: 260px;
 }
 
+[data-theme='dark'],
 .dark {
     --fluo-: #bdfa5c;
     --fluo-primary: #00d26e; /* 主荧光绿色（暗色模式） */

@@ -1,6 +1,13 @@
+@charset "utf-8";
+/* 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 @import './nrbase.css';
 @import './scrollbar.css';
 
@@ -40,6 +47,8 @@ body,
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
     }
+
+    [data-theme='dark'],
     .dark {
         --background: 240 10% 3.9%;
         --foreground: 0 0% 98%;

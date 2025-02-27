@@ -25,7 +25,7 @@ export const ThemeToggle = ({ className }: { className?: string }) => {
         'transform hover:scale-105 active:scale-95',
         className
     )
-    const activeStyle = 'text-blue-500 scale-110'
+    const activeStyle = 'text-lime-500 scale-110'
     const inactiveStyle = 'text-gray-600/90 dark:text-gray-400/90'
 
     return (
@@ -77,7 +77,7 @@ export const ThemeToggleBtn = () => {
     const getIcon = () => {
         switch (theme) {
             case 'dark':
-                return <Moon className='h-5 w-5' />
+                return <Moon className='h-5 w-5 text-lime-500' />
             case 'system':
                 return <Laptop className='h-5 w-5' />
             default:
@@ -93,7 +93,7 @@ export const ThemeToggleBtn = () => {
                 'hover:bg-gray-100 dark:hover:bg-gray-800/30',
                 'transform hover:scale-105 active:scale-95',
                 'text-gray-600/90 dark:text-gray-400/90',
-                'hover:text-blue-500 dark:hover:text-blue-400'
+                'hover:text-lime-500 dark:hover:text-lime-400'
             )}
             aria-label='Toggle theme'
         >

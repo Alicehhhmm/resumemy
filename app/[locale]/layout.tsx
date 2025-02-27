@@ -31,9 +31,7 @@ export default async function RootLayout({ children, params }: RootProps) {
             <body className={cn(OPEN_SANS.className, IBM_PLEX_MONO.variable, `antialiased`, `bg-white dark:bg-[#313333]`)}>
                 <TailwindIndicator />
                 <LocaleProvider locale={locale}>
-                    <RThemeProvider attribute='class' defaultTheme='light' enableSystem storageKey='rose-theme'>
-                        {children}
-                    </RThemeProvider>
+                    <RThemeProvider>{children}</RThemeProvider>
                 </LocaleProvider>
             </body>
         </html>

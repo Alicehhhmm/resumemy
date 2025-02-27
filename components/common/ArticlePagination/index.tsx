@@ -17,7 +17,7 @@ export const ArticlePagination: FC<ArticlePaginationProps> = ({ previous, next }
     if (!previous && !next) return null
 
     const baseClass = `
-        flex h-full items-center  gap-2
+        flex h-full items-center gap-2
         rounded-lg border border-gray-200 p-4 transition-all 
         hover:border-lime-600/80 hover:bg-orange-50/50 
         active:border-lime-600/80 active:bg-orange-50/50
@@ -27,13 +27,13 @@ export const ArticlePagination: FC<ArticlePaginationProps> = ({ previous, next }
         focus:outline-none focus:ring-1 focus:ring-lime-600/60 
     `
     const labelCalss = `
-        text-sm font-medium text-gray-700/90 transition-colors 
+        text-sm/5 font-medium text-gray-700/90 transition-colors 
         group-hover:text-lime-600 
         dark:group-hover:text-lime-500
         dark:group-active:text-lime-500
     `
     const iconClass = `
-        h-5 w-5 shrink-0 text-gray-500 transition-colors group-hover:text-lime-600
+        h-4 w-4 shrink-0 text-gray-500 transition-colors group-hover:text-lime-600
     `
 
     return (
@@ -41,11 +41,13 @@ export const ArticlePagination: FC<ArticlePaginationProps> = ({ previous, next }
             <div className='flex flex-col gap-4 sm:flex-row sm:justify-between'>
                 {previous && (
                     <div className='group flex-1'>
-                        <Link href={previous.href} className={cn(baseClass)} aria-label={`上一页：${previous.title}`}>
-                            <ChevronLeft className={cn(iconClass)} />
+                        <Link href={previous.href} className={cn(baseClass, 'block')} aria-label={`上一页：${previous.title}`}>
                             <div className='flex flex-col'>
-                                <span className='text-xs text-gray-500'>Previous Page</span>
-                                <span className={cn(labelCalss)}>{previous.title}</span>
+                                <div className='flex flex-row  items-center'>
+                                    <ChevronLeft className={cn(iconClass)} />
+                                    <span className='text-xs/5 text-gray-500'>Previous Page</span>
+                                </div>
+                                <span className={cn(labelCalss, 'pl-1')}>{previous.title}</span>
                             </div>
                         </Link>
                     </div>
@@ -53,12 +55,14 @@ export const ArticlePagination: FC<ArticlePaginationProps> = ({ previous, next }
 
                 {next && (
                     <div className='group flex-1 sm:text-right'>
-                        <Link href={next.href} className={cn(baseClass, `justify-end`)} aria-label={`下一页：${next.title}`}>
+                        <Link href={next.href} className={cn(baseClass, `justify-end block`)} aria-label={`下一页：${next.title}`}>
                             <div className='flex flex-col'>
-                                <span className='text-xs text-gray-500'>Next Page</span>
-                                <span className={cn(labelCalss)}>{next.title}</span>
+                                <div className='flex flex-row justify-center items-center'>
+                                    <span className='text-xs/5 text-gray-500 flex-1'>Next Page</span>
+                                    <ChevronRight className={cn(iconClass)} />
+                                </div>
+                                <span className={cn(labelCalss, 'pr-1')}>{next.title}</span>
                             </div>
-                            <ChevronRight className={cn(iconClass)} />
                         </Link>
                     </div>
                 )}

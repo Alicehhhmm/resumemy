@@ -13,19 +13,23 @@
     rounded-tl-lg
     rounded-bl-lg 
     py-1
-    transition-all ease-out;
+    text-xs
+    font-medium
+    hover:bg-accent/50 
+    dark:text-gray-600/90 
+    transition-colors 
+    text-foreground/60
+    ease-out;
 
-    &:hover {
-        @apply bg-lime-100/80
-        text-fluo-deep
-        dark:bg-fluo-background
-        font-bold;
+    &:hover,
+    &:active {
+        @apply text-lime-500
+        bg-orange-50/50
+        dark:bg-fluo-background;
     }
 
     &:active {
-        @apply bg-lime-500/80
-        text-fluo-deep
-        font-bold;
+        @apply font-bold;
     }
 }
 

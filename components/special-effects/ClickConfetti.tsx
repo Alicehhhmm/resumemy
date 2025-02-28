@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, useRef, CSSProperties, useCallback } from 'react'
 
 // 经典彩色碎片粒子定义

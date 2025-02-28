@@ -5,8 +5,8 @@
     items-center
     rounded
     border
-    border-neutral-900
-    bg-neutral-950;
+    bg-zinc-950
+    dark:bg-fluo-background;
 
     &::after {
         @apply bg-gradient-radial
@@ -41,17 +41,17 @@
         @apply md:gap-6
         md:text-lg
         lg:gap-8
-        lg:text-xl
+        lg:text-sm
         xl:gap-12
-        xl:text-2xl
-        2xl:text-3xl
+        xl:text-lg
+        2xl:text-xl
         z-10
         mx-auto
         flex
         w-2/3
         max-w-xl
         flex-col
-        gap-4
+        gap-2
         text-center
         text-xs
         font-semibold

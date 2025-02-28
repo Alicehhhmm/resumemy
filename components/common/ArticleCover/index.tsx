@@ -10,10 +10,11 @@ import styles from './index.module.css'
 type ArticleCoverProps = {
     title: string
     type?: BlogPreviewType
+    className?: string
 }
 
-const ArticleCover: FC<ArticleCoverProps> = ({ type = 'default', title }) => (
-    <div className={cn(styles.root, styles[type])}>
+const ArticleCover: FC<ArticleCoverProps> = ({ type = 'default', title ,className}) => (
+    <div className={cn(styles.root, styles[type],className)}>
         <div className={styles.container} aria-hidden={true}>
             <HexagonGrid className={styles.hexagon} stopOpacity='0.2' />
             <Kail className={styles.logo} />

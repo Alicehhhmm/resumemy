@@ -5,7 +5,7 @@
         "name": "Simplified Chinese",
         "langDir": "ltr",
         "dateFormat": "YYYY/MM/DD",
-        "hrefLang": "zh-Hans",
+        "hrefLang": "zh-CN",
         "enabled": true,
         "default": true
     },

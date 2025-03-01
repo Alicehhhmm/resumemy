@@ -70,68 +70,18 @@ export const NavItemSettings = [
         name: 'system.nav.blog',
     },
     {
-        key: 'categories',
-        path: '/categories',
-        name: 'system.nav.categories',
-        subMenu: [
-            {
-                type: 'react',
-                label: 'system.submenu.react',
-            },
-            {
-                type: 'vue',
-                label: 'system.submenu.vue',
-            }
-        ]
+        key: 'booklet',
+        path: '/booklet',
+        name: 'system.nav.booklet',
     },
     {
         key: 'projects',
         path: '/projects',
         name: 'system.nav.projects',
-        subMenu: [
-            {
-                type: 'demo',
-                label: 'system.submenu.demos',
-            },
-            {
-                type: 'react',
-                label: 'system.submenu.react',
-            },
-            {
-                type: 'vue',
-                label: 'system.submenu.vue',
-            },
-            {
-                type: 'webgl',
-                label: 'system.submenu.webgl',
-            },
-            {
-                type: 'rust',
-                label: 'system.submenu.rust',
-            }
-        ],
     },
     {
         key: 'design',
         path: '/design',
         name: 'system.nav.design',
-        subMenu: [
-            {
-                type: 'Portfolio',
-                label: 'system.submenu.portfolio',
-            },
-            {
-                type: 'Ui/UX',
-                label: 'system.submenu.uiux',
-            },
-            {
-                type: 'Web',
-                label: 'system.submenu.web',
-            },
-            {
-                type: 'Mobile',
-                label: 'system.submenu.mobile',
-            }
-        ],
     }
 ]

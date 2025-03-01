@@ -62,13 +62,13 @@ export const BlogHeader = ({ cover, title = '', description = '' }: BlogHeaderPr
                 )}
 
                 {/* 内容容器 */}
-                <div className='relative z-20 container mx-auto flex flex-col justify-start pb-2 md:pb-4 lg:pb-8 px-6 sm:px-8'>
+                <div className='relative z-20 container mx-auto flex flex-col justify-start pb-2 md:pb-4 px-2'>
                     <div className='max-w-4xl space-y-2 md:space-y-3'>
                         {/* 标题动画 */}
                         <motion.h1
                             {...ANIMATION.text}
                             transition={ANIMATION.text.transition(0)}
-                            className='text-xl md:text-2xl lg:text-4xl font-medium text-foreground dark:text-foreground tracking-tight leading-[1.15] md:leading-[1.15] '
+                            className='text-lg md:text-xl font-medium text-foreground dark:text-foreground tracking-tight leading-[1.15] md:leading-[1.15] '
                         >
                             {title}
                         </motion.h1>
@@ -78,7 +78,7 @@ export const BlogHeader = ({ cover, title = '', description = '' }: BlogHeaderPr
                             <motion.p
                                 {...ANIMATION.text}
                                 transition={ANIMATION.text.transition(1)}
-                                className='text-base md:text-lg text-foreground dark:text-white/90 leading-relaxed max-w-2xl font-normal'
+                                className='text-base md:text-sm text-foreground dark:text-white/90 leading-relaxed max-w-2xl font-normal'
                             >
                                 {description}
                             </motion.p>
@@ -86,16 +86,6 @@ export const BlogHeader = ({ cover, title = '', description = '' }: BlogHeaderPr
                     </div>
                 </div>
             </div>
-
-            {/* 装饰性动画线条 */}
-            <motion.div
-                {...ANIMATION.accent}
-                className='h-[3px] bg-gradient-to-r from-emerald-500/95 to-cyan-400/95 
-                 w-full origin-left'
-                style={{
-                    boxShadow: '0 2px 12px rgba(34, 197, 94, 0.15)',
-                }}
-            />
         </header>
     )
 }

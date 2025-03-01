@@ -84,4 +84,30 @@ body,
     body {
         @apply bg-background text-foreground;
     }
+
+    .active-item {
+        @apply text-primary font-semibold;
+    }
+
+    .active-item::after {
+        content: '';
+        @apply absolute bottom-0 left-0 right-0;
+        @apply h-[2px] bg-gradient-fluo scale-x-100 origin-left;
+        @apply transition-transform duration-300 ease-out;
+    }
+
+    .inactive-item {
+        @apply text-muted-foreground hover:text-primary;
+    }
+
+    .inactive-item::after {
+        content: '';
+        @apply absolute bottom-0 left-0 right-0;
+        @apply h-[2px] bg-lime-500 scale-x-0 origin-left;
+        @apply transition-transform duration-300 ease-out;
+    }
+
+    .inactive-item:hover::after {
+        @apply scale-x-100;
+    }
 }

@@ -43,7 +43,7 @@ export const BlogHeader = ({ cover, title = '', description = '' }: BlogHeaderPr
     return (
         <header className='relative overflow-hidden'>
             {/* 背景容器 */}
-            <div className='relative '>
+            <div className='relative bg-background px-4 pt-4 rounded-sm'>
                 {cover && (
                     <>
                         {/* 动态遮罩层 */}

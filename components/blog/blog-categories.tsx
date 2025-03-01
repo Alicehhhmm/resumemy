@@ -29,6 +29,7 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
             <Tabs defaultValue={defaultValue} onValueChange={handelChang}>
                 <ResizablePanel defaultSize={25} className='bg-white dark:bg-background shadow'>
                     <div className='h-full flex justify-between items-center p-2 container mx-auto px-4'>
+                        {/* TODO: module tabs => select */}
                         <TabsList className={cn('flex justify-between items-center p-0')}>
                             {categories.map(category => (
                                 <TabsTrigger
@@ -58,7 +59,7 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                             <div key={index} className='flex h-full'>
                                 {category === defaultValue && (
                                     <TabsContent value={defaultValue} className='p-0'>
-                                        <div className='grid grid-cols-2 gap-12'>
+                                        <div className='grid grid-cols-2 gap-12 max-sm:grid-cols-1'>
                                             {blogData.posts.map(post => (
                                                 <BlogPostCard
                                                     key={post.slug}

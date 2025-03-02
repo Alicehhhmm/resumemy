@@ -8,12 +8,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
 
 import { cn } from '@/lib/utils'
-import { BlogPostsRSC } from '@/types/blog'
-import { BlogPostCard, BlogPostCardRow } from '@/components/blog'
+import { BlogPostsRSC, PostRow } from '@/types/blog'
+import { BlogPostCard, BlogPostCardRow, BlogGridCard } from '@/components/blog'
 
 type WithBlogCategoriesProps = {
     categories: Array<string>
-    blogData: BlogPostsRSC & { category: string; description?: string }
+    blogData: BlogPostsRSC & { category: string; description?: string } & { grid: Array<PostRow> }
 }
 
 export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, blogData }) => {
@@ -58,7 +58,7 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                         {categories.map((category, index) => (
                             <div key={index} className='flex h-full'>
                                 {category === defaultValue && (
-                                    <TabsContent value={defaultValue} className='p-0'>
+                                    <TabsContent value={defaultValue} className='p-0 pb-10'>
                                         <div className='grid grid-cols-2 gap-12 max-sm:grid-cols-1'>
                                             {blogData.posts.map(post => (
                                                 <BlogPostCard
@@ -73,8 +73,8 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                         </div>
                                     </TabsContent>
                                 )}
-                                {category !== defaultValue && (
-                                    <TabsContent value={category} className='p-0 flex-1'>
+                                {category !== defaultValue && category !== categories[2] && (
+                                    <TabsContent value={category} className='p-0 flex-1 pb-10'>
                                         <div className='space-y-4'>
                                             {blogData.posts.map(post => (
                                                 <BlogPostCardRow
@@ -86,6 +86,15 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                                     slug={post.slug}
                                                     description={'description'}
                                                 />
+                                            ))}
+                                        </div>
+                                    </TabsContent>
+                                )}
+                                {category === categories[2] && (
+                                    <TabsContent value={category} className='p-0 flex-1 pb-10'>
+                                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'>
+                                            {blogData.grid.map(post => (
+                                                <BlogGridCard key={post.slug} post={post} />
                                             ))}
                                         </div>
                                     </TabsContent>

@@ -18,17 +18,17 @@ type BlogPostCardProps = {
 
 export const BlogPostCard = ({ title, category, description, author, date, slug }: BlogPostCardProps) => {
     return (
-        <article className='group relative w-fullbg-white rounded-lg shadow-sm'>
-            <Link href={slug} className='w-full overflow-hidden rounded-lg m-0 cursor-pointer'>
-                <ArticleCover title={title} type='default' />
+        <article className='flex flex-col group relative w-full bg-white dark:bg-neutral-900 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200'>
+            <Link href={slug} className='w-full overflow-hidden m-0 cursor-pointer'>
+                <ArticleCover title={title} type='default' className='rounded-tl-lg rounded-tr-lg' />
             </Link>
 
-            <div className='space-y-3 p-0 flex flex-col mt-4 pb-4'>
+            <div className='space-y-3 p-4 flex-1 flex flex-col'>
                 {category && (
                     <Badge
                         className={cn(
                             'w-fit px-3 py-1 text-xs font-semibold uppercase tracking-wider',
-                            'border-lime-200 bg-lime-100/20 text-lime-500 cursor-pointer rounded-md',
+                            'text-lime-500 cursor-pointer rounded-md',
                             'hover:bg-lime-100 transition-colors'
                         )}
                     >
@@ -52,7 +52,7 @@ export const BlogPostCard = ({ title, category, description, author, date, slug 
                     <div className='space-y-1'>
                         <div className='flex items-center gap-1 text-sm'>
                             <User className='w-4 h-4 text-gray-400 flex-shrink-0' />
-                            <span className='text-gray-600 bg-gray-50 px-2.5 py-1 rounded-md border-gray-200'>{author ?? 'Untitled'}</span>
+                            <span className='text-gray-600 dark:text-foreground/50 px-2.5 py-1'>{author ?? 'Untitled'}</span>
                         </div>
 
                         {/* 日期 */}

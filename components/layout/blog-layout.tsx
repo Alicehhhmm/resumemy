@@ -2,56 +2,112 @@
 
 import type { FC, PropsWithChildren } from 'react'
 
-import { ChevronDown, Home, Rocket, Zap, Code, Gauge, Settings, GitBranch, BookOpen } from 'lucide-react'
-
 import { NavHeader } from '@/components/navigation/nav-header'
 import { FooterSimple } from '@/components/common/footer-simple'
-import { BlogHeader, BolgSettingsSheet, BlogCenter } from '@/components/blog'
+import { BlogHeader, WithBlogCategories } from '@/components/blog'
 
-import { Sidebar, SidebarDataType } from '@/components/navigation/nav-sidebar'
-import sidebarData from '@/config/siderbar-data-model.json'
+import { BlogPreviewType, BlogPostsRSC, NavItem } from '@/types/blog'
+import { v4 as uuidv4 } from 'uuid'
 
 export const BlogLayout: FC<PropsWithChildren> = ({ children }) => {
-    const iconMap = {
-        Home,
-        Rocket,
-        Zap,
-        Code,
-        Gauge,
-        Settings,
-        GitBranch,
-        BookOpen,
+    const navItems: NavItem[] = [
+        { key: 'dynamic', name: '动态', href: '#' },
+        { key: 'articles', name: '文章', href: '#' },
+        { key: 'column', name: '专栏', href: '#' },
+    ]
+    const categories: Array<BlogPreviewType> = ['default', 'announcements', 'release', 'vulnerability']
+
+    const blogData: BlogPostsRSC & any = {
+        pagination: {
+            next: 2,
+            prev: 0,
+            pages: 1,
+            total: 1,
+        },
+        posts: [
+            {
+                id: uuidv4(),
+                title: 'Node.js March 17th Infrastructure Incident Post-mortem',
+                category: 'all',
+                description: 'descriptionxxxxxxxxxxxxxxxxxx',
+                author: 'Jane Smith',
+                username: 'Jane Smith',
+                date: new Date('2024-10-10'),
+                slug: 'introduction-to-react-19',
+                categories: ['all'],
+            },
+            {
+                id: uuidv4(),
+                title: '2Introduction to React 19',
+                category: 'all',
+                description: 'description',
+                authors: ['Jane Smith'],
+                username: 'Jane Smith',
+                date: new Date('2024-10-10'),
+                slug: '2introduction-to-react-19',
+                categories: ['all'],
+            },
+            {
+                id: uuidv4(),
+                title: '3Introduction to React 19',
+                category: 'all',
+                description: 'description',
+                author: 'Jane Smith',
+                username: 'Jane Smith',
+                date: new Date('2024-10-10'),
+                slug: '3introduction-to-react-19',
+                categories: ['all'],
+            },
+            {
+                id: uuidv4(),
+                title: '4Introduction to React 19',
+                category: 'all',
+                description: 'description',
+                author: 'Jane Smith',
+                username: 'Jane Smith',
+                date: new Date('2024-10-10'),
+                slug: '4introduction-to-react-19',
+                categories: ['all'],
+            },
+        ],
+        grid: [
+            {
+                slug: 'hello-world',
+                title: 'Hello World',
+                date: '2023-04-18',
+                coverImage: '/placeholder.svg?height=400&width=600',
+                excerpt: 'This is my first blog post!',
+                content: '<p>This is the content of my first blog post.</p>',
+            },
+            {
+                slug: 'new-welcon',
+                title: 'My Second Post',
+                date: '2023-04-19',
+                coverImage: '/placeholder.svg?height=400&width=600',
+                excerpt: 'This is my second blog post!',
+                content: '<p>This is the content of my second blog post.</p>',
+            },
+            {
+                slug: 'mdx-lib-analysis',
+                title: 'Hello World',
+                date: '2023-04-18',
+                coverImage: '/placeholder.svg?height=400&width=600',
+                excerpt: 'This is my first blog post!',
+                content: '<p>This is the content of my first blog post.</p>',
+            },
+        ],
     }
 
     return (
         <>
             <NavHeader />
-            <div className='flex pt-navh'>
-                {/* 左侧目录 */}
-                <div className='w-[var(--nr-siderbar)] h-[calc(100dvh-60px)] sticky top-[60px]'>
-                    <Sidebar sections={sidebarData.sections as SidebarDataType[]} iconMap={iconMap} />
+            <main className='pt-navh min-h-[calc(100vh-60px)] bg-gray-50 dark:bg-fluo-background'>
+                <div className='max-w-5xl mx-auto p-6 overflow-auto dark:bg-fluo-background space-y-2'>
+                    <BlogHeader cover='' title='博客文章' description='行业新闻、研究案例、学习笔记和资源。' />
+                    <WithBlogCategories blogData={blogData} categories={categories} />
                 </div>
-                <div className='flex-1 flex flex-col'>
-                    <div className='flex-1 flex flex-row'>
-                        {/* 中间内容区域 */}
-                        <main className='flex-1 bg-white dark:bg-background'>
-                            <div className='max-w-4xl mx-auto p-6 overflow-auto'>
-                                <BlogHeader cover='' title='博客文章' description='行业新闻、研究案例、学习笔记和资源。' />
-                                <article className='h-[2000px]'>{children}</article>
-                            </div>
-                        </main>
-                        {/* 右侧目录 */}
-                        <div className='w-[var(--nr-siderbar)] max-h-[calc(100vh-60px)] sticky top-[60px] scrollbar-hide overflow-hidden overflow-y-auto'>
-                            <aside className='w-full flex flex-col'>
-                                <div className='h-60 w-60  bg-slate-300'>1</div>
-                                <div className='h-60 bg-green-400'>2</div>
-                                <div className='h-60 bg-pink-400'>3</div>
-                            </aside>
-                        </div>
-                    </div>
-                    <FooterSimple />
-                </div>
-            </div>
+            </main>
+            <FooterSimple />
         </>
     )
 }

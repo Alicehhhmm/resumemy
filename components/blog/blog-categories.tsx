@@ -6,6 +6,7 @@ import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
+import { MobileSelect, SelectOption } from '@/components/common/mobile-select'
 
 import { cn } from '@/lib/utils'
 import { BlogPostsRSC, PostRow } from '@/types/blog'
@@ -20,25 +21,39 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
     const defaultValue = categories[0]
     const [action, setAction] = useState(defaultValue)
 
-    const handelChang = (val: any) => {
+    const handleChange = (val: string) => {
         setAction(val)
     }
 
+    const categoryOptions: SelectOption[] = categories.map(category => ({
+        value: category,
+        label: category,
+    }))
+
     return (
         <ResizablePanelGroup direction='vertical' className='rounded-lg overflow-hidden'>
-            <Tabs defaultValue={defaultValue} onValueChange={handelChang} className='w-full'>
-                <ResizablePanel
-                    defaultSize={25}
-                    className='bg-white dark:bg-neutral-900/50 shadow-sm border-b border-gray-200 dark:border-gray-700/30'
-                >
-                    <div className='h-full flex justify-between items-center p-1 sm:p-2 container mx-auto px-2 sm:px-4'>
-                        <TabsList className={cn('flex justify-start items-center p-0 bg-transparent ')}>
+            <Tabs defaultValue={defaultValue} value={action} onValueChange={handleChange} className='w-full'>
+                <ResizablePanel defaultSize={25} className='bg-white dark:bg-neutral-900/80 shadow-sm max-sm:rounded-lg'>
+                    {/* 移动端 Select */}
+                    <div className='max-sm:block hidden'>
+                        <MobileSelect
+                            options={categoryOptions}
+                            value={action}
+                            onValueChange={handleChange}
+                            placeholder='Select a category'
+                            triggerClassName='h-10 px-3 py-2'
+                        />
+                    </div>
+
+                    {/* 桌面端 Tabs */}
+                    <div className='max-sm:hidden h-full flex justify-between items-center p-1 sm:p-2 container mx-auto px-2 sm:px-4'>
+                        <TabsList className={cn('flex justify-start items-center p-0 bg-transparent')}>
                             {categories.map(category => (
                                 <TabsTrigger
                                     key={category}
                                     value={category}
                                     className={cn(
-                                        `relative py-2 sm:py-3 px-2 sm:px-3  `,
+                                        `relative py-2 sm:py-3 px-2 sm:px-3`,
                                         `text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-all duration-200`,
                                         action === category ? 'active-item' : 'inactive-item'
                                     )}
@@ -47,7 +62,6 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                 </TabsTrigger>
                             ))}
                         </TabsList>
-
                         <Button
                             variant='outline'
                             size='icon'
@@ -63,13 +77,13 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                         </Button>
                     </div>
                 </ResizablePanel>
-                <ResizableHandle />
+                <ResizableHandle className='max-sm:hidden' />
                 <ResizablePanel defaultSize={75} className='bg-gray-50 dark:bg-neutral-950/10 pt-4 sm:pt-6 px-2 sm:px-4'>
                     <div className='container mx-auto'>
                         {categories.map((category, index) => (
                             <div key={index} className='flex h-full'>
-                                {category === defaultValue && (
-                                    <TabsContent value={defaultValue} className='p-0 pb-6 sm:pb-10 w-full'>
+                                <TabsContent value={category} className='p-0 pb-6 sm:pb-10 w-full'>
+                                    {category === categories[0] && (
                                         <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8'>
                                             {blogData.posts.map(post => (
                                                 <BlogPostCard
@@ -82,11 +96,9 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                                 />
                                             ))}
                                         </div>
-                                    </TabsContent>
-                                )}
+                                    )}
 
-                                {category !== defaultValue && category !== categories[2] && (
-                                    <TabsContent value={category} className='p-0 flex-1 pb-6 sm:pb-10 w-full'>
+                                    {category !== categories[0] && category !== categories[2] && (
                                         <div className='space-y-3 sm:space-y-4'>
                                             {blogData.posts.map(post => (
                                                 <BlogPostCardRow
@@ -100,18 +112,16 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                                 />
                                             ))}
                                         </div>
-                                    </TabsContent>
-                                )}
+                                    )}
 
-                                {category === categories[2] && (
-                                    <TabsContent value={category} className='p-0 flex-1 pb-6 sm:pb-10 w-full'>
+                                    {category === categories[2] && (
                                         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6'>
                                             {blogData.grid.map(post => (
                                                 <BlogGridCard key={post.slug} post={post} />
                                             ))}
                                         </div>
-                                    </TabsContent>
-                                )}
+                                    )}
+                                </TabsContent>
                             </div>
                         ))}
                     </div>

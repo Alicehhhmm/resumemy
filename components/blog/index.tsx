@@ -1,6 +1,6 @@
 export { BlogHeader } from './blog-haeder'
 export { BlogPostCard } from './blog-post-card'
 export { WithBlogCategories } from './blog-categories'
-export { BlogPostCardRow } from './post-card-row'
+export { BlogPostCardRow } from './blog-row-card'
 export { BlogTabs } from './blog-tabs'
 export { BlogGridCard } from './blog-grid-card'

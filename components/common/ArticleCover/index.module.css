@@ -55,7 +55,8 @@
         text-center
         text-xs
         font-medium
-        text-foreground/60;
+        text-stone-300
+        dark:text-foreground/60;
 
         .hexagon {
             @apply md:h-3/5

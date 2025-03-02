@@ -41,9 +41,8 @@ const ANIMATION = {
 
 export const BlogHeader = ({ cover, title = '', description = '' }: BlogHeaderProps) => {
     return (
-        <header className='relative overflow-hidden'>
-            {/* 背景容器 */}
-            <div className='relative bg-background px-4 pt-4 rounded-sm'>
+        <header className='relative overflow-hidden rounded-lg'>
+            <div className='relative bg-white dark:bg-neutral-950/60 px-3 sm:px-4 pt-3 sm:pt-4 rounded-lg shadow-sm'>
                 {cover && (
                     <>
                         {/* 动态遮罩层 */}
@@ -51,24 +50,32 @@ export const BlogHeader = ({ cover, title = '', description = '' }: BlogHeaderPr
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.8 }}
-                            className='absolute inset-0 bg-gradient-to-t from-black/45 via-black/25 to-transparent z-10'
+                            className='absolute inset-0 bg-gradient-to-t from-black/45 via-black/25 to-transparent z-10 rounded-lg'
                         />
 
                         {/* 背景图片 */}
-                        <motion.div {...ANIMATION.image} className='absolute inset-0'>
-                            <Image src={cover} alt={title} fill priority className='object-cover' sizes='(max-width: 768px) 100vw, 80vw' />
+                        <motion.div {...ANIMATION.image} className='absolute inset-0 rounded-lg overflow-hidden'>
+                            <Image
+                                src={cover}
+                                alt={title}
+                                fill
+                                priority
+                                className='object-cover'
+                                sizes='(max-width: 640px) 100vw, (max-width: 768px) 100vw, 80vw'
+                            />
                         </motion.div>
                     </>
                 )}
 
                 {/* 内容容器 */}
-                <div className='relative z-20 container mx-auto flex flex-col justify-start pb-2 md:pb-4 px-2'>
+                <div className='relative z-20 mx-auto flex flex-col justify-start pb-3 sm:pb-4 md:pb-6 px-2 sm:px-4'>
                     <div className='max-w-4xl space-y-2 md:space-y-3'>
                         {/* 标题动画 */}
                         <motion.h1
                             {...ANIMATION.text}
                             transition={ANIMATION.text.transition(0)}
-                            className='text-lg md:text-xl font-medium text-foreground dark:text-foreground tracking-tight leading-[1.15] md:leading-[1.15] '
+                            className={`text-lg sm:text-xl md:text-2xl font-medium tracking-tight leading-tight
+                                ${cover ? 'text-white' : 'text-gray-900 dark:text-muted-foreground'}`}
                         >
                             {title}
                         </motion.h1>
@@ -78,7 +85,8 @@ export const BlogHeader = ({ cover, title = '', description = '' }: BlogHeaderPr
                             <motion.p
                                 {...ANIMATION.text}
                                 transition={ANIMATION.text.transition(1)}
-                                className='text-base md:text-sm text-foreground dark:text-white/90 leading-relaxed max-w-2xl font-normal'
+                                className={`text-sm sm:text-base leading-relaxed max-w-2xl font-normal
+                                    ${cover ? 'text-white/90' : 'text-gray-600 dark:text-muted-foreground/80'}`}
                             >
                                 {description}
                             </motion.p>

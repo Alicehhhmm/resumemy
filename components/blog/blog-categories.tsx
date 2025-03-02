@@ -25,41 +25,52 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
     }
 
     return (
-        <ResizablePanelGroup direction='vertical'>
-            <Tabs defaultValue={defaultValue} onValueChange={handelChang}>
-                <ResizablePanel defaultSize={25} className='bg-white dark:bg-background shadow'>
-                    <div className='h-full flex justify-between items-center p-2 container mx-auto px-4'>
-                        {/* TODO: module tabs => select */}
-                        <TabsList className={cn('flex justify-between items-center p-0')}>
+        <ResizablePanelGroup direction='vertical' className='rounded-lg overflow-hidden'>
+            <Tabs defaultValue={defaultValue} onValueChange={handelChang} className='w-full'>
+                <ResizablePanel
+                    defaultSize={25}
+                    className='bg-white dark:bg-neutral-900/50 shadow-sm border-b border-gray-200 dark:border-gray-700/30'
+                >
+                    <div className='h-full flex justify-between items-center p-1 sm:p-2 container mx-auto px-2 sm:px-4'>
+                        <TabsList className={cn('flex justify-start items-center p-0 bg-transparent ')}>
                             {categories.map(category => (
                                 <TabsTrigger
                                     key={category}
                                     value={category}
-                                    className={cn(`relative py-4 px-3`, action === category ? 'active-item' : 'inactive-item')}
+                                    className={cn(
+                                        `relative py-2 sm:py-3 px-2 sm:px-3  `,
+                                        `text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-all duration-200`,
+                                        action === category ? 'active-item' : 'inactive-item'
+                                    )}
                                 >
-                                    <span className='text-sm font-medium active:text-lime-500 hover:text-lime-500'>{category}</span>
+                                    {category}
                                 </TabsTrigger>
                             ))}
                         </TabsList>
+
                         <Button
                             variant='outline'
                             size='icon'
-                            className={
-                                'border-none rounded-full p-2 text-muted-foreground transition-colors hover:text-primary hover:bg-accent'
-                            }
+                            className={cn(
+                                'border-none rounded-full p-1.5 sm:p-2 dark:bg-neutral-900/20',
+                                'text-gray-500 dark:text-foreground/60',
+                                'hover:text-lime-600 dark:hover:text-lime-500',
+                                'hover:bg-gray-100 dark:hover:bg-neutral-950/30',
+                                'transition-colors'
+                            )}
                         >
-                            <Search size={20} className='shrink-0' />
+                            <Search size={18} className='shrink-0' />
                         </Button>
                     </div>
                 </ResizablePanel>
                 <ResizableHandle />
-                <ResizablePanel defaultSize={75}>
-                    <div className='pt-6'>
+                <ResizablePanel defaultSize={75} className='bg-gray-50 dark:bg-neutral-950/10 pt-4 sm:pt-6 px-2 sm:px-4'>
+                    <div className='container mx-auto'>
                         {categories.map((category, index) => (
                             <div key={index} className='flex h-full'>
                                 {category === defaultValue && (
-                                    <TabsContent value={defaultValue} className='p-0 pb-10'>
-                                        <div className='grid grid-cols-2 gap-12 max-sm:grid-cols-1'>
+                                    <TabsContent value={defaultValue} className='p-0 pb-6 sm:pb-10 w-full'>
+                                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8'>
                                             {blogData.posts.map(post => (
                                                 <BlogPostCard
                                                     key={post.slug}
@@ -73,9 +84,10 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                         </div>
                                     </TabsContent>
                                 )}
+
                                 {category !== defaultValue && category !== categories[2] && (
-                                    <TabsContent value={category} className='p-0 flex-1 pb-10'>
-                                        <div className='space-y-4'>
+                                    <TabsContent value={category} className='p-0 flex-1 pb-6 sm:pb-10 w-full'>
+                                        <div className='space-y-3 sm:space-y-4'>
                                             {blogData.posts.map(post => (
                                                 <BlogPostCardRow
                                                     key={post.slug}
@@ -90,9 +102,10 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                         </div>
                                     </TabsContent>
                                 )}
+
                                 {category === categories[2] && (
-                                    <TabsContent value={category} className='p-0 flex-1 pb-10'>
-                                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'>
+                                    <TabsContent value={category} className='p-0 flex-1 pb-6 sm:pb-10 w-full'>
+                                        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6'>
                                             {blogData.grid.map(post => (
                                                 <BlogGridCard key={post.slug} post={post} />
                                             ))}

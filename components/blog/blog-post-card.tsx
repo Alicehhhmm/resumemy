@@ -18,7 +18,7 @@ type BlogPostCardProps = {
 
 export const BlogPostCard = ({ title, category, description, author, date, slug }: BlogPostCardProps) => {
     return (
-        <article className='flex flex-col group relative w-full bg-white dark:bg-neutral-900 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200'>
+        <article className='flex flex-col group relative w-full bg-white dark:bg-neutral-900/40 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200'>
             <Link href={slug} className='w-full overflow-hidden m-0 cursor-pointer'>
                 <ArticleCover title={title} type='default' className='rounded-tl-lg rounded-tr-lg' />
             </Link>
@@ -29,7 +29,7 @@ export const BlogPostCard = ({ title, category, description, author, date, slug 
                         className={cn(
                             'w-fit px-3 py-1 text-xs font-semibold uppercase tracking-wider',
                             'text-lime-500 cursor-pointer rounded-md',
-                            'hover:bg-lime-100 transition-colors'
+                            'hover:bg-lime-100 transition-colors dark:bg-neutral-900/30'
                         )}
                     >
                         {category}
@@ -57,8 +57,8 @@ export const BlogPostCard = ({ title, category, description, author, date, slug 
 
                         {/* 日期 */}
                         {date && (
-                            <div className='flex items-center gap-1 text-sm text-gray-400'>
-                                <Calendar className='w-4 h-4 mr-1.5 text-gray-400 flex-shrink-0' />
+                            <div className='flex items-center gap-1 text-sm text-gray-400 dark:text-foreground/30'>
+                                <Calendar className='w-4 h-4 mr-1.5 text-gray-400 dark:text-foreground/30 flex-shrink-0' />
                                 <time>{formatDate(date)}</time>
                             </div>
                         )}

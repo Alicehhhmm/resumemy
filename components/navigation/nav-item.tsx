@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/components/common'
 import { usePathname } from 'next/navigation'
 import { ChevronDown } from 'lucide-react'
 import { useState, useCallback, memo } from 'react'

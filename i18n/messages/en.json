@@ -46,5 +46,19 @@
     "HomePage": {
         "title": "Hello world!",
         "about": "Go to the about page"
+    },
+    "layouts":{
+        "blog": {
+            "title": "my Blog",
+            "categories": {
+                "default": "All",
+                "announcements": "Announcements",
+                "release": "Release",
+                "vulnerability": "Vulnerability",
+                "dynamic": "Dynamic ",
+                "articles": "Articles",
+                "column": "Column"
+            }
+        }
     }
 }

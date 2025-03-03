@@ -1,21 +1,27 @@
 'use client'
 
 import type { FC, PropsWithChildren } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 import { NavHeader } from '@/components/navigation/nav-header'
 import { FooterSimple } from '@/components/common/footer-simple'
 import { BlogHeader, WithBlogCategories } from '@/components/blog'
 
-import { BlogPreviewType, BlogPostsRSC, NavItem } from '@/types/blog'
-import { v4 as uuidv4 } from 'uuid'
+import { BlogPreviewType, BlogPostsRSC } from '@/types/blog'
+import { useLang } from '@/hooks/use-lang'
 
 export const BlogLayout: FC<PropsWithChildren> = ({ children }) => {
-    const navItems: NavItem[] = [
-        { key: 'dynamic', name: '动态', href: '#' },
-        { key: 'articles', name: '文章', href: '#' },
-        { key: 'column', name: '专栏', href: '#' },
-    ]
+    const { t } = useLang()
+
     const categories: Array<BlogPreviewType> = ['default', 'announcements', 'release', 'vulnerability']
+
+    // generate tabs data
+    const mapCategoriesToTabs = (categories: Array<BlogPreviewType>) =>
+        categories.map(category => ({
+            key: category,
+            label: t(`layouts.blog.categories.${category}`),
+            link: `/blog/${category}`,
+        }))
 
     const blogData: BlogPostsRSC & any = {
         pagination: {
@@ -104,7 +110,7 @@ export const BlogLayout: FC<PropsWithChildren> = ({ children }) => {
             <main className='pt-navh min-h-[calc(100vh-60px)] bg-gray-50 dark:bg-fluo-background'>
                 <div className='max-w-5xl mx-auto p-6 overflow-auto dark:bg-fluo-background space-y-2'>
                     <BlogHeader cover='' title='博客文章' description='行业新闻、研究案例、学习笔记和资源。' />
-                    <WithBlogCategories blogData={blogData} categories={categories} />
+                    <WithBlogCategories blogData={blogData} categories={mapCategoriesToTabs(categories)} />
                 </div>
             </main>
             <FooterSimple />

@@ -46,5 +46,19 @@
     "HomePage": {
         "title": "你好世界！",
         "about": "前往关于页面"
+    },
+    "layouts": {
+        "blog": {
+            "title": "我的博客",
+            "categories": {
+                "default": "全部",
+                "announcements": "公告",
+                "release": "版本发布",
+                "vulnerability": "漏洞",
+                "dynamic": "动态",
+                "articles": "文章",
+                "column": "专栏"
+            }
+        }
     }
 }

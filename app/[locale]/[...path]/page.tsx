@@ -1,11 +1,14 @@
 import { notFound, redirect } from 'next/navigation'
 
 import { setRequestLocale } from 'next-intl/server'
+import { setGlobClientContext } from '@/core/server'
 import { dynamicRouter } from '@/core/dynamic-route.mjs'
 import { availableLocaleCodes, allLocaleCodes, defaultLocale } from '@/core/next.locales.mjs'
 import { ENABLE_STATIC_EXPORT, ENABLE_STATIC_EXPORT_LOCALE } from '@/core/dynamic-route-constants'
+import { DYNAMIC_ROUTES } from '@/core/next.dynamic.constants.mjs'
 
 import { WithLayout } from '@/components/layout'
+import { MatterProvider } from '@/components/providers/matter-provider'
 
 type DynamicPageParamsProps = {
     params: {
@@ -85,13 +88,23 @@ const DynamicPage = async ({ params }: DynamicPageParamsProps) => {
         return redirect(`/${defaultLocale.code}/${pathname}`)
     }
 
-    const [staticPath] = path
+    // Gets the current full pathname for a given path
+    const pathname = dynamicRouter.getPathname(path)
 
-    // TODO:
-    // 1.将当前路径转给存储所有静态页面路径的对接，判断是否存在
-    // 2.如果存在，定义一个方法，将当前路径传递给对应的页面布局组件
-    if (['posts', 'blog', 'demo'].includes(staticPath)) {
-        return <WithLayout layout={'blog'}></WithLayout>
+    const staticGeneratedLayout = DYNAMIC_ROUTES.get(pathname)
+
+    if (staticGeneratedLayout != undefined) {
+        const sharedContext = { pathname: `/${pathname}` }
+
+        // 设置服务端请求的全局共享上下文
+        // 客户端需要通过 MatterProvider 传递
+        setGlobClientContext(sharedContext)
+
+        return (
+            <MatterProvider {...sharedContext}>
+                <WithLayout layout={staticGeneratedLayout}></WithLayout>
+            </MatterProvider>
+        )
     }
 
     // TODO: 针对mdx文件的动态布局:

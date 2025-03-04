@@ -1,17 +1,17 @@
-'use client'
-
 import type { FC, PropsWithChildren } from 'react'
+import { getTranslations } from 'next-intl/server'
 import { v4 as uuidv4 } from 'uuid'
 
+import { getGlobClientContext } from '@/core/server'
 import { NavHeader } from '@/components/navigation/nav-header'
 import { FooterSimple } from '@/components/common/footer-simple'
 import { BlogHeader, WithBlogCategories } from '@/components/blog'
 
 import { BlogPreviewType, BlogPostsRSC } from '@/types/blog'
-import { useLang } from '@/hooks/use-lang'
 
-export const BlogLayout: FC<PropsWithChildren> = ({ children }) => {
-    const { t } = useLang()
+export const BlogLayout: FC<PropsWithChildren> = async ({ children }) => {
+    const t = await getTranslations()
+    const { pathname } = getGlobClientContext()
 
     const categories: Array<BlogPreviewType> = ['default', 'announcements', 'release', 'vulnerability']
 
@@ -23,7 +23,11 @@ export const BlogLayout: FC<PropsWithChildren> = ({ children }) => {
             link: `/blog/${category}`,
         }))
 
+    // 当前最新路径例：/zh/blog/release
+    console.log('pathname', pathname, pathname?.split('/'))
+
     const blogData: BlogPostsRSC & any = {
+        category: pathname?.split('/')[2],
         pagination: {
             next: 2,
             prev: 0,
@@ -39,7 +43,7 @@ export const BlogLayout: FC<PropsWithChildren> = ({ children }) => {
                 author: 'Jane Smith',
                 username: 'Jane Smith',
                 date: new Date('2024-10-10'),
-                slug: 'introduction-to-react-19',
+                slug: '/blog/introduction-to-react-19',
                 categories: ['all'],
             },
             {
@@ -50,7 +54,7 @@ export const BlogLayout: FC<PropsWithChildren> = ({ children }) => {
                 authors: ['Jane Smith'],
                 username: 'Jane Smith',
                 date: new Date('2024-10-10'),
-                slug: '2introduction-to-react-19',
+                slug: '/blog/default/2introduction-to-react-19',
                 categories: ['all'],
             },
             {
@@ -61,7 +65,7 @@ export const BlogLayout: FC<PropsWithChildren> = ({ children }) => {
                 author: 'Jane Smith',
                 username: 'Jane Smith',
                 date: new Date('2024-10-10'),
-                slug: '3introduction-to-react-19',
+                slug: '/blog/default/3introduction-to-react-19',
                 categories: ['all'],
             },
             {
@@ -72,30 +76,30 @@ export const BlogLayout: FC<PropsWithChildren> = ({ children }) => {
                 author: 'Jane Smith',
                 username: 'Jane Smith',
                 date: new Date('2024-10-10'),
-                slug: '4introduction-to-react-19',
+                slug: '/blog/default/4introduction-to-react-19',
                 categories: ['all'],
             },
         ],
         grid: [
             {
-                slug: 'hello-world',
-                title: 'Hello World',
+                slug: '/mdx-lib-analysis',
+                title: 'mdx-lib-analysis',
                 date: '2023-04-18',
                 coverImage: '/placeholder.svg?height=400&width=600',
                 excerpt: 'This is my first blog post!',
                 content: '<p>This is the content of my first blog post.</p>',
             },
             {
-                slug: 'new-welcon',
-                title: 'My Second Post',
+                slug: '/new/new-welcon',
+                title: 'new-welcon',
                 date: '2023-04-19',
                 coverImage: '/placeholder.svg?height=400&width=600',
                 excerpt: 'This is my second blog post!',
                 content: '<p>This is the content of my second blog post.</p>',
             },
             {
-                slug: 'mdx-lib-analysis',
-                title: 'Hello World',
+                slug: '/release/v2025-3-3',
+                title: 'release/v2025-3-3',
                 date: '2023-04-18',
                 coverImage: '/placeholder.svg?height=400&width=600',
                 excerpt: 'This is my first blog post!',

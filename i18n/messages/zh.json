@@ -49,7 +49,8 @@
     },
     "layouts": {
         "blog": {
-            "title": "我的博客",
+            "title": "博客文章",
+            "desc": "行业新闻、研究案例、学习笔记和资源。",
             "categories": {
                 "default": "全部",
                 "announcements": "公告",

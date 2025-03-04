@@ -47,9 +47,10 @@
         "title": "Hello world!",
         "about": "Go to the about page"
     },
-    "layouts":{
+    "layouts": {
         "blog": {
-            "title": "my Blog",
+            "title": "Blog",
+            "desc": "Industry news, case studies, study notes and resources.",
             "categories": {
                 "default": "All",
                 "announcements": "Announcements",

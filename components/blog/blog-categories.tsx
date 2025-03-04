@@ -19,7 +19,7 @@ type WithBlogCategoriesProps = {
 }
 
 export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, blogData }) => {
-    const [selectedKey, setSelectedKey] = useState<string>(categories[0]?.key || '')
+    const [selectedKey, setSelectedKey] = useState<string>(blogData.category || 'default')
 
     const handleTabChange = (key: string) => {
         setSelectedKey(key)

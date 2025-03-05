@@ -36,7 +36,12 @@ const getFrontMatter = (filename, source) => {
     blogCategories.add(category)
 
     // 生成文章的访问路径，基于文件结构
-    const slug = `/blog/${category}/${basename(filename, extname(filename))}`
+    let slug = `/blog/${category}/${basename(filename, extname(filename))}`
+
+    // 处理根文件夹下的文章
+    if (category === 'default') {
+        slug = `/blog/${basename(filename, extname(filename))}`
+    }
 
     let result = { title, author, username, date: new Date(date), categories, slug }
 

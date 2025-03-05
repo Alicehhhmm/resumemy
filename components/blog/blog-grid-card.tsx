@@ -9,7 +9,7 @@ export function BlogGridCard({ post }: { post: ExtendedType }) {
     return (
         <div className='flex flex-col bg-white dark:bg-neutral-900/40 shadow-sm rounded-lg hover:shadow-md transition-shadow duration-200 overflow-hidden'>
             <div className='relative h-48 sm:h-56 md:h-64'>
-                <Link href={`/blog/${post.slug}`}>
+                <Link href={`${post.slug}`}>
                     <Image
                         fill
                         unoptimized
@@ -22,7 +22,7 @@ export function BlogGridCard({ post }: { post: ExtendedType }) {
             </div>
             <div className='p-4 md:p-5 flex-1 flex flex-col'>
                 <Link
-                    href={`/blog/${post.slug}`}
+                    href={`${post.slug}`}
                     className='text-lg sm:text-xl font-semibold hover:underline mb-2 text-gray-900 dark:text-muted-foreground'
                 >
                     {post.title}
@@ -35,7 +35,7 @@ export function BlogGridCard({ post }: { post: ExtendedType }) {
                             <time>{formatDate(post.date)}</time>
                         </div>
                     )}
-                    <Link href={`/blog/${post.slug}`} className='text-lime-600 dark:text-lime-500 hover:underline text-sm sm:text-base'>
+                    <Link href={`${post.slug}`} className='text-lime-600 dark:text-lime-500 hover:underline text-sm sm:text-base'>
                         阅读更多
                     </Link>
                 </div>

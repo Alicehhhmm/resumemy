@@ -2,10 +2,10 @@ import Image from 'next/image'
 import { Calendar } from 'lucide-react'
 import { Link } from '@/components/common'
 
-import type { PostRow } from '@/types/blog'
+import type { ExtendedType } from '@/types/blog'
 import { formatDate } from '@/lib/date'
 
-export function BlogGridCard({ post }: { post: PostRow }) {
+export function BlogGridCard({ post }: { post: ExtendedType }) {
     return (
         <div className='flex flex-col bg-white dark:bg-neutral-900/40 shadow-sm rounded-lg hover:shadow-md transition-shadow duration-200 overflow-hidden'>
             <div className='relative h-48 sm:h-56 md:h-64'>

@@ -2,22 +2,12 @@ import Image from 'next/image'
 import { Calendar, MoreVertical } from 'lucide-react'
 
 import { toast } from 'sonner'
-import type { BlogCategory } from '@/types/blog'
+import type { ArticleColumn } from '@/types/blog'
 import { formatDate } from '@/lib/date'
 import { Link } from '@/components/common'
 import ArticleCover from '@/components/common/ArticleCover'
 
-type BlogPostCardProps = {
-    title: string
-    category: BlogCategory
-    description?: string
-    author?: string
-    date?: Date
-    slug?: string
-    viewCount?: number
-    commentCount?: number
-    coverImage?: string
-}
+type BlogPostCardProps = ArticleColumn
 
 export const BlogPostCardRow = ({
     title,

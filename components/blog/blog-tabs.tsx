@@ -1,12 +1,12 @@
 import type { FC } from 'react'
 import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { NavItem } from '@/types/blog'
+import type { LinkTab } from '@/types/blog'
 
 type TabsProps = {
     activeKey: string
     isSearch?: boolean
-    navItems: NavItem[]
+    navItems: LinkTab[]
     onNavChange: (key: string) => void
     handleSearch: (arg: boolean) => void
 }
@@ -45,7 +45,7 @@ export const BlogTabs: FC<TabsProps> = ({ navItems, activeKey, onNavChange, isSe
                                     onClick={() => onNavChange(item.key)}
                                     className={cn(baseItemStyles, activeKey === item.key ? activeItemStyles : inactiveItemStyles)}
                                 >
-                                    {item.name}
+                                    {item.label}
                                 </button>
                             ))}
                         </div>

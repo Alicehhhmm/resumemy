@@ -10,12 +10,12 @@ import { MobileSelect, SelectOption } from '@/components/common/mobile-select'
 
 import { cn } from '@/lib/utils'
 import { Link } from '@/components/common'
-import { BlogPostsRSC, PostRow, LinkTab } from '@/types/blog'
+import { BlogPostsRSC, LinkTab } from '@/types/blog'
 import { BlogPostCard, BlogPostCardRow, BlogGridCard } from '@/components/blog'
 
 type WithBlogCategoriesProps = {
     categories: Array<LinkTab>
-    blogData: BlogPostsRSC & { category: string; description?: string } & { grid: Array<PostRow> }
+    blogData: BlogPostsRSC
 }
 
 export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, blogData }) => {
@@ -91,8 +91,8 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                             <BlogPostCard
                                                 key={post.slug}
                                                 title={post.title}
-                                                category={post.categories[0]}
                                                 author={post.author}
+                                                category={post.categories[0]}
                                                 date={post.date}
                                                 slug={post.slug}
                                             />
@@ -106,8 +106,8 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                             <BlogPostCardRow
                                                 key={post.slug}
                                                 title={post.title}
-                                                category={post.categories[0]}
                                                 author={post.author}
+                                                category={post.categories[0]}
                                                 date={post.date}
                                                 slug={post.slug}
                                             />
@@ -117,7 +117,7 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
 
                                 {['release'].includes(category.key) && (
                                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6'>
-                                        {blogData.grid.map(post => (
+                                        {blogData.posts.map(post => (
                                             <BlogGridCard key={post.slug} post={post} />
                                         ))}
                                     </div>

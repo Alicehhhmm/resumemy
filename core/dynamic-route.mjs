@@ -7,7 +7,7 @@ import { DYNAMIC_ROUTES, IGNORED_ROUTES, PAGE_METADATA } from './next.dynamic.co
 import { POSTS_FOLDER_NAME } from './dynamic-route-constants'
 
 import { availableLocaleCodes, defaultLocale } from './next.locales.mjs'
-import { getMarkdownFiles } from './next.helpers.mjs'
+import { getMarkdownFiles } from './complier/next.helpers.mjs'
 
 /**
  * [中文文档]
@@ -79,7 +79,6 @@ const getDynamicRouter = async () => {
     const getRoutesByLanguage = async (locale = defaultLocale.code) => {
         const shouldIgnoreStaticRoute = pathname => IGNORED_ROUTES.every(e => !e({ pathname, locale }))
 
-        // TODO: concat 所有分类的bolg 类型
         return [...pathnameToFilename.keys()].filter(shouldIgnoreStaticRoute).concat([...DYNAMIC_ROUTES.keys()])
     }
 

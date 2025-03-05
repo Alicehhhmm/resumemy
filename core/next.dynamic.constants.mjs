@@ -1,6 +1,8 @@
 'use strict'
 
+import { join } from 'node:path'
 import { defaultLocale } from './next.locales.mjs'
+import { provideBlogCategories } from './providers/blogData'
 
 /**
  * This is a list of all static routes or pages from the Website that we do not
@@ -21,7 +23,13 @@ export const IGNORED_ROUTES = [
  * but that do not have Markdown content and a matching file for the route
  *
  * @type {Map<string, import('./types').Layouts>} A Map of pathname and Layout Name
+ * @returns Map([
+ *      ['blog\\new', 'pages\\en\\blog\\new']
+ * ])
  */
 export const DYNAMIC_ROUTES = new Map([
     // Provides Routes for all Blog Categories
+    ['blog', 'blog-category'],
+    ...provideBlogCategories().map(c => [`blog/${c}`, 'blog-category']),
+    ...provideBlogCategories().map(c => [join('blog', c), 'blog-category']),
 ])

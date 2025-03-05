@@ -1,10 +1,13 @@
 'use strict'
 
+import { cache } from 'react'
+
 import { readFile } from 'node:fs/promises'
 import { join, normalize, sep } from 'node:path'
 
 import { DYNAMIC_ROUTES, IGNORED_ROUTES, PAGE_METADATA } from './next.dynamic.constants.mjs'
 import { POSTS_FOLDER_NAME } from './dynamic-route-constants'
+import { IS_DEV_ENV } from '@/core/next.constants.mjs'
 
 import { availableLocaleCodes, defaultLocale } from './next.locales.mjs'
 import { getMarkdownFiles } from './complier/next.helpers.mjs'
@@ -43,12 +46,30 @@ const mapPathToRoute = (locale = defaultLocale.code, path = '') => ({
  */
 const getPathname = (path = []) => path.join('/')
 
-const getDynamicRouter = async () => {
-    // Keeps the map of pathnames to filenames
-    const pathnameToFilename = new Map()
+/**
+ * 该方法用于存储 Markdown 文件内容
+ * - 在开发环境下，禁用缓存
+ *
+ * @returns {Map|null} 缓存对象
+ */
+const createCachedMarkdownCache = () => {
+    if (IS_DEV_ENV) {
+        return {
+            has: () => false,
+            set: () => {},
+            get: () => null,
+        }
+    }
 
-    // 获取指定文件夹下, 特定语言路径的所有 md(x) 文件
-    // [ 'index.mdx', 'blog\\index.md', 'blog\\new\\new-welcon.md' ]
+    return new Map()
+}
+
+const getDynamicRouter = async () => {
+    const pathnameToFilename = new Map()
+    const cachedMarkdownFiles = createCachedMarkdownCache()
+
+    // 获取指定文件夹下, 特定语言路径的所有md(x)文件
+    // 返回[ 'index.mdx', 'blog\\index.md']
     const websitePages = await getMarkdownFiles(process.cwd(), `${POSTS_FOLDER_NAME}/${defaultLocale.code}`)
 
     websitePages.forEach(filename => {
@@ -82,12 +103,67 @@ const getDynamicRouter = async () => {
         return [...pathnameToFilename.keys()].filter(shouldIgnoreStaticRoute).concat([...DYNAMIC_ROUTES.keys()])
     }
 
+    /**
+     * 获取本地的 Markdown 文件(原)内容
+     *
+     * @param {string} locale
+     * @param {string} pathname
+     * @returns {Promise<{ source: string; filename: string }>}
+     */
+    const _getMarkdownFile = async (locale = '', pathname = '') => {
+        const normalizedPathname = normalize(pathname).replace('.', '')
+
+        // 检查路径是否存在于路径到文件名的映射中(如果存在，则该路由可以渲染)
+        if (pathnameToFilename.has(normalizedPathname)) {
+            const filename = pathnameToFilename.get(normalizedPathname)
+            const filepath = join(process.cwd(), `${POSTS_FOLDER_NAME}`, locale, filename)
+
+            // 检查缓存中是否已存在本地版本的文件内容(如果存在，则直接返回缓存内容)
+            if (cachedMarkdownFiles.has(`${locale}${normalizedPathname}`)) {
+                const fileContent = cachedMarkdownFiles.get(`${locale}${normalizedPathname}`)
+
+                return { source: fileContent, filename }
+            }
+
+            // 开始读取本地文件内容
+            const fileLanguageContent = await readFile(filepath, 'utf8').catch(() => undefined)
+
+            // 如果成功读取到本地文件内容，则将其加入缓存并返回
+            if (fileLanguageContent && typeof fileLanguageContent === 'string') {
+                cachedMarkdownFiles.set(`${locale}${normalizedPathname}`, fileLanguageContent)
+
+                return { source: fileLanguageContent, filename }
+            }
+
+            // 避免无限递归：
+            // 当前语言是默认语言（例如 'en'），且文件不存在，则返回空内容
+            if (locale === defaultLocale.code) {
+                return { filename: '', source: '' }
+            }
+
+            // 如果本地版本不存在，则尝试获取默认语言版本的内容
+            const { source: fileContent } = await _getMarkdownFile(defaultLocale.code, pathname)
+
+            // 将默认语言版本的内容加入本地缓存，以提高后续读取性能
+            cachedMarkdownFiles.set(`${locale}${normalizedPathname}`, fileContent)
+
+            return { source: fileContent, filename }
+        }
+
+        return { filename: '', source: '' }
+    }
+
+    // Creates a Cached Version of the Markdown File Resolver
+    const getMarkdownFile = cache(async (locale, pathname) => {
+        return await _getMarkdownFile(locale, pathname)
+    })
+
     return {
         mapPathToRoute,
         getPathname,
         getRoutesByLanguage,
+        getMarkdownFile,
         // getMDXContent,
-        // getMarkdownFile,
         // getPageMetadata,
     }
 }

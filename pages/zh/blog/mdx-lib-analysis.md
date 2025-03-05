@@ -3,6 +3,7 @@ title: 'Nodejs.org 官方文档(MD/MDX)处理流水线：核心库深度解析'
 layout: BlogLayout
 date: 2025-02-28
 author: Norush
+category: default
 ---
 
 本文主要对 Nodejs.org 官方文档项目中的 MD/MDX 处理流水线相关核心库进行深度分析，旨在揭示其工作原理与协同方式。

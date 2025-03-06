@@ -22,30 +22,6 @@ description: 完整Markdown功能演示文档，包含标准语法与扩展功�
 
 ###### H6 六级标题
 
-## 增强功能（需 MDX 支持）
+## 增强功能（需 MDX 支持 mermaid）
 
-```mermaid
-graph TD
-A[开始] --> B(数据处理)
-B --> C{判断条件}
-C -->|满足| D[执行操作]
-C -->|不满足| E[结束]
-```
 
-## 响应式布局（纯 CSS 实现）
-
-<div
-    style='
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
-    @media (min-width: 768px) {
-        grid-template-columns: repeat(3, 1fr);
-    }
-'
->
-    <div style='padding: 1rem; background-color: #eff6ff'>响应区块1</div>
-    <div style='padding: 1rem; background-color: #ecfdf5'>响应区块2</div>
-    <div style='padding: 1rem; background-color: #fefce8'>响应区块3</div>
-</div>

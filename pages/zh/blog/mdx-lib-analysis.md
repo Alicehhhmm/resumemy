@@ -1,6 +1,6 @@
 ---
 title: 'Nodejs.org 官方文档(MD/MDX)处理流水线：核心库深度解析'
-layout: BlogLayout
+layout: blog-post
 date: 2025-02-28
 author: Norush
 category: default

@@ -15,7 +15,7 @@ const getBlogCategory = async (pathname: string) => {
     // hence we attempt to interpolate the full /en/blog/{category}/page/{page}
     // and in case of course no page argument is provided we define it to 1
     // note that malformed routes can't happen as they are all statically generated
-    const [, , category = 'all', , page = 1] = pathname.split('/')
+    const [, , category = 'default', , page = 1] = pathname.split('/')
 
     const { posts, pagination } = await FetchBlogData(category as BlogCategory, Number(page))
     console.log('FetchBlogData@', { category, posts, pagination, page: Number(page) })

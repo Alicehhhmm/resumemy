@@ -1,12 +1,16 @@
 'use client'
 
 import { FC, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+
 import { cn } from '@/lib/utils'
+import { Link } from '@/components/common'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export type SelectOption = {
     value: string
     label: string
+    link: string
 }
 
 type MobileSelectProps = {
@@ -34,6 +38,7 @@ export const MobileSelect: FC<MobileSelectProps> = ({
     contentClassName,
     disabled = false,
 }) => {
+    const router = useRouter()
     const [selectedValue, setSelectedValue] = useState<string>(value || defaultValue || '')
 
     useEffect(() => {
@@ -46,6 +51,11 @@ export const MobileSelect: FC<MobileSelectProps> = ({
         setSelectedValue(newValue)
         if (onValueChange) {
             onValueChange(newValue)
+        }
+
+        const selectedOption = options.find(option => option.value === newValue)
+        if (selectedOption) {
+            router.push(selectedOption.link)
         }
     }
 

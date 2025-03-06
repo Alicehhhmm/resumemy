@@ -50,19 +50,18 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                     <div className='max-sm:hidden h-full flex justify-between items-center p-1 sm:p-2 container mx-auto px-2 sm:px-4'>
                         <TabsList className={cn('flex justify-start items-center p-0 bg-transparent')}>
                             {categories.map(category => (
-                                <TabsTrigger
-                                    key={category.key}
-                                    value={category.key}
-                                    className={cn(
-                                        `relative py-2 sm:py-3 px-2 sm:px-3`,
-                                        `text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-all duration-200`,
-                                        selectedKey === category.key ? 'active-item' : 'inactive-item'
-                                    )}
-                                >
-                                    <Link href={category.link} className='hover:no-underline'>
+                                <Link href={category.link} key={category.key} className='hover:no-underline'>
+                                    <TabsTrigger
+                                        value={category.key}
+                                        className={cn(
+                                            `relative py-2 sm:py-3 px-2 sm:px-3`,
+                                            `text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-all duration-200`,
+                                            selectedKey === category.key ? 'active-item' : 'inactive-item'
+                                        )}
+                                    >
                                         {category.label}
-                                    </Link>
-                                </TabsTrigger>
+                                    </TabsTrigger>
+                                </Link>
                             ))}
                         </TabsList>
                         <Button

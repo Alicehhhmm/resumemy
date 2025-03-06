@@ -47,7 +47,7 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                     </div>
 
                     {/* 桌面端 Tabs */}
-                    <div className='max-sm:hidden h-full flex justify-between items-center p-1 sm:p-2 container mx-auto px-2 sm:px-4'>
+                    <div className='max-sm:hidden flex justify-between items-center p-1 sm:p-2 px-2 sm:px-4'>
                         <TabsList className={cn('flex justify-start items-center p-0 bg-transparent')}>
                             {categories.map(category => (
                                 <Link href={category.link} key={category.key} className='hover:no-underline'>
@@ -84,14 +84,14 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                     <div className='container mx-auto'>
                         {categories.map(category => (
                             <TabsContent key={category.key} value={category.key} className='p-0 pb-6 sm:pb-10 w-full'>
-                                {['default', 'all'].includes(category.key) && (
+                                {['all', 'news'].includes(category.key) && (
                                     <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8'>
                                         {blogData.posts.map(post => (
                                             <BlogPostCard
                                                 key={post.slug}
                                                 title={post.title}
                                                 author={post.author}
-                                                category={post.categories[0]}
+                                                category={post.categories[2]}
                                                 date={post.date}
                                                 slug={post.slug}
                                             />
@@ -99,7 +99,7 @@ export const WithBlogCategories: FC<WithBlogCategoriesProps> = ({ categories, bl
                                     </div>
                                 )}
 
-                                {!['default', 'release'].includes(category.key) && (
+                                {!['all', 'news', 'release'].includes(category.key) && (
                                     <div className='space-y-3 sm:space-y-4'>
                                         {blogData.posts.map(post => (
                                             <BlogPostCardRow

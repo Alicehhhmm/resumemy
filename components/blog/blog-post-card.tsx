@@ -1,11 +1,12 @@
 import { User, Calendar } from 'lucide-react'
-import type { BlogCategory } from '@/types/blog'
+import { useTranslations } from 'next-intl'
 
 import { cn } from '@/lib/utils'
 import { formatDate } from '@/lib/date'
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/components/common'
 import ArticleCover from '@/components/common/ArticleCover'
+import type { BlogCategory } from '@/types/blog'
 
 type BlogPostCardProps = {
     title: string
@@ -17,10 +18,12 @@ type BlogPostCardProps = {
 }
 
 export const BlogPostCard = ({ title, category, description, author, date, slug }: BlogPostCardProps) => {
+    const t = useTranslations()
+
     return (
         <article className='flex flex-col group relative w-full bg-white dark:bg-neutral-900/40 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200'>
             <Link href={slug} className='w-full overflow-hidden m-0 cursor-pointer'>
-                <ArticleCover title={title} type='default' className='rounded-tl-lg rounded-tr-lg' />
+                <ArticleCover title={title} type='all' className='rounded-tl-lg rounded-tr-lg' />
             </Link>
 
             <div className='space-y-3 p-4 flex-1 flex flex-col'>
@@ -32,7 +35,7 @@ export const BlogPostCard = ({ title, category, description, author, date, slug 
                             'hover:bg-lime-100 transition-colors dark:bg-neutral-900/30'
                         )}
                     >
-                        {category}
+                        {t(`layouts.blog.categories.${category}`)}
                     </Badge>
                 )}
 
@@ -40,15 +43,15 @@ export const BlogPostCard = ({ title, category, description, author, date, slug 
                     href={slug}
                     className={cn(
                         'text-xl font-bold text-gray-900 dark:text-foreground/60 leading-tight',
-                        'hover:text-lime-600 transition-colors focus:outline-none focus:ring-2 focus:ring-lime-500 rounded-md'
+                        'hover:text-lime-400 transition-colors hover:underline flex-1 order-1'
                     )}
                 >
                     {title}
                 </Link>
 
-                {description && <p className='text-gray-600 leading-relaxed line-clamp-3'>{description}</p>}
+                {description && <p className='text-gray-600 leading-relaxed line-clamp-3 order-2'>{description}</p>}
 
-                <footer className='flex flex-row items-center justify-between'>
+                <footer className='flex flex-row items-center justify-between order-3'>
                     <div className='space-y-1'>
                         <div className='flex items-center gap-1 text-sm'>
                             <User className='w-4 h-4 text-gray-400 flex-shrink-0' />

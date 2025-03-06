@@ -15,10 +15,9 @@ const getBlogCategory = async (pathname: string) => {
     // hence we attempt to interpolate the full /en/blog/{category}/page/{page}
     // and in case of course no page argument is provided we define it to 1
     // note that malformed routes can't happen as they are all statically generated
-    const [, , category = 'default', , page = 1] = pathname.split('/')
+    const [, , category = 'all', , page = 1] = pathname.split('/')
 
     const { posts, pagination } = await FetchBlogData(category as BlogCategory, Number(page))
-    console.log('FetchBlogData@', { category, posts, pagination, page: Number(page) })
 
     return { category, posts, pagination, page: Number(page) }
 }
@@ -27,7 +26,7 @@ export const BlogLayout: FC<PropsWithChildren> = async ({ children }) => {
     const t = await getTranslations()
     const { pathname } = getGlobClientContext()
 
-    const categories: Array<BlogPreviewType> = ['default', 'announcements', 'release', 'vulnerability']
+    const categories: Array<BlogPreviewType> = ['all', 'news', 'announcements', 'release', 'vulnerability', 'other']
 
     // generate tabs data
     const mapCategoriesToTabs = (categories: Array<BlogCategory>) =>

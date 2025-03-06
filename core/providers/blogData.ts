@@ -7,13 +7,14 @@ import type { BlogPreviewType, BlogCategory, BlogPostsRSC } from '@/types';
 
 const { categories, posts } = await generateBlogData();
 
-const default_categories: Array<BlogPreviewType> = ['default', 'announcements', 'release', 'vulnerability']
+const default_categories: Array<BlogPreviewType> = ['all', 'announcements', 'release', 'vulnerability', 'other']
 
 export const provideBlogCategories = cache(() => [...default_categories, ...categories]);
 
 export const provideBlogPosts = cache((category: BlogCategory): BlogPostsRSC => {
-    // console.log('当前默认所有分类：', category, posts, [...default_categories, ...categories]);
-    const categoryPosts = posts
+    console.log('当前默认所有分类：', category, posts, [...default_categories, ...categories]);
+
+    let categoryPosts = posts
         .filter(post => post.categories.includes(category))
         .sort((a, b) => b.date.getTime() - a.date.getTime());
 

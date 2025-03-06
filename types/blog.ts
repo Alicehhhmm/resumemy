@@ -1,7 +1,7 @@
 /**
  * tabs 栏默认可预览类型
  */
-export type BlogPreviewType = 'default' | 'announcements' | 'release' | 'vulnerability';
+export type BlogPreviewType = 'all' | 'news' | 'announcements' | 'release' | 'vulnerability' | 'other';
 
 /**
  * 博客文章的所有分类

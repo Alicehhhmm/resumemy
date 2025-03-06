@@ -52,10 +52,17 @@
             "title": "博客文章",
             "desc": "行业新闻、研究案例、学习笔记和资源。",
             "categories": {
-                "default": "全部",
+                "all": "所有内容",
+                "news": "新闻",
+                "other": "其他",
                 "announcements": "公告",
                 "release": "版本发布",
                 "vulnerability": "漏洞",
+                "community": "社区",
+                "uncategorized": "未分类",
+                "video": "视频",
+                "weekly": "周刊",
+                "events": "活动",
                 "dynamic": "动态",
                 "articles": "文章",
                 "column": "专栏"

@@ -38,8 +38,8 @@ const getFrontMatter = (filename, source) => {
     // 生成文章的访问路径，基于文件结构
     let slug = `/blog/${category}/${basename(filename, extname(filename))}`
 
-    // 处理根文件夹下的文章
-    if (['default', 'uncategorized'].includes(category)) {
+    // 处理根文件夹下的文章: /blog/**unindex.md(x)
+    if (['other', 'uncategorized'].includes(category)) {
         slug = `/blog/${basename(filename, extname(filename))}`
     }
 

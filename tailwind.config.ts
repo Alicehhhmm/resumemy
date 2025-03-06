@@ -155,6 +155,24 @@ export default {
                 'navf': 'var(--nr-footer-h)',
                 'sdbw': 'var(--nr-sidebar)',
             },
+            fontSize: {
+                // srceen: [fontSize,heightLine]
+                xs: ['0.75rem', '1rem'],
+                sm: ['0.875rem', '1.25rem'],
+                base: ['1rem', '1.5rem'],
+                lg: ['1.125rem', '1.75rem'],
+                xl: ['1.25rem', '1.875rem'],
+                '2xl': ['1.5rem', '2rem'],
+                '3xl': ['1.875rem', '2.25rem'],
+                '4xl': ['2.25rem', '2.5rem'],
+                '5xl': ['3rem', '3rem'],
+                '6xl': ['3.75rem', '3.75rem'],
+                '7xl': ['4.5rem', '4.5rem'],
+            },
+            fontFamily: {
+                'open-sans': ['var(--font-open-sans)'],
+                'ibm-plex-mono': ['var(--font-ibm-plex-mono)'],
+            },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                 'gradient-subtle': 'linear-gradient(180deg, theme(colors.neutral.100 / 50%) 0%, theme(colors.neutral.100 / 0%) 48.32%)',

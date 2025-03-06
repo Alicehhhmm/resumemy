@@ -17,11 +17,12 @@
         aspect-square
         w-1/3
         rounded-full
+        from-lime-500/80
         content-[''];
     }
 
-    &.default::after {
-        @apply from-lime-500/80;
+    &.other::after {
+        @apply from-violet-600/80;
     }
 
     &.announcements::after {

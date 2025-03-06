@@ -23,7 +23,7 @@ export const BlogPostCard = ({ title, category, description, author, date, slug 
     return (
         <article className='flex flex-col group relative w-full bg-white dark:bg-neutral-900/40 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200'>
             <Link href={slug} className='w-full overflow-hidden m-0 cursor-pointer'>
-                <ArticleCover title={title} type='all' className='rounded-tl-lg rounded-tr-lg' />
+                <ArticleCover title={title} type={category} className='rounded-tl-lg rounded-tr-lg' />
             </Link>
 
             <div className='space-y-3 p-4 flex-1 flex flex-col'>

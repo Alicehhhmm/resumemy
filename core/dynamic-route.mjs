@@ -1,7 +1,7 @@
 'use strict'
 
 import { cache } from 'react'
-
+import { VFile } from 'vfile'
 import { readFile } from 'node:fs/promises'
 import { join, normalize, sep } from 'node:path'
 
@@ -11,6 +11,8 @@ import { IS_DEV_ENV } from '@/core/next.constants.mjs'
 
 import { availableLocaleCodes, defaultLocale } from './next.locales.mjs'
 import { getMarkdownFiles } from './complier/next.helpers.mjs'
+import { compile } from './complier/complier.mdx.mjs'
+import { MDX_COMPONENTS } from './complier/complier.mdx.components.mjs'
 
 /**
  * [中文文档]
@@ -153,9 +155,32 @@ const getDynamicRouter = async () => {
         return { filename: '', source: '' }
     }
 
+    /**
+     * 该方法在服务端运行 MDX 编译器，并返回解析后的 JSX
+     * 用于将文件内容，编译为页面中可渲染的React组件
+     *
+     * @param {string} source Markdown/MDX 源内容
+     * @param {string} filename 文件名
+     */
+    const _getMDXContent = async (source = '', filename = '') => {
+        // 创建一个 VFile（虚拟文件），以便在将 Markdown 源内容序列化（编译）为 MDX 后，能够访问一些上下文数据
+        const sourceAsVirtualFile = new VFile(source)
+
+        // 确定解析器和插件支持的文件格式
+        const fileExtension = filename.endsWith('.mdx') ? 'mdx' : 'md'
+
+        // 将虚拟化后的MDX源内容（VFile）作为字符串传递给MDXProvider解析
+        return compile(sourceAsVirtualFile, fileExtension, MDX_COMPONENTS)
+    }
+
     // Creates a Cached Version of the Markdown File Resolver
     const getMarkdownFile = cache(async (locale, pathname) => {
         return await _getMarkdownFile(locale, pathname)
+    })
+
+    // Creates a Cached Version of the MDX Compiler
+    const getMDXContent = cache(async (source, filename) => {
+        return await _getMDXContent(source, filename)
     })
 
     return {
@@ -163,7 +188,7 @@ const getDynamicRouter = async () => {
         getPathname,
         getRoutesByLanguage,
         getMarkdownFile,
-        // getMDXContent,
+        getMDXContent,
         // getPageMetadata,
     }
 }

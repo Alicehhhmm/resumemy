@@ -107,28 +107,32 @@ const DynamicPage = async ({ params }: DynamicPageParamsProps) => {
         )
     }
 
-    // TODO: 针对mdx文件的动态布局:
-    // 1.根据获取的 frontmatter 中的 layout 字段，动态渲染对应的布局组件
-    // 2.如果 frontmatter 中没有 layout 字段，则使用默认布局组件
-    // 3.如果 mdx 文件使用组件, 将根据返回的文件信息: content 直接渲染对应的组件
-
-    // const { source, filename } = await dynamicRouter.getMarkdownFile(
-    //     locale,
-    //     pathname
-    //   );
-    // mocks
-    const source = 'mdx source'
-    const filename = 'mdx filename'
+    // 根据当前文章动态路由路径，读取md文件内容
+    const { source, filename } = await dynamicRouter.getMarkdownFile(locale, pathname)
 
     if (source.length && filename.length) {
-        // 获取文件内容
-        // const {content,frontmatter } = await dynamicRouter.getMarkdownContent(source, filename);
+        // 解析文件内容：根据提供的文件名、原文件md(x)内容解析并
+        // 返回：可渲染的Html、ReactJSX组件内容content、以及相关文件信息
+        const { content, frontmatter, headings, readingTime } = await dynamicRouter.getMDXContent(source, filename)
 
-        // mocks
-        const frontmatter: any = { layout: 'article' }
-        const content = <div className='p-2 bg-amber-500'>mdx components content</div>
+        const sharedContext = {
+            frontmatter,
+            headings,
+            pathname: `/${pathname}`,
+            readingTime,
+            filename,
+        }
 
-        return <WithLayout layout={frontmatter.layout}>{content}</WithLayout>
+        // 设置服务端请求的全局共享上下文
+        // 以及客户端需要的 MatterProvider
+        setGlobClientContext(sharedContext)
+
+        // 根据文章frontmatter信息中的layout,动态选中对应的布局模块
+        return (
+            <MatterProvider {...sharedContext}>
+                <WithLayout layout={frontmatter.layout}>{content}</WithLayout>
+            </MatterProvider>
+        )
     }
 
     // 404

@@ -61,5 +61,13 @@
                 "column": "Column"
             }
         }
+    },
+    "components": {
+        "common": {
+            "codebox": {
+                "copy": "Copy to clipboard",
+                "copied": "Copied to clipboard!"
+            }
+        }
     }
 }

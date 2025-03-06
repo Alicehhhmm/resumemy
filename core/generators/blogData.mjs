@@ -39,7 +39,7 @@ const getFrontMatter = (filename, source) => {
     let slug = `/blog/${category}/${basename(filename, extname(filename))}`
 
     // 处理根文件夹下的文章
-    if (category === 'default') {
+    if (['default', 'uncategorized'].includes(category)) {
         slug = `/blog/${basename(filename, extname(filename))}`
     }
 

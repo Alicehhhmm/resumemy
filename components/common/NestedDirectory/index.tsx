@@ -1,7 +1,6 @@
 import { ReactElement, useMemo, FC } from 'react'
 
 import styles from './index.module.css'
-import { cn } from '@/lib/utils'
 
 export interface TOCItem {
     id: string
@@ -15,28 +14,26 @@ interface NestedDirectoryProps {
     maxLayer?: number | string
     // 默认缩进：16
     indent?: number
-    // 默认开始标题级别：2
-    startLevel?: number
+    // 目录数据集
     directories: TOCItem[]
 }
 
-export const NestedDirectory: FC<NestedDirectoryProps> = ({ maxLayer = 4, indent = 16, startLevel = 2, directories }) => {
-    const memoizedDirectories = useMemo(() => {
-        return directories
-    }, [directories])
-
-    // Convert maxLayer to a number
-    const maxDepth = typeof maxLayer === 'string' ? parseInt(maxLayer, 10) : maxLayer
+export const NestedDirectory: FC<NestedDirectoryProps> = ({ maxLayer = 4, indent = 16, directories }) => {
+    // 限制在 1-6 层级之间
+    const maxDepth = useMemo(() => {
+        const parsed = typeof maxLayer === 'string' ? parseInt(maxLayer, 10) : maxLayer
+        return Math.max(1, Math.min(parsed, 6))
+    }, [maxLayer])
 
     // Recursive component to render directory items
     const DirectoryItem = ({ item }: { item: TOCItem }): ReactElement => {
         const currentDepth = item.level
-        const autoIndent = indent * (currentDepth - startLevel)
+        const autoIndent = indent * (currentDepth - 1)
 
         return (
             <>
                 <li className={styles.directoryItem}>
-                    <a href={`#${item.title.replace(/\s+/g, '-')}`} className={styles.subtitle} style={{ marginLeft: `${autoIndent}px` }}>
+                    <a href={`#${item.id}`} className={styles.subtitle} style={{ marginLeft: `${autoIndent}px` }}>
                         <span>{item.title}</span>
                     </a>
                 </li>
@@ -54,7 +51,7 @@ export const NestedDirectory: FC<NestedDirectoryProps> = ({ maxLayer = 4, indent
     return (
         <nav className='mt-1'>
             <ul className='relative'>
-                {memoizedDirectories.map(item => (
+                {directories.map(item => (
                     <DirectoryItem key={item.id} item={item} />
                 ))}
             </ul>

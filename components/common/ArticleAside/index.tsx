@@ -1,7 +1,3 @@
-'use client'
-
-import { useState, useMemo } from 'react'
-
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { NestedDirectory, TOCItem } from '@/components/common/NestedDirectory'
 

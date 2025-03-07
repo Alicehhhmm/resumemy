@@ -44,4 +44,5 @@ export const setGlobClientContext = (data: Partial<ClientSharedServerContext>) =
     getGlobClientContext().pathname = _data.pathname;
     getGlobClientContext().readingTime = _data.readingTime;
     getGlobClientContext().filename = _data.filename;
+    getGlobClientContext().headings = _data.headings;
 };

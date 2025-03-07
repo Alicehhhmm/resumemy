@@ -1,14 +1,17 @@
 import type { FC, PropsWithChildren } from 'react'
 
 import { NavHeader } from '@/components/navigation/nav-header'
+import { ArticleAside } from '@/components/common/ArticleAside'
 import { FooterSimple } from '@/components/common/footer-simple'
 
-import { ArticleAside } from '@/components/common/ArticleAside'
-import { TOCMOCK } from '@/config/toc-mock'
-
-import React from 'react'
+import { transformHeadingsToTOC } from '@/utils'
+import { getGlobClientContext } from '@/core/server'
 
 const PostLayout: FC<PropsWithChildren> = ({ children }) => {
+    const { headings } = getGlobClientContext()
+
+    const tocData = transformHeadingsToTOC(headings, 2)
+
     return (
         <>
             <NavHeader />
@@ -27,7 +30,7 @@ const PostLayout: FC<PropsWithChildren> = ({ children }) => {
                     sticky top-[60px] scrollbar-hide overflow-hidden overflow-y-auto dark:bg-background'
                 >
                     <aside className='bg-background dark:bg-background flex flex-col'>
-                        <ArticleAside toc={TOCMOCK} />
+                        <ArticleAside toc={tocData} />
                     </aside>
                 </div>
             </div>

@@ -37,9 +37,9 @@ export async function compile(source, fileExtension, components = {}, props = {}
     // 定义编译器使用的相关插件
     // 将 MDX/Markdown 源内容编译为可序列化的 VFile
     const compiled = await mdxCompile(source, {
-        rehypePlugins: REHYPE_PLUGINS, 
-        remarkPlugins: REMARK_PLUGINS, 
-        format: fileExtension, 
+        rehypePlugins: REHYPE_PLUGINS,
+        remarkPlugins: REMARK_PLUGINS,
+        format: fileExtension,
     })
 
     // 创建 Sval 解释器，用于执行编译后的 JavaScript 代码

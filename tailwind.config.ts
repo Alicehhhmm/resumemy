@@ -154,6 +154,7 @@ export default {
                 'navh': 'var(--nr-header-h)',
                 'navf': 'var(--nr-footer-h)',
                 'sdbw': 'var(--nr-sidebar)',
+                'top-boundary': 'var(--nr-top-boundary)',
             },
             fontSize: {
                 // srceen: [fontSize,heightLine]

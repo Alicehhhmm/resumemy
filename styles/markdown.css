@@ -40,6 +40,8 @@ main {
     h4,
     h5,
     h6 {
+        @apply scroll-mt-top-boundary;
+
         &[id] a {
             @apply text-neutral-900
         dark:text-white;

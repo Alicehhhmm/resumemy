@@ -29,7 +29,7 @@ export default async function RootLayout({ children, params }: RootProps) {
 
     return (
         <html lang={locale} suppressHydrationWarning>
-            <body className={cn(OPEN_SANS.className, IBM_PLEX_MONO.variable, `antialiased`, `bg-white dark:bg-[#313333]`)}>
+            <body className={cn(OPEN_SANS.className, IBM_PLEX_MONO.variable)}>
                 <TailwindIndicator />
                 <Toaster />
                 <LocaleProvider locale={locale}>

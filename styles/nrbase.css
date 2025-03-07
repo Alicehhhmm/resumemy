@@ -21,6 +21,7 @@
     --nr-header-h: 60px;
     --nr-footer-h: 86px;
     --nr-sidebar: 260px;
+    --nr-top-boundary: 80px;
 }
 
 [data-theme='dark'],

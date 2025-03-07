@@ -12,7 +12,6 @@ const default_categories: Array<BlogPreviewType> = ['all', 'announcements', 'rel
 export const provideBlogCategories = cache(() => [...default_categories, ...categories]);
 
 export const provideBlogPosts = cache((category: BlogCategory): BlogPostsRSC => {
-    console.log('当前默认所有分类：', category, posts, [...default_categories, ...categories]);
 
     let categoryPosts = posts
         .filter(post => post.categories.includes(category))

@@ -11,6 +11,7 @@ export const useGlobClientContext = (): ClientSharedServerContext => {
         pathname,
         readingTime,
         filename,
+        headings,
     } = useContext(MatterContext);
 
     return {
@@ -18,6 +19,7 @@ export const useGlobClientContext = (): ClientSharedServerContext => {
         frontmatter,
         readingTime,
         filename,
+        headings
     };
 };
 

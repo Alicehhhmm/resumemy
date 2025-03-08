@@ -24,12 +24,14 @@
     &:hover,
     &:active {
         @apply text-lime-500
-        bg-orange-50/50
+        bg-gray-200/60
         dark:bg-fluo-background;
     }
 
-    &:active {
-        @apply font-bold;
+    &.active {
+        @apply text-lime-500
+        bg-gray-950/90
+        dark:bg-fluo-background;
     }
 }
 

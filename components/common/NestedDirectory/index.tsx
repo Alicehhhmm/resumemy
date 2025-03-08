@@ -1,11 +1,14 @@
-import { ReactElement, useMemo, FC } from 'react'
+import { ReactElement, useMemo, FC, useState, useEffect } from 'react'
 
+import { cn } from '@/lib/utils'
 import styles from './index.module.css'
+import { useArticleContext } from '@/hooks'
 
 export interface TOCItem {
     id: string
     title: string
     level: number
+    actionId?: string
     children?: TOCItem[]
 }
 
@@ -19,6 +22,18 @@ interface NestedDirectoryProps {
 }
 
 export const NestedDirectory: FC<NestedDirectoryProps> = ({ maxLayer = 4, indent = 16, directories }) => {
+    const { tocOptions } = useArticleContext()
+    const activeKey = tocOptions?.activeKey
+    const [active, setActive] = useState(activeKey)
+
+    const onClick = (id: string) => {
+        setActive(id)
+    }
+
+    useEffect(() => {
+        setActive(activeKey)
+    }, [activeKey])
+
     // 限制在 1-6 层级之间
     const maxDepth = useMemo(() => {
         const parsed = typeof maxLayer === 'string' ? parseInt(maxLayer, 10) : maxLayer
@@ -29,11 +44,16 @@ export const NestedDirectory: FC<NestedDirectoryProps> = ({ maxLayer = 4, indent
     const DirectoryItem = ({ item }: { item: TOCItem }): ReactElement => {
         const currentDepth = item.level
         const autoIndent = indent * (currentDepth - 1)
+        const isAction = item.id === active
 
         return (
             <>
-                <li className={styles.directoryItem}>
-                    <a href={`#${item.id}`} className={styles.subtitle} style={{ marginLeft: `${autoIndent}px` }}>
+                <li className={styles.directoryItem} onClick={() => onClick(item.id)}>
+                    <a
+                        href={`#${item.id}`}
+                        className={cn(styles.subtitle, isAction ? styles['active'] : '')}
+                        style={{ marginLeft: `${autoIndent}px` }}
+                    >
                         <span>{item.title}</span>
                     </a>
                 </li>
@@ -50,7 +70,7 @@ export const NestedDirectory: FC<NestedDirectoryProps> = ({ maxLayer = 4, indent
 
     return (
         <nav className='mt-1'>
-            <ul className='relative'>
+            <ul className='relative space-y-1'>
                 {directories.map(item => (
                     <DirectoryItem key={item.id} item={item} />
                 ))}

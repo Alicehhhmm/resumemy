@@ -21,6 +21,7 @@ export default {
                     pale: 'var(--fluo-pale)',
                     mute: 'var(--fluo-mute)',
                     background: 'var(--fluo-background)',
+                    500: '#9DFF3A',
                 },
                 card: {
                     DEFAULT: 'hsl(var(--card))',

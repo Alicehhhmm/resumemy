@@ -1,5 +1,5 @@
 import { hexToRGBA } from '@/utils/color-change'
-import { HeroSection, ServicesSection, ProjectsSection, ContactSection, Footer } from '@/components/home'
+import { HeroSection, ServicesSection, ProjectsSection, ContactSection } from '@/components/home'
 import { GlowingBackdrop } from '@/components/common'
 
 export default function Home() {
@@ -14,9 +14,8 @@ export default function Home() {
                 </div>
             </div>
             <ServicesSection />
-            {/* <ProjectsSection /> */}
-            {/* <ContactSection /> */}
-            {/* <Footer /> */}
+            <ProjectsSection />
+            <ContactSection />
         </div>
     )
 }

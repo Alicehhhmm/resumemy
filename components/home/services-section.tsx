@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Code, Layout, Database, Smartphone } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { FadeInWhenVisible } from '@/components/motions/scroll-animation'
+import { Button } from '../ui/button'
 
 export function ServicesSection() {
     const t = useTranslations()
@@ -23,12 +24,6 @@ export function ServicesSection() {
             title: 'UI/UX Design',
             description: 'Creating intuitive and beautiful user interfaces and experiences.',
             skills: ['Wireframing', 'Prototyping', 'User Research', 'Design Systems'],
-        },
-        {
-            icon: <Database size={40} className='text-primary mb-4' />,
-            title: 'Backend Development',
-            description: 'Building robust and scalable server-side applications and APIs.',
-            skills: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL'],
         },
         {
             icon: <Smartphone size={40} className='text-primary mb-4' />,
@@ -49,11 +44,14 @@ export function ServicesSection() {
         >
             <div className='container'>
                 <FadeInWhenVisible className='text-center mb-16'>
+                    <Button variant='outline' className='text-xl text-fluo-500 font-medium rounded-full bg-muted/30 dark:bg-black mb-1'>
+                        Services
+                    </Button>
                     <h2 className='text-3xl font-bold mb-4'>{t('home.services.label')}</h2>
                     <p className='text-muted-foreground max-w-2xl mx-auto'>{t('home.services.desc')}</p>
                 </FadeInWhenVisible>
 
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {services.map((service, index) => (
                         <FadeInWhenVisible key={index} delay={index * 0.1}>
                             <ServiceCard
@@ -83,7 +81,7 @@ function ServiceCard({
 }) {
     return (
         <motion.div whileHover={{ y: -10 }} transition={{ type: 'spring', stiffness: 400, damping: 10 }}>
-            <Card className='h-full border hover:border-primary/50 transition-colors duration-300 hover-glow'>
+            <Card className='h-full border-none hover:border-primary/50 transition-colors duration-300 hover-glow'>
                 <CardHeader>
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}

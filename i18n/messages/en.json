@@ -43,9 +43,16 @@
             "mobile": "mobile design"
         }
     },
-    "HomePage": {
-        "title": "Hello world!",
-        "about": "Go to the about page"
+    "home": {
+        "title": "Home Page",
+        "hi": "Hi, I'am",
+        "introduceName": "Norush",
+        "introduce": "developer who enjoys computer vision interaction and design",
+        "welcome": "welcome",
+        "services": {
+            "label": "My Services",
+            "desc": "I offer a wide range of services to help businesses and individuals create impactful digital experiences."
+        }
     },
     "layouts": {
         "blog": {

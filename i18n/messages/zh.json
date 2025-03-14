@@ -43,9 +43,16 @@
             "mobile": "移动端"
         }
     },
-    "HomePage": {
-        "title": "你好世界！",
-        "about": "前往关于页面"
+    "home": {
+        "title": "主页",
+        "hi": "Hi, I'am",
+        "introduceName": "我是 Norush",
+        "introduce": "一个喜欢计算机视觉交互与设计的开发者。",
+        "welcome": "欢迎来到我的数字游牧场",
+        "services": {
+            "label": "我的服务",
+            "desc": "描述我提供广泛的服务，帮助企业和个人创造有影响力的数字体验。"
+        }
     },
     "layouts": {
         "blog": {

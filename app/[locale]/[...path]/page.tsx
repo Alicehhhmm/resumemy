@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation'
-
 import { setRequestLocale } from 'next-intl/server'
 import { setGlobClientContext } from '@/core/server'
+
 import { dynamicRouter } from '@/core/dynamic-route.mjs'
 import { availableLocaleCodes, allLocaleCodes, defaultLocale } from '@/core/next.locales.mjs'
 import { ENABLE_STATIC_EXPORT, ENABLE_STATIC_EXPORT_LOCALE } from '@/core/dynamic-route-constants'

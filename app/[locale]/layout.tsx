@@ -1,11 +1,12 @@
 import { getTranslations } from 'next-intl/server'
 
-import { cn } from '@/lib/utils'
-import { Toaster } from '@/components/ui/sonner'
-import { OPEN_SANS, IBM_PLEX_MONO } from '@/config/next.fonts'
-import { TailwindIndicator } from '@/components/tailwind-indicator'
-import { RThemeProvider } from '@/components/providers/theme-providers'
 import { LocaleProvider } from '@/components/providers/locale-provider'
+import { RThemeProvider } from '@/components/providers/theme-providers'
+import { TailwindIndicator } from '@/components/tailwind-indicator'
+import { Toaster } from '@/components/ui/sonner'
+import { IBM_PLEX_MONO, OPEN_SANS } from '@/config/next.fonts'
+import { cn } from '@/lib/utils'
+import { TopLoader } from '@/components/common'
 
 import '@/styles/globals.css'
 
@@ -33,7 +34,10 @@ export default async function RootLayout({ children, params }: RootProps) {
                 <TailwindIndicator />
                 <Toaster />
                 <LocaleProvider locale={locale}>
-                    <RThemeProvider>{children}</RThemeProvider>
+                    <RThemeProvider>
+                        <TopLoader />
+                        {children}
+                    </RThemeProvider>
                 </LocaleProvider>
             </body>
         </html>

@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from 'react'
 import type { Layouts } from '@/types/layouts'
 
-import { DefaultLayout, HomeLayout, BlogLayout, ArticleLayout } from '@/components/layout'
+import { DefaultLayout, HomeLayout, BlogLayout, ArticleLayout,ProjectLayout } from '@/components/layout'
 
 import PostLayout from '@/components/layout/posts'
 
@@ -9,6 +9,7 @@ const layouts = {
     home: HomeLayout,
     blog: BlogLayout,
     article: ArticleLayout,
+    project: ProjectLayout,
     'blog-post': PostLayout,
     'blog-category': BlogLayout,
 } satisfies Record<Layouts, FC>

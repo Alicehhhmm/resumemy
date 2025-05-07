@@ -3,5 +3,6 @@ export type Layouts =
     | 'blog'
     | 'blog-category'
     | 'blog-post'
+    | 'project'
     | 'article';
 

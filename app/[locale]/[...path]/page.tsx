@@ -1,11 +1,11 @@
-import { notFound, redirect } from 'next/navigation'
-import { setRequestLocale } from 'next-intl/server'
 import { setGlobClientContext } from '@/core/server'
+import { setRequestLocale } from 'next-intl/server'
+import { notFound, redirect } from 'next/navigation'
 
-import { dynamicRouter } from '@/core/dynamic-route.mjs'
-import { availableLocaleCodes, allLocaleCodes, defaultLocale } from '@/core/next.locales.mjs'
 import { ENABLE_STATIC_EXPORT, ENABLE_STATIC_EXPORT_LOCALE } from '@/core/dynamic-route-constants'
+import { dynamicRouter } from '@/core/dynamic-route.mjs'
 import { DYNAMIC_ROUTES } from '@/core/next.dynamic.constants.mjs'
+import { allLocaleCodes, availableLocaleCodes, defaultLocale } from '@/core/next.locales.mjs'
 
 import { WithLayout } from '@/components/layout'
 import { MatterProvider } from '@/components/providers/matter-provider'
@@ -43,7 +43,6 @@ type DynamicPageParamsProps = {
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-static-params
  */
 export async function generateStaticParams() {
-    console.log('Generates ENABLE_STATIC_EXPORT@', ENABLE_STATIC_EXPORT)
     // When static export disabled
     if (!ENABLE_STATIC_EXPORT) {
         return []
@@ -61,6 +60,7 @@ export async function generateStaticParams() {
 
     // Generates all possible routes for all available locales [{ locale: 'zh', path: [ 'demo' ] }, ...]
     const routes = await Promise.all(locales.map(getRoutesForLocale))
+    // console.log('Generates routes@', routes.flat().sort())
 
     return routes.flat().sort()
 }

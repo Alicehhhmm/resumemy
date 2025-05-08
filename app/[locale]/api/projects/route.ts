@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getProjects } from "@/fatch-data/projects-data"
+import { getProjects } from "@/fatch-data/fetch-projects-data"
 import { DEFAULT_PAGE_SIZE } from "@/lib/constants"
 
 export async function GET (request: NextRequest) {

@@ -1,1 +1,2 @@
-export { default as FetchBlogData } from './fatch-blog-data'
+export { default as FetchBlogData } from './fetch-blog-data'
+export { getProjects as FetchProjectsData } from './fetch-projects-data'

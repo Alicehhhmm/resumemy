@@ -1,36 +1,47 @@
 'use client'
 
+import { memo } from 'react'
 import type { ReactNode } from 'react'
+import { ProjectGrid } from '@/components/projects/project-grid'
+import { ProjectFilters } from '@/components/projects/project-filters'
+import { useProjects } from '@/hooks/use-projects'
+import type { ProjectsResponse } from '@/types/project'
 
-export function ContentMain({ children }: { children: ReactNode }) {
+interface ContentMainProps {
+    children: ReactNode
+    initialProjects: ProjectsResponse
+}
+
+export const ContentMain = memo(({ children, initialProjects }: ContentMainProps) => {
+    const { projects, loading, loadingMore, initialLoading, total, search, setSearch, category, setCategory, sort, setSort, observerRef } =
+        useProjects({ initialProjects })
+
     return (
-        <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
-            <div className='flex flex-col items-center gap-4 py-10'>
-                <div
-                    data-testid='community-tagline'
-                    className='font-heading max-w-[700px] text-pretty text-center text-[29px] font-semibold leading-tight tracking-tighter text-gray-900 sm:text-[32px] md:text-[40px]'
-                >
-                    Discover the best apps, components and starters from the community.
-                </div>
-                <div className='mx-auto w-full max-w-3xl'>
-                    <input type='text' />
-                </div>
-                <div className='flex justify-center'>
-                    <div>bage1</div>
-                    <div>bage2</div>
-                    <div>bage3</div>
-                </div>
+        <div className='flex flex-1 flex-col gap-4 p-4 pt-0 content-wrapper'>
+            <ProjectFilters
+                search={search}
+                onSearchChange={setSearch}
+                category={category}
+                onCategoryChange={setCategory}
+                sort={sort}
+                onSortChange={setSort}
+                totalProjects={total}
+                shownProjects={projects.length}
+            />
+
+            <div className={`transition-opacity duration-300 ${loading ? 'opacity-90' : 'opacity-100'}`}>
+                <ProjectGrid
+                    projects={projects}
+                    loading={loading}
+                    loadingMore={loadingMore}
+                    initialLoading={initialLoading}
+                    searchTerm={search}
+                    category={category}
+                    observerRef={observerRef}
+                />
             </div>
-            <div className='flex justify-between'>
-                <div className=''>left</div>
-                <div className=''>right</div>
-            </div>
-            <div className='grid auto-rows-min gap-4 md:grid-cols-3'>
-                <div className='aspect-video rounded-xl bg-muted/50' />
-                <div className='aspect-video rounded-xl bg-muted/50' />
-                <div className='aspect-video rounded-xl bg-muted/50' />
-            </div>
+
             <div className='min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min'>{children}</div>
         </div>
     )
-}
+})

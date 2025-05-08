@@ -1,15 +1,19 @@
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/en'
+import relativeTime from "dayjs/plugin/relativeTime"
+
 import { getDefaultLocale } from '@/i18n/lib'
 
+type DayjsOrString = dayjs.Dayjs | Date | string
+type Format = string
+
+// Initialize dayjs plugins
+dayjs.extend(relativeTime)
 
 // 设置全局语言环境
 const defaultLocale = getDefaultLocale()?.code == 'zh' ? 'zh-cn' : 'en'
 dayjs.locale(defaultLocale)
-
-type DayjsOrString = dayjs.Dayjs | Date | string
-type Format = string
 
 // 预设格式模板
 const DEFAULT_FORMATS = {
@@ -44,3 +48,41 @@ export const formatDate = (
 
     return day.isValid() ? day.format(formatTemplate) : '';
 };
+
+/**
+ * Formats a number to a human-readable string (e.g., 1500 -> 1.5K)
+ */
+export function formatNumber (num: number): string {
+    if (num >= 1000) {
+        return (num / 1000).toFixed(1) + "K"
+    }
+    return num.toString()
+}
+
+/**
+ * Formats a date string to a relative time string (e.g., "2 days ago")
+ * using dayjs for better internationalization and formatting
+ */
+export function formatRelativeTime (dateString: string): string {
+    return dayjs(dateString).fromNow()
+}
+
+/**
+ * Checks if a date is within the last n days
+ */
+export function isWithinDays (dateString: string, days: number): boolean {
+    const date = dayjs(dateString)
+    const daysAgo = dayjs().subtract(days, "day")
+    return date.isAfter(daysAgo)
+}
+
+/**
+ * Returns the time difference between two dates in a specific unit
+ */
+export function getTimeDifference (
+    startDate: string | Date,
+    endDate: string | Date = new Date(),
+    unit: "second" | "minute" | "hour" | "day" | "week" | "month" | "year" = "day",
+): number {
+    return dayjs(endDate).diff(dayjs(startDate), unit)
+}

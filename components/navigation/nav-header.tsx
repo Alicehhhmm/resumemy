@@ -16,7 +16,6 @@ import { getRepositoryLink } from '@/config/lib'
 import { NavItemSettings } from '@/config/system-settings'
 import { useLang } from '@/hooks/use-lang'
 
-
 export const NavHeader = () => {
     const headmap = NavItemSettings
     const { t } = useLang()
@@ -30,7 +29,7 @@ export const NavHeader = () => {
                 {/* Logo */}
                 <div className='flex items-center space-x-2'>
                     <Link href='/' className='flex items-center space-x-2'>
-                        <Logon width={32} height={32} fill={theme !== 'dark' ? '#9DFF3A' : '#000'} bgfill />
+                        <Logon width={32} height={32} fill={theme !== 'dark' ? '#9DFF3A' : '#000000'} bgfill />
                         <h2 className='hidden font-bold lg:inline-block text-xl sm:text-2xl text-foreground'>Norush website</h2>
                     </Link>
                 </div>

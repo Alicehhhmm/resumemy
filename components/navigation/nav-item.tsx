@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import { cn } from '@/lib/utils'
+import { stripLangPrefixPath } from '@/utils/paths'
 import { Link } from '@/components/common'
 
 export interface NavItemProps {
@@ -17,7 +18,7 @@ const NavItem = memo(({ name, path }: NavItemProps) => {
     const t = useTranslations()
 
     const pathname = usePathname()
-    const isActive = pathname === path
+    const isActive = stripLangPrefixPath(pathname) === path
 
     const baseItemStyles =
         'relative flex items-center h-[60px] px-3 py-2 text-sm transition-all duration-200 ease-in-out hover:text-primary'

@@ -45,7 +45,7 @@ export const NavHeader = () => {
                     <div className='md:hidden flex items-center gap-1'>
                         <ThemeToggleBtn />
                         <div className='h-5 w-[1px] mx-1 bg-border/60' />
-                        <MobileNav />
+                        <MobileNav navigationList={headmap}/>
                     </div>
                 </div>
             </div>

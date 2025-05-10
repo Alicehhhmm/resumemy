@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
@@ -26,7 +27,7 @@ export const NavHeader = () => {
                 {/* Logo */}
                 <div className='flex items-center space-x-2'>
                     <Link href='/' className='flex items-center space-x-2'>
-                        <Logon width={32} height={32} fill={theme === 'dark' ? '#9DFF3A' : 'currentColor'} />
+                        <Logon width={32} height={32} fill={theme !== 'dark' ? '#9DFF3A' : '#000'} bgfill />
                         <h2 className='hidden font-bold lg:inline-block text-xl sm:text-2xl text-foreground'>Norush website</h2>
                     </Link>
                 </div>

@@ -90,7 +90,7 @@ export const ThemeToggleBtn = () => {
             onClick={cycleTheme}
             className={cn(
                 'rounded-lg p-2 transition-all duration-300 ease-out',
-                'hover:bg-gray-100 dark:hover:bg-gray-800/30',
+                'hover:bg-gray-100 dark:hover:bg-fluo-background',
                 'transform hover:scale-105 active:scale-95',
                 'text-gray-600/90 dark:text-gray-400/90',
                 'hover:text-lime-500 dark:hover:text-lime-400'

@@ -81,6 +81,9 @@
             "codebox": {
                 "copy": "Copy to clipboard",
                 "copied": "Copied to clipboard!"
+            },
+            "languageDropdown": {
+                "label": "Choose Language"
             }
         }
     }

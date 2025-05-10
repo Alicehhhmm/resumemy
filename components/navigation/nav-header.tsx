@@ -2,23 +2,26 @@
 
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { ThemeToggleBtn } from '@/components/common/theme-toggle'
 import { NavItem } from '@/components/navigation/nav-item'
 import { GitHub } from '@/components/icons/social'
 import { LangToggle } from '@/components/common/lang-toggle'
 import { MobileNav } from '@/components/navigation/mobile-nav'
+import { ActionLink } from '@/components/common/action-link'
+import { Logon } from '@/components/icons'
 
 import { getRepositoryLink } from '@/config/lib'
 import { NavItemSettings } from '@/config/system-settings'
 import { useLang } from '@/hooks/use-lang'
-import { ActionLink } from '@/components/common/action-link'
-import { Logon } from '@/components/icons'
+
 
 export const NavHeader = () => {
     const headmap = NavItemSettings
     const { t } = useLang()
     const { theme } = useTheme()
+    const locale = useLocale()
     const resumeLink = getRepositoryLink('repositories-source', 'system.links.resumemy')
 
     return (

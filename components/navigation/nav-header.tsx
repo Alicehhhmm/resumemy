@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 
 import { ThemeToggleBtn } from '@/components/common/theme-toggle'
 import { NavItem } from '@/components/navigation/nav-item'
@@ -14,13 +14,11 @@ import { Logon } from '@/components/icons'
 
 import { getRepositoryLink } from '@/config/lib'
 import { NavItemSettings } from '@/config/system-settings'
-import { useLang } from '@/hooks/use-lang'
 
 export const NavHeader = () => {
     const headmap = NavItemSettings
-    const { t } = useLang()
+    const t = useTranslations()
     const { theme } = useTheme()
-    const locale = useLocale()
     const resumeLink = getRepositoryLink('repositories-source', 'system.links.resumemy')
 
     return (
@@ -37,12 +35,12 @@ export const NavHeader = () => {
                 <div className='flex items-center gap-2'>
                     <div className='hidden md:flex items-center gap-2 mr-2'>
                         {headmap.map(hnav => (
-                            <NavItem key={hnav.key} name={hnav.name} path={hnav.path} subMenu={hnav.subMenu} />
+                            <NavItem key={hnav.key} name={hnav.name} path={hnav.path} />
                         ))}
                         <div className='h-6 w-[1px] mx-2 bg-border/60' />
                         <LangToggle />
                         <ThemeToggleBtn />
-                        <ActionLink href={resumeLink.link} label={t(resumeLink.name)} icon={<GitHub />} target='_blank' />
+                        <ActionLink href={resumeLink.link} label={t(resumeLink.name as any)} icon={<GitHub />} target='_blank' />
                     </div>
                     <div className='md:hidden flex items-center gap-1'>
                         <ThemeToggleBtn />

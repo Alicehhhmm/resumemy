@@ -1,14 +1,14 @@
 import { Mail } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { GitHub, JueJin, LinkedIn, Twitter } from '@/components/icons/social'
 
 import { cn } from '@/lib/utils'
 import { WebLinkSettings } from '@/config/system-settings'
 import { ThemeToggle } from '@/components/common/theme-toggle'
-import { useLang } from '@/hooks/use-lang'
 
 export const Footer = () => {
     const currentYear = new Date().getFullYear()
-    const { t } = useLang()
+    const t = useTranslations()
 
     const getIcon = (name: string) => {
         switch (name.toLowerCase()) {
@@ -56,7 +56,7 @@ export const Footer = () => {
                                                 rel='noopener'
                                             >
                                                 {getIcon(link.name)}
-                                                {t(link.name)}
+                                                {t(link.name as any)}
                                             </a>
                                         </li>
                                     ))}

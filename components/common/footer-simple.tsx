@@ -1,15 +1,17 @@
 'use client'
 
+import { Mail } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+
 import { cn } from '@/lib/utils'
 import { WebLinkSettings } from '@/config/system-settings'
+
 import { ThemeToggle } from '@/components/common/theme-toggle'
-import { useLang } from '@/hooks/use-lang'
-import { Mail } from 'lucide-react'
 import { GitHub, JueJin, LinkedIn, Twitter } from '@/components/icons/social'
 
 export const FooterSimple = () => {
     const currentYear = new Date().getFullYear()
-    const { t } = useLang()
+    const t = useTranslations()
 
     const getIcon = (name: string) => {
         switch (name.toLowerCase()) {
@@ -58,7 +60,7 @@ export const FooterSimple = () => {
                                     section.children.map(link => (
                                         <li key={link.name} className={baseStyle}>
                                             <a
-                                                title={t(link.name)}
+                                                title={t(link.name as any)}
                                                 href={link.link}
                                                 className='h-5 w-5 transition-all duration-300 ease-out max-sm:h-4 max-sm:w-4'
                                                 target={link.blank ? '_blank' : '_self'}

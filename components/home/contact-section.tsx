@@ -1,12 +1,10 @@
 'use client'
 
-import type React from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
 import { FadeInWhenVisible } from '@/components/motions/scroll-animation'
+import { R3DCard } from '@/components/common'
 
 export function ContactSection() {
     return (
@@ -29,11 +27,9 @@ export function ContactSection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        <Card className='h-full border-none'>
-                            <CardContent className='p-6'>
-                                <h3 className='text-xl font-bold mb-6'>Contact Information</h3>
-                            </CardContent>
-                        </Card>
+                        <R3DCard className='h-full border-none justify-center'>
+                            <h3 className='text-xl font-bold mb-6'>Github</h3>
+                        </R3DCard>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
@@ -41,11 +37,9 @@ export function ContactSection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        <Card className='h-full border-none'>
-                            <CardContent className='p-6'>
-                                <h3 className='text-xl font-bold mb-6'>Contact Information</h3>
-                            </CardContent>
-                        </Card>
+                        <R3DCard className='h-full border-none  '>
+                            <h3 className='text-xl font-bold mb-6'>Contact Information</h3>
+                        </R3DCard>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
@@ -53,11 +47,9 @@ export function ContactSection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        <Card className='h-full border-none'>
-                            <CardContent className='p-6'>
-                                <h3 className='text-xl font-bold mb-6'>Contact Information</h3>
-                            </CardContent>
-                        </Card>
+                        <R3DCard className='h-full border-none '>
+                            <h3 className='text-xl font-bold mb-6'>Contact Information</h3>
+                        </R3DCard>
                     </motion.div>
                 </div>
             </div>

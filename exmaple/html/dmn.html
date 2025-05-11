@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Domino Card Optimized</title>
+    <style>
+        body {
+            margin: 0;
+            background: #f0f0f0;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            perspective: 1000px;
+        }
+
+        .cardDefault {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            padding: 1em 1.4em;
+            border: 0;
+            border-radius: 10px;
+            z-index: 1;
+            transition: all 0.3s cubic-bezier(0.45, 0, 0.55, 1);
+            text-decoration: none;
+            color: inherit;
+            transform: rotate3d(1, 2, 1, 300deg);
+            background: white;
+            box-shadow:
+                rgba(0, 0, 0, 0.1) 0px 2px 2px,
+                rgba(0, 0, 0, 0.2) 0px 7px 13px -3px,
+                rgba(0, 0, 0, 0.12) 0px -3px 0px inset;
+            position: absolute;
+            width: 160px;
+            cursor: pointer;
+        }
+
+        .cardDefault:hover,
+        .cardDefault.noLink {
+            transform: rotate(-30deg) scale(0.98) translateY(3px);
+            box-shadow:
+                rgba(0, 0, 0, 0.2) 0px 0px 0px,
+                rgba(0, 0, 0, 0.2) 0px 0px 0px 1px,
+                rgba(0, 0, 0, 0.12) 0px 0px 0px inset;
+        }
+
+        .ball {
+            position: absolute;
+
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #fff, #666);
+            border-radius: 50%;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 10;
+            /* transition: transform 0.2s ease-in-out; */
+            transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
+        }
+
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container"></div>
+
+    <div class="controls">
+        <button id="start-pause-btn">开始</button>
+        <button id="reset-btn">重置</button>
+    </div>
+
+    <script>
+        const container = document.getElementById( 'container' );
+        const startPauseBtn = document.getElementById( 'start-pause-btn' );
+        const resetBtn = document.getElementById( 'reset-btn' );
+
+        const steps = 8;
+        const offsetX = 80;
+        const offsetY = 50;
+        const cardList = [];
+        let current = 0;
+        let isRunning = false;
+
+        // 创建阶梯卡牌
+        for ( let i = 0; i < steps; i++ ) {
+            const card = document.createElement( 'div' );
+            card.className = 'cardDefault';
+            card.textContent = `Card ${i + 1}`;
+            card.style.left = `${i * offsetX}px`;
+            card.style.top = `${i * offsetY}px`;
+            card.style.transform = `rotateX(40deg) rotateZ(-20deg) rotateY(10deg)`;
+            card.style.transformOrigin = 'bottom left';
+            container.appendChild( card );
+            cardList.push( card );
+        }
+
+        // 球体
+        const ball = document.createElement( 'div' );
+        ball.className = 'ball';
+        container.appendChild( ball );
+
+        // 球体下落逻辑
+        function dropBall () {
+            if ( !isRunning ) return;
+
+            // 恢复上一张卡片
+            if ( current > 0 ) {
+                cardList[current - 1].classList.remove( 'noLink' );
+            }
+
+            // 当前卡片压下
+            if ( current < steps ) {
+                const x = current * offsetX + 20;
+                const y = current * offsetY + 20;
+                ball.style.transform = `translate(${x}px, ${y}px)`;
+                cardList[current].classList.add( 'noLink' );
+                current++;
+                setTimeout( dropBall, 600 );
+            } else {
+                // 动画结束后复位
+                setTimeout( () => {
+                    current = 0;
+                    cardList.forEach( card => card.classList.remove( 'noLink' ) );
+                    ball.style.transform = 'translate(0, 0)';
+                    startPauseBtn.textContent = '开始';
+                    isRunning = false;
+                }, 1000 );
+            }
+        }
+
+        startPauseBtn.addEventListener( 'click', () => {
+            if ( isRunning ) {
+                isRunning = false;
+                startPauseBtn.textContent = '开始';
+            } else {
+                isRunning = true;
+                startPauseBtn.textContent = '暂停';
+                dropBall();
+            }
+        } );
+
+        resetBtn.addEventListener( 'click', () => {
+            isRunning = false;
+            current = 0;
+            startPauseBtn.textContent = '开始';
+            cardList.forEach( card => card.classList.remove( 'noLink' ) );
+            ball.style.transform = 'translate(0, 0)';
+        } );
+
+        // 初始卡牌压下状态
+        cardList[0].classList.add( 'noLink' );
+    </script>
+</body>
+
+</html>

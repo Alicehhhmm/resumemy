@@ -13,13 +13,13 @@ const data = {
     user: {
         name: 'Norush',
         email: 'm@example.com',
-        avatar: '/file.svg',
+        avatar: '/logon.svg',
     },
     teams: [
         {
-            name: 'Resume My',
+            name: 'Codeing Repository',
             logo: GalleryVerticalEnd,
-            plan: 'Enterprise',
+            plan: 'free',
         },
     ],
     navMain: [

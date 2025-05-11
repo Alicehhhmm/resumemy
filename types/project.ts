@@ -4,6 +4,7 @@ export interface Project {
     description: string
     category: string
     tags: string[]
+    technologies: string[]
     forks: number
     stars: number
     image: string
@@ -33,4 +34,11 @@ export interface ProjectFilters {
 export interface FilterOption {
     id: string
     label: string
+}
+
+export interface DemoProjectType {
+    title: string
+    description: string
+    image: string
+    technologies: string[]
 }

@@ -1,4 +1,5 @@
-import type { Project } from "@/types/project"
+import type { Project, DemoProjectType } from "@/types/project"
+
 
 export const projects: Project[] = [
     {
@@ -7,6 +8,7 @@ export const projects: Project[] = [
         description: "A modern portfolio template for creative agencies with animations and dark mode.",
         category: "sites",
         tags: ["portfolio", "agency", "responsive"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 14300,
         stars: 18500,
         image: "/placeholder.svg?height=400&width=600",
@@ -20,6 +22,7 @@ export const projects: Project[] = [
         description: "A beautiful calendar application with drag and drop events and reminder functionality.",
         category: "apps",
         tags: ["calendar", "productivity", "events"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 7600,
         stars: 9200,
         image: "/placeholder.svg?height=400&width=600",
@@ -33,6 +36,7 @@ export const projects: Project[] = [
         description: "A sleek dashboard UI with dark mode, charts, and real-time data visualization.",
         category: "components",
         tags: ["dashboard", "analytics", "charts"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 13100,
         stars: 15800,
         image: "/placeholder.svg?height=400&width=600",
@@ -46,6 +50,7 @@ export const projects: Project[] = [
         description: "Complete e-commerce starter with product pages, cart, and checkout functionality.",
         category: "starters",
         tags: ["ecommerce", "shop", "payments"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 9800,
         stars: 12400,
         image: "/placeholder.svg?height=400&width=600",
@@ -59,6 +64,7 @@ export const projects: Project[] = [
         description: "A lightweight 3D game engine built with WebGL and modern JavaScript.",
         category: "games",
         tags: ["3d", "game", "webgl"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 6200,
         stars: 8900,
         image: "/placeholder.svg?height=400&width=600",
@@ -72,6 +78,7 @@ export const projects: Project[] = [
         description: "Ready-to-use authentication components with social login and password reset.",
         category: "blocks",
         tags: ["auth", "login", "security"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 11500,
         stars: 14700,
         image: "/placeholder.svg?height=400&width=600",
@@ -85,6 +92,7 @@ export const projects: Project[] = [
         description: "A complete blog platform with markdown support and comment system.",
         category: "apps",
         tags: ["blog", "content", "markdown"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 8400,
         stars: 10600,
         image: "/placeholder.svg?height=400&width=600",
@@ -98,6 +106,7 @@ export const projects: Project[] = [
         description: "A comprehensive design system with components, tokens, and documentation.",
         category: "components",
         tags: ["design", "ui", "components"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 15200,
         stars: 19800,
         image: "/placeholder.svg?height=400&width=600",
@@ -111,6 +120,7 @@ export const projects: Project[] = [
         description: "Drag and drop landing page builder with customizable sections.",
         category: "sites",
         tags: ["landing", "builder", "marketing"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 10300,
         stars: 13500,
         image: "/placeholder.svg?height=400&width=600",
@@ -124,6 +134,7 @@ export const projects: Project[] = [
         description: "Collection of classic arcade games rebuilt with modern web technologies.",
         category: "games",
         tags: ["arcade", "retro", "games"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 7800,
         stars: 9500,
         image: "/placeholder.svg?height=400&width=600",
@@ -137,6 +148,7 @@ export const projects: Project[] = [
         description: "Advanced form builder with validation, conditional logic, and submission handling.",
         category: "blocks",
         tags: ["forms", "validation", "inputs"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 12700,
         stars: 16300,
         image: "/placeholder.svg?height=400&width=600",
@@ -150,11 +162,52 @@ export const projects: Project[] = [
         description: "Production-ready Next.js starter with authentication, database, and deployment setup.",
         category: "starters",
         tags: ["nextjs", "fullstack", "template"],
+        technologies: ['React & Next.js', 'Vue & Nuxt', 'Tailwind CSS', 'TypeScript'],
         forks: 16800,
         stars: 21200,
         image: "/placeholder.svg?height=400&width=600",
         avatar: "/placeholder.svg?height=40&width=40",
         author: "nextjspro",
         createdAt: "2024-03-15T11:20:00Z",
+    },
+]
+
+export const demo_projects: DemoProjectType[] = [
+    {
+        title: 'E-commerce Platform',
+        description: 'A full-featured e-commerce platform with payment processing and inventory management.',
+        image: '/placeholder.svg?height=300&width=500',
+        technologies: ['Next.js', 'TypeScript', 'Stripe', 'Tailwind CSS'],
+    },
+    {
+        title: 'Health & Fitness App',
+        description:
+            'Mobile application for tracking workouts, nutrition, and health metrics with personalized training programs and diet suggestions.',
+        image: '/placeholder.svg?height=300&width=500',
+        technologies: ['React Native', 'Firebase', 'Redux'],
+    },
+    {
+        title: 'Real Estate Dashboard',
+        description: 'Admin dashboard for real estate agents to manage listings and client interactions.',
+        image: '/placeholder.svg?height=300&width=500',
+        technologies: ['Vue.js', 'Node.js', 'MongoDB'],
+    },
+    {
+        title: 'Social Media Analytics',
+        description: 'Tool for analyzing social media performance and audience engagement metrics from multiple platforms.',
+        image: '/placeholder.svg?height=300&width=500',
+        technologies: ['React', 'D3.js', 'Python', 'AWS'],
+    },
+    {
+        title: 'Educational Platform',
+        description: 'Online learning platform with course management and student progress tracking.',
+        image: '/placeholder.svg?height=300&width=500',
+        technologies: ['Next.js', 'PostgreSQL', 'GraphQL'],
+    },
+    {
+        title: 'Financial Dashboard',
+        description: 'Personal finance tracker with budgeting tools and investment analytics with real-time market data.',
+        image: '/placeholder.svg?height=300&width=500',
+        technologies: ['React', 'Express', 'Chart.js'],
     },
 ]

@@ -1,7 +1,7 @@
 import { HeroSection, ServicesSection, ProjectsSection, ContactSection } from '@/components/home'
 import { GlowingBackdrop } from '@/components/common'
 
-export default function Home() {
+export default function HomePage() {
     return (
         <div className='main-h-screen w-screen flex flex-col mx-auto'>
             <div className='flex-1 h-[calc(100vh-146.4px)] bg-background dark:bg-[#101314]'>
@@ -10,9 +10,9 @@ export default function Home() {
                     <HeroSection />
                 </div>
             </div>
-            <ServicesSection />
+            {/* <ServicesSection />
             <ProjectsSection />
-            <ContactSection />
+            <ContactSection /> */}
         </div>
     )
 }

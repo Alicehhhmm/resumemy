@@ -4,5 +4,6 @@ export type Layouts =
     | 'blog-category'
     | 'blog-post'
     | 'project'
-    | 'article';
+    | 'article'
+    | 'booklet';
 

@@ -4,14 +4,14 @@ import type { ComponentProps } from 'react'
 import { HomeIcon, BookOpen, Bot, GalleryVerticalEnd, FolderIcon, Settings2 } from 'lucide-react'
 
 import { Sidebar } from '@/components/ui/sidebar'
-import { WithPageSidebar } from '@/components/withPageSidebar'
+import { WithPageSidebar } from '@/components/WithPageSidebar'
 
 // This is sample data.
 const data = {
     user: {
         name: 'Norush',
         email: 'm@example.com',
-        avatar: '/logon.svg',
+        avatar: '',
     },
     teams: [
         {

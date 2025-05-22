@@ -10,7 +10,7 @@ import { FooterSimple } from '@/components/common/footer-simple'
 import { transformHeadingsToTOC } from '@/utils'
 import { useGlobClientContext, useActiveHeading } from '@/hooks'
 
-const PostLayout: FC<PropsWithChildren> = ({ children }) => {
+export const PostLayout: FC<PropsWithChildren> = ({ children }) => {
     const { headings } = useGlobClientContext()
     const articleRef = useRef<HTMLDivElement>(null)
 
@@ -56,5 +56,3 @@ const PostLayout: FC<PropsWithChildren> = ({ children }) => {
         </>
     )
 }
-
-export default PostLayout

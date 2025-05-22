@@ -1,9 +1,7 @@
 import type { FC, PropsWithChildren } from 'react'
 import type { Layouts } from '@/types/layouts'
 
-import { DefaultLayout, HomeLayout, BlogLayout, ArticleLayout,ProjectLayout } from '@/components/layout'
-
-import PostLayout from '@/components/layout/posts'
+import { DefaultLayout, HomeLayout, BlogLayout, ArticleLayout, PostLayout, ProjectLayout } from '@/components/layout'
 
 const layouts = {
     home: HomeLayout,

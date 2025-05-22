@@ -1,20 +1,12 @@
 'use client'
 
 import * as React from 'react'
-import { ChevronsUpDown, GalleryVerticalEnd } from 'lucide-react'
 import { Logon } from '@/components/icons'
 
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar'
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
+import { type TeamType } from '@/types/navigation'
 
-export function TeamSwitcher({
-    teams,
-}: {
-    teams: {
-        name: string
-        logo: React.ElementType
-        plan: string
-    }[]
-}) {
+export function TeamSwitcher({ teams }: { teams: TeamType[] }) {
     const [activeTeam, setActiveTeam] = React.useState(teams[0])
 
     if (!activeTeam) {

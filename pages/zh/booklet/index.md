@@ -1,4 +1,4 @@
 ---
 title: Booklet
-slug: booklet
+layout: booklet
 ---

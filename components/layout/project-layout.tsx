@@ -1,9 +1,9 @@
 import type { FC, PropsWithChildren } from 'react'
 
-import { AppSidebar } from '@/components/projects/app-sidebar'
+import { ProjectSidebar } from '@/components/projects/project-sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 
-import { ContentHeader } from '@/components/projects/content-header'
+import { WithBreadcrumbs } from '@/components/WithBreadcrumbs'
 import { ContentMain } from '@/components/projects/content-main'
 
 import { getProjects } from '@/fatch-data/fetch-projects-data'
@@ -22,9 +22,9 @@ export const ProjectLayout: FC<PropsWithChildren> = async ({ children }) => {
     return (
         <>
             <SidebarProvider>
-                <AppSidebar />
+                <ProjectSidebar />
                 <SidebarInset>
-                    <ContentHeader />
+                    <WithBreadcrumbs navKeys={['project']}/>
                     <ContentMain initialProjects={initialProjects}>{children}</ContentMain>
                 </SidebarInset>
             </SidebarProvider>

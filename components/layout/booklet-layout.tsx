@@ -1,14 +1,21 @@
 import type { FC, PropsWithChildren } from 'react'
 
-import { NavHeader } from '@/components/navigation/nav-header'
-import { FooterSimple } from '@/components/common/footer-simple'
+import { BookletSidebar } from '@/components/booklet/booklet-sidebar'
+import { BookletContentMain } from '@/components/booklet/booklet-content-main'
+
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { WithBreadcrumbs } from '@/components/WithBreadcrumbs'
 
 export const BookletLayout: FC<PropsWithChildren> = ({ children }) => {
     return (
         <>
-            <NavHeader />
-            <main className='pt-[60px] min-h-[calc(100vh-86.4px)]'>{children}</main>
-            <FooterSimple />
+            <SidebarProvider>
+                <BookletSidebar />
+                <SidebarInset>
+                    <WithBreadcrumbs navKeys={['booklet']} />
+                    <BookletContentMain>{children}</BookletContentMain>
+                </SidebarInset>
+            </SidebarProvider>
         </>
     )
 }

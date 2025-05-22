@@ -1,12 +1,10 @@
 'use client'
 
-import * as React from 'react'
+import type { ComponentProps } from 'react'
 import { HomeIcon, BookOpen, Bot, GalleryVerticalEnd, FolderIcon, Settings2 } from 'lucide-react'
 
-import { NavMain } from '@/components/projects/nav-main'
-import { NavUser } from '@/components/projects/nav-user'
-import { TeamSwitcher } from '@/components/projects/team-switcher'
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+import { Sidebar } from '@/components/ui/sidebar'
+import { WithPageSidebar } from '@/components/withPageSidebar'
 
 // This is sample data.
 const data = {
@@ -17,7 +15,7 @@ const data = {
     },
     teams: [
         {
-            name: 'Codeing Repository',
+            name: 'knowledge base',
             logo: GalleryVerticalEnd,
             plan: 'free',
         },
@@ -37,12 +35,12 @@ const data = {
             title: 'Booklet',
             url: '/booklet',
             icon: BookOpen,
+            isActive: true,
         },
         {
             title: 'Projects',
             url: '/projects',
             icon: FolderIcon,
-            isActive: true,
         },
         {
             title: 'Settings',
@@ -62,19 +60,14 @@ const data = {
     ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function BookletSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
     return (
-        <Sidebar collapsible='icon' {...props}>
-            <SidebarHeader>
-                <TeamSwitcher teams={data.teams} />
-            </SidebarHeader>
-            <SidebarContent>
-                <NavMain items={data.navMain} />
-            </SidebarContent>
-            <SidebarFooter>
-                <NavUser user={data.user} />
-            </SidebarFooter>
-            <SidebarRail />
-        </Sidebar>
+        <WithPageSidebar
+            data={data}
+            sidebarProps={{
+                collapsible: 'icon',
+                ...props,
+            }}
+        />
     )
 }

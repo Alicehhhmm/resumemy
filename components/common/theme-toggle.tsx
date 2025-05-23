@@ -55,7 +55,12 @@ export const ThemeToggle = ({ className }: { className?: string }) => {
     )
 }
 
-export const ThemeToggleBtn = () => {
+interface ThemeToggleBtnProps {
+    className?: string
+    IconClassname?: string
+}
+
+export const ThemeToggleBtn = ({ className, IconClassname }: ThemeToggleBtnProps) => {
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
     const themeOrder = ['light', 'dark']
@@ -77,11 +82,11 @@ export const ThemeToggleBtn = () => {
     const getIcon = () => {
         switch (theme) {
             case 'dark':
-                return <Moon className='h-5 w-5 text-lime-500' />
+                return <Moon className='size-4 text-lime-500' />
             case 'system':
-                return <Laptop className='h-5 w-5' />
+                return <Laptop className='size-4' />
             default:
-                return <Sun className='h-5 w-5' />
+                return <Sun className='size-4' />
         }
     }
 
@@ -93,11 +98,12 @@ export const ThemeToggleBtn = () => {
                 'hover:bg-gray-100 dark:hover:bg-fluo-background',
                 'transform hover:scale-105 active:scale-95',
                 'text-gray-600/90 dark:text-gray-400/90',
-                'hover:text-lime-500 dark:hover:text-lime-400'
+                'hover:text-lime-500 dark:hover:text-lime-400',
+                className
             )}
             aria-label='Toggle theme'
         >
-            <div className='relative h-5 w-5'>
+            <div className={cn('relative size-4', IconClassname)}>
                 <div className='absolute inset-0 transition-all duration-300 ease-out'>{getIcon()}</div>
             </div>
         </button>

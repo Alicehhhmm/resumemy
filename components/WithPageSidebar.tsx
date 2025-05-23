@@ -9,12 +9,12 @@ import { TeamSwitcher } from '@/components/navigation/team-switcher'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
 import { PageSidebarType } from '@/types/navigation'
 
-interface WithIconProps {
+interface WithPageSidebarProps {
     data: PageSidebarType
     sidebarProps?: React.ComponentProps<typeof Sidebar>
 }
 
-export const WithPageSidebar: FC<WithIconProps> = ({ data, sidebarProps }) => {
+export const WithPageSidebar: FC<WithPageSidebarProps> = ({ data, sidebarProps }) => {
     return (
         <Sidebar {...sidebarProps}>
             <SidebarHeader>

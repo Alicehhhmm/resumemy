@@ -63,7 +63,7 @@ export function TopLoader({ color = '#000', crawlSpeed = 800, initialPosition = 
                 value={progress}
                 className={cn(
                     'h-[1.5px] rounded-none bg-transparent',
-                    'transition-all duration-300 ease-[cubic-bezier(0.65,0.05,0.36,1)]',
+                    'transition-all duration-300 ease-in-out',
                     progress >= 100 && 'opacity-0'
                 )}
                 style={

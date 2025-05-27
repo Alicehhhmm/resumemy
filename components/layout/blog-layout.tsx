@@ -8,6 +8,7 @@ import { BlogHeader, WithBlogCategories } from '@/components/blog'
 
 import { BlogPreviewType, BlogCategory } from '@/types/blog'
 import { FetchBlogData } from '@/fatch-data'
+import { BlogChatLayout } from '@/components/blog-chat/blog-chat-layout'
 
 const getBlogCategory = async (pathname: string) => {
     // pathname format can either be: /en/blog/{category}
@@ -39,15 +40,21 @@ export const BlogLayout: FC<PropsWithChildren> = async ({ children }) => {
     const blogData = await getBlogCategory(pathname)
 
     return (
-        <>
-            <NavHeader />
-            <main className='pt-navh min-h-[calc(100vh-60px)] bg-gray-50 dark:bg-fluo-background'>
-                <div className='max-w-5xl mx-auto p-6 overflow-auto dark:bg-fluo-background space-y-2'>
-                    <BlogHeader cover='' title={t(`layouts.blog.title`)} description={t('layouts.blog.desc')} />
-                    <WithBlogCategories blogData={blogData} categories={mapCategoriesToTabs(categories)} />
-                </div>
-            </main>
-            <FooterSimple />
-        </>
+        <BlogChatLayout blogData={blogData} categories={mapCategoriesToTabs(categories)}>
+            {children}
+        </BlogChatLayout>
     )
+
+    // return (
+    //     <>
+    //         <NavHeader />
+    //         <main className='pt-navh min-h-[calc(100vh-60px)] bg-gray-50 dark:bg-fluo-background'>
+    //             <div className='max-w-5xl mx-auto p-6 overflow-auto dark:bg-fluo-background space-y-2'>
+    //                 <BlogHeader cover='' title={t(`layouts.blog.title`)} description={t('layouts.blog.desc')} />
+    //                 <WithBlogCategories blogData={blogData} categories={mapCategoriesToTabs(categories)} />
+    //             </div>
+    //         </main>
+    //         <FooterSimple />
+    //     </>
+    // )
 }

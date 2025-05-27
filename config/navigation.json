@@ -1,0 +1,95 @@
+{
+    "topNavigation": {
+        "blog": {
+            "link": "/blog",
+            "label": "system.nav.blog",
+            "subMenu": []
+        },
+        "booklet": {
+            "link": "/booklet",
+            "label": "system.nav.booklet",
+            "subMenu": []
+        },
+        "projects": {
+            "link": "/projects",
+            "label": "system.nav.projects",
+            "subMenu": []
+        },
+        "bookmarks": {
+            "link": "/bookmarks",
+            "label": "system.nav.bookmarks",
+            "subMenu": []
+        },
+        "design": {
+            "link": "/design",
+            "label": "system.nav.design",
+            "subMenu": []
+        }
+    },
+    "chatNavigation": {
+        "blog": {
+            "link": "/blog",
+            "label": "system.nav.blog",
+            "icon": "home"
+        },
+        "booklet": {
+            "link": "/booklet",
+            "label": "system.nav.booklet",
+            "icon": "booklet"
+        },
+        "projects": {
+            "link": "/projects",
+            "label": "system.nav.projects",
+            "icon": "projects"
+        },
+        "bookmarks": {
+            "link": "/bookmarks",
+            "label": "system.nav.bookmarks",
+            "icon": "bookmarks"
+        },
+        "design": {
+            "link": "/design",
+            "label": "system.nav.design",
+            "icon": "design"
+        }
+    },
+    "socialLinks": [
+        {
+            "icon": "github",
+            "alt": "GitHub",
+            "name": "system.links.github",
+            "link": "https://github.com/Alicehhhmm",
+            "blank": true
+        },
+        {
+            "icon": "juejin",
+            "alt": "Juejin",
+            "name": "system.links.juejin",
+            "link": "",
+            "blank": true
+        },
+        {
+            "icon": "Email",
+            "alt": "gmail",
+            "name": "system.links.gmail",
+            "link": "",
+            "blank": true
+        }
+    ],
+    "sideNavigation": {
+        "blog-chat": {
+            "label": "components.navigation.blog.links.blog",
+            "items": {
+                "blog": {
+                    "label": "components.navigation.blog.links.blogSide"
+                },
+                "categories": {
+                    "label": "components.navigation.blog.links.categories"
+                },
+                "tags": {
+                    "label": "components.navigation.blog.links.tags"
+                }
+            }
+        }
+    }
+}

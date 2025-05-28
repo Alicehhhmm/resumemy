@@ -44,10 +44,12 @@ export const WithChatLayout: FC<WithChatLayoutProps> = ({ modelKey, messages, co
 
     let navKeys = (modelKey as Array<NavigationKeys>) || []
 
-    const mappedSidebarItems = getSideNavigation(navKeys, context).map(([_, { label, items }]) => ({
-        groupName: label,
-        items: items.map(([, item]) => item),
-    }))
+    // TODO : other navigation items form localization or context
+    // NOTE: for exmaple bookmarks
+    // const mappedSidebarItems = getSideNavigation(navKeys, context).map(([_, { label, items }]) => ({
+    //     groupName: label,
+    //     items: items.map(([, item]) => item),
+    // }))
 
     let currentPathname = getCurrentPathname(locale, pathname)
 
@@ -61,7 +63,7 @@ export const WithChatLayout: FC<WithChatLayoutProps> = ({ modelKey, messages, co
     }
 
     let mes: ChatSidebarType['messages'] = {}
-    if (mappedSidebarItems || messages) {
+    if (messages) {
         // TODO: mergen mappedSidebarItems and messages.channels
 
         const newChannels = messages.channels?.map(item => ({

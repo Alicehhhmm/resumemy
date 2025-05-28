@@ -4,4 +4,6 @@ export * from './frontmatter';
 export * from './server';
 export * from './navigation';
 export * from './chat';
+export * from './icon';
+export * from './user';
 export * from './formatted-message';

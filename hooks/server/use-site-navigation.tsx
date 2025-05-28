@@ -1,23 +1,13 @@
 import { useTranslations } from 'next-intl'
-import type { LucideIcon } from 'lucide-react'
 import type { RichTranslationValues } from 'next-intl'
-import type { HTMLAttributeAnchorTarget } from 'react'
 
-import type { NavigationKeys, NavigationEntry } from '@/types/navigation'
+import type { NavigationKeys, NavigationEntry, MappedNavigationEntry } from '@/types/navigation'
 import type { FormattedMessage } from '@/types/formatted-message'
 
 import { siteNavigation } from '@/config/next.json.mjs'
 
 type ContextType = Record<string, RichTranslationValues>
 type Navigation = Record<string, NavigationEntry>
-
-interface MappedNavigationEntry {
-    items: Array<[string, MappedNavigationEntry]>
-    label: FormattedMessage
-    link: string
-    icon?: string
-    target?: HTMLAttributeAnchorTarget | undefined
-}
 
 const replaceLinkWithContext = (link: string, context?: RichTranslationValues) => {
     return Object.entries(context || {}).reduce(

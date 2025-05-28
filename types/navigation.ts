@@ -1,7 +1,6 @@
 import type { HTMLAttributeAnchorTarget } from 'react';
 
-import { type LucideIcon } from 'lucide-react'
-import { type UserType } from '@/types/user'
+import type { RIconType, UserType, FormattedMessage } from '@/types';
 
 export type NavigationKeys =
     | 'blog'
@@ -13,15 +12,23 @@ export type NavigationKeys =
 export interface NavigationEntry {
     label?: IntlMessageKeys;
     link?: string;
-    icon?: string;
+    icon?: RIconType;
     items?: Record<string, NavigationEntry>;
     target?: HTMLAttributeAnchorTarget | undefined;
+}
+
+export interface MappedNavigationEntry {
+    label: FormattedMessage
+    link: string
+    icon?: RIconType
+    target?: HTMLAttributeAnchorTarget | undefined
+    items: Array<[string, MappedNavigationEntry]>
 }
 
 export interface NavItemsType {
     title: string
     url: string
-    icon?: LucideIcon
+    icon?: RIconType
     isActive?: boolean
     items?: NavItemsType[]
 }[]

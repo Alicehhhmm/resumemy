@@ -3,9 +3,7 @@ import { useRef, useMemo } from 'react'
 import type { FC, PropsWithChildren } from 'react'
 
 import { ArticleProvider } from '@/components/providers'
-import { NavHeader } from '@/components/navigation/nav-header'
 import { ArticleAside } from '@/components/common/ArticleAside'
-import { FooterSimple } from '@/components/common/footer-simple'
 
 import { transformHeadingsToTOC } from '@/utils'
 import { useGlobClientContext, useActiveHeading } from '@/hooks'
@@ -24,7 +22,6 @@ export const PostLayout: FC<PropsWithChildren> = ({ children }) => {
 
     return (
         <>
-            <NavHeader />
 
             <ArticleProvider
                 tocOptions={{
@@ -52,7 +49,6 @@ export const PostLayout: FC<PropsWithChildren> = ({ children }) => {
                 </div>
             </ArticleProvider>
 
-            <FooterSimple />
         </>
     )
 }

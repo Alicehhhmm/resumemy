@@ -18,7 +18,6 @@ import { NavItemSettings } from '@/config/system-settings'
 export const NavHeader = () => {
     const headmap = NavItemSettings
     const t = useTranslations()
-    const { theme } = useTheme()
     const resumeLink = getRepositoryLink('repositories-source', 'system.links.resumemy')
 
     return (
@@ -27,7 +26,9 @@ export const NavHeader = () => {
                 {/* Logo */}
                 <div className='flex items-center space-x-2'>
                     <Link href='/' className='flex items-center space-x-2'>
-                        <Logon width={32} height={32} fill={theme !== 'dark' ? '#9DFF3A' : '#000000'} bgfill />
+                        <div className='flex aspect-square size-8 items-center justify-center rounded-full bg-fluo-logobg text-fluo-logo '>
+                            <Logon />
+                        </div>
                         <h2 className='hidden font-bold lg:inline-block text-xl sm:text-2xl text-foreground'>Norush website</h2>
                     </Link>
                 </div>
@@ -45,7 +46,7 @@ export const NavHeader = () => {
                     <div className='md:hidden flex items-center gap-1'>
                         <ThemeToggleBtn />
                         <div className='h-5 w-[1px] mx-1 bg-border/60' />
-                        <MobileNav navigationList={headmap}/>
+                        <MobileNav navigationList={headmap} />
                     </div>
                 </div>
             </div>

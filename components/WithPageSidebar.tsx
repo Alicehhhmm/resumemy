@@ -1,24 +1,27 @@
 'use client'
 
-import * as React from 'react'
-import type { FC } from 'react'
+import { useState } from 'react'
+import type { FC, ComponentProps } from 'react'
 
 import { NavMain } from '@/components/navigation/nav-main'
 import { NavUser } from '@/components/navigation/nav-user'
-import { TeamSwitcher } from '@/components/navigation/team-switcher'
+import { NavTeam } from '@/components/navigation'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
 import { PageSidebarType } from '@/types/navigation'
+import type { TeamType } from '@/types'
 
 interface WithPageSidebarProps {
     data: PageSidebarType
-    sidebarProps?: React.ComponentProps<typeof Sidebar>
+    sidebarProps?: ComponentProps<typeof Sidebar>
 }
 
 export const WithPageSidebar: FC<WithPageSidebarProps> = ({ data, sidebarProps }) => {
+    const [currentTeam] = useState<TeamType>(data.teams[0])
+
     return (
         <Sidebar {...sidebarProps}>
             <SidebarHeader>
-                <TeamSwitcher teams={data.teams} />
+                <NavTeam title={currentTeam.name} subhead={currentTeam.plan} />
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={data.navMain} />

@@ -4,7 +4,7 @@ import { LocaleProvider } from '@/components/providers/locale-provider'
 import { RThemeProvider } from '@/components/providers/theme-providers'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Toaster } from '@/components/ui/sonner'
-import { IBM_PLEX_MONO, OPEN_SANS } from '@/config/next.fonts'
+import { IBM_PLEX_MONO, OPEN_SANS } from '@/lib/next.fonts'
 import { cn } from '@/lib/utils'
 import { TopLoader } from '@/components/common'
 

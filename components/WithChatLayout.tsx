@@ -58,7 +58,7 @@ export const WithChatLayout: FC<WithChatLayoutProps> = ({ modelKey, messages, co
         navMain = chatNavigationItems.map(([key, item]) => ({
             ...item,
             icon: ChatSidebarIconMap[key] || '',
-            target: item.link ? (currentPathname === item.link ? '_self' : '_blank') : undefined,
+            target: undefined,
         }))
     }
 

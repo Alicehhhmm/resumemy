@@ -22,20 +22,16 @@ export interface MappedNavigationEntry {
     link: string
     icon?: RIconType
     target?: HTMLAttributeAnchorTarget | undefined
-    items: Array<[string, MappedNavigationEntry]>
+    items?: Array<[string, MappedNavigationEntry]>
 }
 
-export interface NavItemsType {
-    title: string
-    url: string
-    icon?: RIconType
+export interface NavItemsType extends MappedNavigationEntry {
     isActive?: boolean
-    items?: NavItemsType[]
-}[]
+}
 
 export interface TeamType {
     name: string
-    logo: React.ElementType
+    logo: RIconType
     plan: string
 }
 

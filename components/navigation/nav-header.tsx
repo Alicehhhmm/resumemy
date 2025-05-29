@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 
 import { ThemeToggleBtn } from '@/components/common/theme-toggle'
@@ -12,7 +11,7 @@ import { MobileNav } from '@/components/navigation/mobile-nav'
 import { ActionLink } from '@/components/common/action-link'
 import { Logon } from '@/components/icons'
 
-import { getRepositoryLink } from '@/config/lib'
+import { getRepositoryLink } from '@/lib/generate-link'
 import { NavItemSettings } from '@/config/system-settings'
 
 export const NavHeader = () => {

@@ -6,25 +6,15 @@ import type { FC, ComponentProps } from 'react'
 import type { RichTranslationValues } from 'next-intl'
 import { useLocale } from 'next-intl'
 import { usePathname } from 'next/navigation'
-import { HomeIcon, BookOpen, Bot, FolderIcon, Settings2, BookmarkIcon, MenuIcon, AlertOctagon } from 'lucide-react'
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
 import { NavTeam, NavMain, NavUser } from '@/components/navigation'
+import { ChatSidebarIconMap } from '@/components/icons'
 
-import type { RIconType, TeamType, NavigationKeys, PageSidebarType } from '@/types'
+import type { TeamType, NavigationKeys, PageSidebarType } from '@/types'
 
 import { useSiteNavigation } from '@/hooks/server'
 import { getCurrentPathname } from '@/lib/next-router'
-
-const ChatSidebarIconMap: Record<string, RIconType> = {
-    home: HomeIcon,
-    blog: Bot,
-    booklet: BookOpen,
-    projects: FolderIcon,
-    bookmarks: BookmarkIcon,
-    design: MenuIcon,
-    settings: Settings2,
-}
 
 interface WithPageSidebarProps {
     modelKey: Array<NavigationKeys>

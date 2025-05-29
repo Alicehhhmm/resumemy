@@ -5,29 +5,13 @@ import type { ReactNode, FC } from 'react'
 import type { RichTranslationValues } from 'next-intl'
 import { useLocale } from 'next-intl'
 import { usePathname } from 'next/navigation'
-import { HomeIcon, BookOpen, Bot, FolderIcon, Settings2, BookmarkIcon, MenuIcon, AlertOctagon } from 'lucide-react'
 
-import { Logon } from '@/components/icons'
+import { Logon, ChatSidebarIconMap, ChannelsIconMap } from '@/components/icons'
 import { ChatLayout } from '@/components/chat/chat-layout'
-import type { ChatSidebarType, ChatModleType, MessagesType, RIconType, NavigationKeys } from '@/types'
+import type { ChatSidebarType, ChatModleType, MessagesType, NavigationKeys } from '@/types'
 
 import { useSiteNavigation } from '@/hooks/server'
 import { getCurrentPathname } from '@/lib/next-router'
-
-const ChatSidebarIconMap: Record<string, RIconType> = {
-    home: HomeIcon,
-    blog: Bot,
-    booklet: BookOpen,
-    projects: FolderIcon,
-    bookmarks: BookmarkIcon,
-    design: MenuIcon,
-    settings: Settings2,
-}
-
-const ChannelsIconMap: Record<string, RIconType> = {
-    all: Bot,
-    news: AlertOctagon,
-}
 
 interface WithChatLayoutProps {
     modelKey: Array<ChatModleType>

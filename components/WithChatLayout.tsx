@@ -83,7 +83,7 @@ export const WithChatLayout: FC<WithChatLayoutProps> = ({ modelKey, messages, co
         user: {
             name: 'norush',
             email: 'm@example.com',
-            avatar: '/avatars/shadcn.jpg',
+            avatar: '',
         },
         teams: [
             {

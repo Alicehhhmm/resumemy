@@ -1,7 +1,12 @@
 {
+    "author": {
+        "title": "Norush",
+        "description": "一名热爱计算机视觉交互与设计的开发者，专注于前端技术和用户体验。",
+        "jd": "Software Engineer"
+    },
     "common": {
         "title": "Norush 个人网站",
-        "description": "Norush 的个人网站"
+        "description": "这是 Norush 的个人网站，网站包含项目案例展示、技术积累和博客文章。"
     },
     "system": {
         "theme": "主题",

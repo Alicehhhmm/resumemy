@@ -3,19 +3,77 @@
 import { useState } from 'react'
 import type { FC, ComponentProps } from 'react'
 
-import { NavMain } from '@/components/navigation/nav-main'
-import { NavUser } from '@/components/navigation/nav-user'
-import { NavTeam } from '@/components/navigation'
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
-import { PageSidebarType } from '@/types/navigation'
-import type { TeamType } from '@/types'
+import type { RichTranslationValues } from 'next-intl'
+import { useLocale } from 'next-intl'
+import { usePathname } from 'next/navigation'
+import { HomeIcon, BookOpen, Bot, FolderIcon, Settings2, BookmarkIcon, MenuIcon, AlertOctagon } from 'lucide-react'
 
-interface WithPageSidebarProps {
-    data: PageSidebarType
-    sidebarProps?: ComponentProps<typeof Sidebar>
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+import { NavTeam, NavMain, NavUser } from '@/components/navigation'
+
+import type { RIconType, TeamType, NavigationKeys, PageSidebarType } from '@/types'
+
+import { useSiteNavigation } from '@/hooks/server'
+import { getCurrentPathname } from '@/lib/next-router'
+
+const ChatSidebarIconMap: Record<string, RIconType> = {
+    home: HomeIcon,
+    blog: Bot,
+    booklet: BookOpen,
+    projects: FolderIcon,
+    bookmarks: BookmarkIcon,
+    design: MenuIcon,
+    settings: Settings2,
 }
 
-export const WithPageSidebar: FC<WithPageSidebarProps> = ({ data, sidebarProps }) => {
+interface WithPageSidebarProps {
+    modelKey: Array<NavigationKeys>
+    sidebarProps?: ComponentProps<typeof Sidebar>
+    context?: Record<string, RichTranslationValues>
+}
+
+export const WithPageSidebar: FC<WithPageSidebarProps> = ({ modelKey, context, sidebarProps }) => {
+    const pathname = usePathname()!
+    const locale = useLocale()
+
+    const { getSideNavigation, chatNavigationItems } = useSiteNavigation()
+
+    let navKeys = (modelKey as Array<NavigationKeys>) || []
+    let currentPathname = getCurrentPathname(locale, pathname)
+
+    // get side navigation items based on model keys
+    // const mappedSidebarItems = getSideNavigation(navKeys, context).map(([_, { label, items }]) => ({
+    //     groupName: label,
+    //     items: items.map(([, item]) => item),
+    // }))
+
+    let navMain: PageSidebarType['navMain'] = []
+    if (chatNavigationItems) {
+        // TODO: merge with mappedSidebarItems to navMain.items
+        navMain = chatNavigationItems.map(([key, item]) => ({
+            ...item,
+            icon: ChatSidebarIconMap[key] || '',
+            isActive: item.link ? currentPathname === item.link : false,
+        }))
+    }
+
+    // TODO: get user and teams info from FeachtAPI or context
+    const data: PageSidebarType = {
+        user: {
+            name: 'Norush',
+            email: 'm@example.com',
+            avatar: '',
+        },
+        teams: [
+            {
+                name: 'Codeing Repository',
+                logo: '',
+                plan: 'free',
+            },
+        ],
+        navMain,
+    }
+
     const [currentTeam] = useState<TeamType>(data.teams[0])
 
     return (

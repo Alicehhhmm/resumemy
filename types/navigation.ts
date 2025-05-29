@@ -22,7 +22,7 @@ export interface MappedNavigationEntry {
     link: string
     icon?: RIconType
     target?: HTMLAttributeAnchorTarget | undefined
-    items?: Array<[string, MappedNavigationEntry]>
+    items: Array<[string, MappedNavigationEntry]>
 }
 
 export interface NavItemsType extends MappedNavigationEntry {

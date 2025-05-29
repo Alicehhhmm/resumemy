@@ -90,6 +90,15 @@
                     "label": "components.navigation.blog.links.tags"
                 }
             }
+        },
+        "booklet": {
+            "label": "components.navigation.booklet.links.booklet",
+            "items": {
+                "canvas": {
+                    "label": "components.navigation.booklet.links.canvas",
+                    "link": "/booklet/canvas"
+                }
+            }
         }
     }
 }

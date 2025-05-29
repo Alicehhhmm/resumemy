@@ -12,6 +12,10 @@
     --fluo-gradual-start: #bdfa5c; /* 渐变起始色 */
     --fluo-gradual-end: #1db854; /* 渐变结束色 */
 
+    /* logo */
+    --nr-logo-primary: #9dff3a;
+    --nr-logo-bg: #1e2226;
+
     /* 滚动条相关颜色 */
     --scrollbar-track: #f1f1f1;
     --scrollbar-thumb: #c1c1c1;
@@ -34,6 +38,10 @@
     --fluo-pale: #52e0b0; /* 淡荧光绿色（暗色模式） */
     --fluo-mute: #6adbb9; /* 柔和荧光绿色（更淡，暗色模式） */
     --fluo-background: #1e2226; /* 荧光背景色（暗色模式） */
+
+    /* logo */
+    --nr-logo-primary: #1e2226;
+    --nr-logo-bg: #f1f1f1;
 
     /* 滚动条相关颜色 */
     --scrollbar-track: #f1f1f1;

@@ -21,6 +21,8 @@ export default {
                     soft: 'var(--fluo-soft)',
                     pale: 'var(--fluo-pale)',
                     mute: 'var(--fluo-mute)',
+                    logo: 'var(--nr-logo-primary)',
+                    logobg: 'var(--nr-logo-bg)',
                     background: 'var(--fluo-background)'
                 },
                 card: {

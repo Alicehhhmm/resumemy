@@ -70,7 +70,7 @@ export const NestedDirectory: FC<NestedDirectoryProps> = ({ maxLayer = 4, indent
 
     return (
         <nav className='mt-1'>
-            <ul className='relative space-y-1'>
+            <ul className='relative space-y-1 p-0'>
                 {directories.map(item => (
                     <DirectoryItem key={item.id} item={item} />
                 ))}

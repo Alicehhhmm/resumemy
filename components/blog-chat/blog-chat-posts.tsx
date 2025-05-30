@@ -1,23 +1,16 @@
 'use client'
 
-
 import type { FC, PropsWithChildren } from 'react'
 import { PostLayout } from '@/components/layout/posts'
-import { WithChatLayout } from '@/components/WithChatLayout'
 
-interface ChatPostLayoutProps extends PropsWithChildren {
-
-}
+interface ChatPostLayoutProps extends PropsWithChildren {}
 
 export const BlogChatPostLayout: FC<ChatPostLayoutProps> = ({ children }) => {
-
-  // TODO: add bg-meash and update styles
+    // TODO: add bg-meash and update styles
 
     return (
-        <>
-            <PostLayout>  
-                  {children}
-            </PostLayout>
-        </>
+        <div className='p-0'>
+            <PostLayout>{children}</PostLayout>
+        </div>
     )
 }

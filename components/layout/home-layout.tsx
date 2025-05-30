@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from 'react'
 
 import { NavHeader } from '@/components/navigation'
-import { FooterSimple } from '@/components/common'
+import WithFooter from '@/components/WithFooter'
 
 export const HomeLayout: FC<PropsWithChildren> = ({ children }) => {
     return (
@@ -10,7 +10,7 @@ export const HomeLayout: FC<PropsWithChildren> = ({ children }) => {
                 <NavHeader />
                 <main className='pt-[60px] overflow-hidden flex-1'>{children}</main>
                 <div className='flex-none'>
-                    <FooterSimple />
+                    <WithFooter />
                 </div>
             </div>
         </>

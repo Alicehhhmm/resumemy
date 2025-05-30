@@ -1,40 +1,36 @@
 'use client'
 
-import { Mail } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import type { FC } from 'react'
 
 import { cn } from '@/lib/utils'
-import { WebLinkSettings } from '@/config/system-settings'
 
-import { ThemeToggle } from '@/components/common/theme-toggle'
-import { GitHub, JueJin, LinkedIn, Twitter } from '@/components/icons/social'
+import type { LinkLike } from '@/types/links'
+import { SocialIconMap } from '@/components/icons/EnumIcons'
+import { ThemeToggle, RightsReserved } from '@/components/common'
 
-export const FooterSimple = () => {
-    const currentYear = new Date().getFullYear()
-    const t = useTranslations()
+type Navigation = {
+    socialLinks: Array<{
+        icon: string
+        link: string
+        text: string
+        target?: string
+    }>
+    footerLinks: Array<{
+        text: string
+        link: string
+    }>
+}
 
-    const getIcon = (name: string) => {
-        switch (name.toLowerCase()) {
-            case 'system.links.github':
-                return <GitHub className='h-5 w-5' />
-            case 'system.links.juejin':
-                return <JueJin className='h-5 w-5' />
-            case 'system.links.gmail':
-                return <Mail className='h-5 w-5' />
-            case 'system.links.twitter':
-                return <Twitter className='h-5 w-5' />
-            case 'system.links.linkedin':
-                return <LinkedIn className='h-5 w-5' />
-            default:
-                return null
-        }
-    }
-
-    // 样式配置
+export const FooterSimple: FC<{
+    pathname: string
+    as: LinkLike
+    navigation: Navigation
+}> = ({ pathname = '/', as = 'a', navigation }) => {
     const baseStyle = cn(
         'rounded-lg p-2 transition-all duration-300 ease-out',
         'text-gray-600/90 dark:text-gray-400/90',
         'hover:bg-gray-100 dark:hover:bg-fluo-background',
+        'hover:text-fluo-500/80',
         'active:text-blue-500 dark:active:text-fluo-primary',
         'transform hover:scale-105 active:scale-95',
         'max-sm:p-1.5'
@@ -51,30 +47,33 @@ export const FooterSimple = () => {
             <div className='mx-20 py-4 sm:px-6 md:px-8 lg:px-4 max-sm:mx-4 max-sm:py-3'>
                 <div className='flex flex-row sm:flex-col flex-wrap md:flex-row justify-between gap-y-4'>
                     <div className='flex justify-center items-center gap-2 order-1 max-sm:order-2 max-sm:w-full'>
-                        <p className='text-sm text-muted-foreground max-sm:text-xs'>© 2024-PRESENT({currentYear}). by Norush</p>
+                        <RightsReserved companyName='Norush' />
                     </div>
                     <div className='flex items-center gap-2 order-2 max-sm:order-1 max-sm:w-full max-sm:justify-center'>
-                        {WebLinkSettings.map(section => (
-                            <ul key={section.type} className='flex items-center gap-2 py-2 border border-border/20 max-sm:border-none'>
-                                {section.type === 'me' &&
-                                    section.children.map(link => (
-                                        <li key={link.name} className={baseStyle}>
-                                            <a
-                                                title={t(link.name as any)}
-                                                href={link.link}
-                                                className='h-5 w-5 transition-all duration-300 ease-out max-sm:h-4 max-sm:w-4'
-                                                target={link.blank ? '_blank' : '_self'}
-                                                rel='noopener'
-                                            >
-                                                {getIcon(link.name)}
-                                            </a>
-                                        </li>
-                                    ))}
-                            </ul>
-                        ))}
+                        <ul className='flex items-center gap-2 py-2 border border-border/20 max-sm:border-none'>
+                            {navigation.socialLinks.map(link => {
+                                const SocialIcon = SocialIconMap[link.icon]
+
+                                // TODO: add ActionItems compoents
+                                // <ActionItems key={link.icon} href={link.link} type="footer" as={as} pathname={pathname} />
+                                return (
+                                    <li key={link.icon} className={baseStyle}>
+                                        <a
+                                            title={link.text}
+                                            href={link.link}
+                                            className='size-5 transition-all duration-300 ease-out max-sm:h-4 max-sm:w-4'
+                                            target={link.target === 'blank' ? '_blank' : '_self'}
+                                            rel='noopener'
+                                        >
+                                            <SocialIcon width={20} height={20} aria-label={link.link} />
+                                        </a>
+                                    </li>
+                                )
+                            })}
+                        </ul>
                     </div>
                     <div className='flex items-center gap-3 order-3 max-sm:order-3 max-sm:w-full max-sm:justify-center'>
-                        <ThemeToggle className='max-sm:h-8 max-sm:w-8' />
+                        <ThemeToggle className='max-sm:size-8' />
                     </div>
                 </div>
             </div>

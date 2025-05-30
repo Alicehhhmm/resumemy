@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { getGlobClientContext } from '@/core/server'
 import { NavHeader } from '@/components/navigation/nav-header'
-import { FooterSimple } from '@/components/common/footer-simple'
+// import WithFooterfrom '@/components/WithFooter'
 import { BlogHeader, WithBlogCategories } from '@/components/blog'
 
 import { BlogPreviewType, BlogCategory } from '@/types/blog'
@@ -54,7 +54,7 @@ export const BlogLayout: FC<PropsWithChildren> = async ({ children }) => {
     //                 <WithBlogCategories blogData={blogData} categories={mapCategoriesToTabs(categories)} />
     //             </div>
     //         </main>
-    //         <FooterSimple />
+    //         <WithFooter />
     //     </>
     // )
 }

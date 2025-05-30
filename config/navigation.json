@@ -56,24 +56,33 @@
     "socialLinks": [
         {
             "icon": "github",
-            "alt": "GitHub",
             "name": "system.links.github",
             "link": "https://github.com/Alicehhhmm",
-            "blank": true
+            "target": "blank"
         },
         {
             "icon": "juejin",
-            "alt": "Juejin",
             "name": "system.links.juejin",
             "link": "",
-            "blank": true
+            "target": "blank"
         },
         {
-            "icon": "Email",
-            "alt": "gmail",
+            "icon": "gmail",
             "name": "system.links.gmail",
             "link": "",
-            "blank": true
+            "target": "blank"
+        },
+        {
+            "icon": "twitter",
+            "name": "system.links.twitter",
+            "link": "",
+            "target": "blank"
+        },
+        {
+            "icon": "linkedin",
+            "name": "system.links.linkedin",
+            "link": "",
+            "target": "blank"
         }
     ],
     "sideNavigation": {

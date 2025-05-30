@@ -2,23 +2,19 @@
 
 import { memo } from 'react'
 import { usePathname } from 'next/navigation'
-import { useTranslations } from 'next-intl'
 
 import { cn } from '@/lib/utils'
-import { stripLangPrefixPath } from '@/utils/paths'
+import { isActivePath } from '@/utils/paths'
 import { Link } from '@/components/common'
 
-export interface NavItemProps {
-    key: string
-    name: string
-    path: string
+interface NavItemProps {
+    label: string
+    link: string
 }
 
-const NavItem = memo(({ name, path }: NavItemProps) => {
-    const t = useTranslations()
-
-    const pathname = usePathname()
-    const isActive = stripLangPrefixPath(pathname) === path
+export const NavItem = memo(({ label, link }: NavItemProps) => {
+    const pathname = usePathname()!
+    const isActive = isActivePath(pathname, link)
 
     const baseItemStyles =
         'relative flex items-center h-[60px] px-3 py-2 text-sm transition-all duration-200 ease-in-out hover:text-primary'
@@ -37,12 +33,10 @@ const NavItem = memo(({ name, path }: NavItemProps) => {
     )
 
     return (
-        <Link href={path} className={cn(baseItemStyles, isActive ? activeItemStyles : inactiveItemStyles)}>
-            {t(name as any)}
+        <Link href={link} className={cn(baseItemStyles, isActive ? activeItemStyles : inactiveItemStyles)}>
+            {label}
         </Link>
     )
 })
 
 NavItem.displayName = 'NavItem'
-
-export { NavItem }

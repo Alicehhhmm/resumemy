@@ -9,3 +9,14 @@ export const stripLangPrefixPath = (path: string | null) => {
     if (!path) return path
     return `/${path.substring(1).split('/')[1]}`
 }
+
+/**
+ * Check if the path is active
+ * @param pathname : current pathname
+ * @param path : path to check 
+ */
+export const isActivePath = (pathname: string, path: string) => {
+    if (!pathname || !path) return false
+    const strippedPathname = stripLangPrefixPath(pathname)
+    return strippedPathname === path
+} 

@@ -12,10 +12,20 @@ import { ActionLink } from '@/components/common/action-link'
 import { Logon } from '@/components/icons'
 
 import { getRepositoryLink } from '@/lib/generate-link'
-import { NavItemSettings } from '@/config/system-settings'
+import { useSiteNavigation } from '@/hooks/server'
 
 export const NavHeader = () => {
-    const headmap = NavItemSettings
+    const { navigationItems } = useSiteNavigation()
+
+    // Transform the navigation items to the required format
+    const transformNavData = (sourceData: any[]) =>
+        sourceData.map(([key, items]) => ({
+            key,
+            ...items,
+        }))
+
+    const headmap = transformNavData(navigationItems)
+
     const t = useTranslations()
     const resumeLink = getRepositoryLink('repositories-source', 'system.links.resumemy')
 
@@ -35,7 +45,7 @@ export const NavHeader = () => {
                 <div className='flex items-center gap-2'>
                     <div className='hidden md:flex items-center gap-2 mr-2'>
                         {headmap.map(hnav => (
-                            <NavItem key={hnav.key} name={hnav.name} path={hnav.path} />
+                            <NavItem key={hnav.key} label={hnav.label} link={hnav.link} />
                         ))}
                         <div className='h-6 w-[1px] mx-2 bg-border/60' />
                         <LangToggle />

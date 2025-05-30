@@ -8,6 +8,7 @@ import { siteNavigation } from '@/config/next.json.mjs'
 
 type ContextType = Record<string, RichTranslationValues>
 type Navigation = Record<string, NavigationEntry>
+type MapNavigationType = [string, MappedNavigationEntry]
 
 const replaceLinkWithContext = (link: string, context?: RichTranslationValues) => {
     return Object.entries(context || {}).reduce(
@@ -27,7 +28,7 @@ const useSiteNavigation = () => {
         }
 
         // Iterate over the entries and map them to the desired format
-        return Object.entries(entries).map(([key, { label, link, items, icon, target }]): [string, MappedNavigationEntry] => {
+        return Object.entries(entries).map(([key, { label, link, items, icon, target }]): MapNavigationType => {
             return [
                 key,
                 {

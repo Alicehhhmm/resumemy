@@ -4,7 +4,6 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
@@ -12,17 +11,13 @@ import { stripLangPrefixPath } from '@/utils/paths'
 import { LangToggle } from '@/components/common/lang-toggle'
 import { ThemeToggle } from '@/components/common/theme-toggle'
 
+import type { MappedNavigationEntry } from '@/types/navigation'
+
 interface MobileNavProps {
-    navigationList: {
-        key: string
-        path: string
-        name: string
-        subMenu: never[]
-    }[]
+    navigationList: Array<MappedNavigationEntry & { key: string }>
 }
 
 export const MobileNav: FC<MobileNavProps> = ({ navigationList }) => {
-    const t = useTranslations()
     const pathname = usePathname()
     const [isOpen, setIsOpen] = useState(false)
     const [active, setActive] = useState<string | null>('/')
@@ -85,11 +80,11 @@ export const MobileNav: FC<MobileNavProps> = ({ navigationList }) => {
                                         'hover:bg-accent/5 active:bg-accent/10 active:text-lime-500',
                                         'rounded-lg px-1.5 py-2 -mx-1',
                                         'transition-colors duration-200 ease-out',
-                                        item.path === active && 'bg-accent-foreground/10 text-lime-500'
+                                        item.link === active && 'bg-accent-foreground/10 text-lime-500'
                                     )}
                                 >
-                                    <Link href={item.path ?? '/'} onClick={() => setActive(item.path ?? '/')}>
-                                        <span className='tracking-tight'>{t(item.name as any)}</span>
+                                    <Link href={item.link ?? '/'} onClick={() => setActive(item.link ?? '/')}>
+                                        <span className='tracking-tight'>{item.label}</span>
                                     </Link>
                                 </div>
                             </div>

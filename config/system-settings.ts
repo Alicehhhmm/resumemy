@@ -59,33 +59,3 @@ export const WebLinkSettings = [
     }
 
 ]
-
-/**
- * 导航栏配置
- */
-export const NavItemSettings = [
-    {
-        key: 'blog',
-        path: '/blog',
-        name: 'system.nav.blog',
-        subMenu: []
-    },
-    {
-        key: 'booklet',
-        path: '/booklet',
-        name: 'system.nav.booklet',
-        subMenu: []
-    },
-    {
-        key: 'projects',
-        path: '/projects',
-        name: 'system.nav.projects',
-        subMenu: []
-    },
-    {
-        key: 'design',
-        path: '/design',
-        name: 'system.nav.design',
-        subMenu: []
-    }
-]

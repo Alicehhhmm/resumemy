@@ -109,5 +109,19 @@
                 }
             }
         }
+    },
+    "sourceRepositoryNav": {
+        "site": [
+            {
+                "label": "system.links.resumemy",
+                "link": "https://github.com/Alicehhhmm/resumemy"
+            }
+        ],
+        "self": [
+            {
+                "label": "",
+                "link": "#"
+            }
+        ]
     }
 }

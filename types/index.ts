@@ -7,3 +7,4 @@ export * from './chat';
 export * from './icon';
 export * from './user';
 export * from './formatted-message';
+export * from './settings'

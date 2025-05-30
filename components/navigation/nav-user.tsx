@@ -15,7 +15,7 @@ import {
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar'
 import { UserType } from '@/types/user'
 
-export function NavUser({ user }: {user:UserType}) {
+export function NavUser({ user }: { user: UserType }) {
     const { isMobile } = useSidebar()
 
     return (
@@ -25,7 +25,7 @@ export function NavUser({ user }: {user:UserType}) {
                     <DropdownMenuTrigger asChild>
                         <SidebarMenuButton
                             size='lg'
-                            className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+                            className='md:h-8 md:p-0 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
                         >
                             <Avatar className='h-8 w-8 rounded-lg'>
                                 <AvatarImage src={user.avatar} alt={user.name} />

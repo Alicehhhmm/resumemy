@@ -22,13 +22,12 @@ export const PostLayout: FC<PropsWithChildren> = ({ children }) => {
 
     return (
         <>
-
             <ArticleProvider
                 tocOptions={{
                     activeKey: activeId,
                 }}
             >
-                <div className='flex pt-navh lg:mx-20 xl:ml-40 bg-background dark:bg-background'>
+                <div className='flex bg-background dark:bg-background'>
                     <div className='min-h-[calc(100vh-60px)] flex-1 dark:bg-background'>
                         <main className='lg:max-w-[calc(100vw-var(--nr-sidebar)-15px)] overflow-hidden'>
                             <article ref={articleRef} className='flex flex-col gap-6 max-sm:px-6 px-16 py-10 overflow-hidden'>
@@ -48,7 +47,6 @@ export const PostLayout: FC<PropsWithChildren> = ({ children }) => {
                     </div>
                 </div>
             </ArticleProvider>
-
         </>
     )
 }

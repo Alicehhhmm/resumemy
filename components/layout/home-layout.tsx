@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from 'react'
 
-import { NavHeader } from '@/components/navigation/nav-header'
-import { FooterSimple } from '@/components/common/footer-simple'
+import { NavHeader } from '@/components/navigation'
+import { FooterSimple } from '@/components/common'
 
 export const HomeLayout: FC<PropsWithChildren> = ({ children }) => {
     return (

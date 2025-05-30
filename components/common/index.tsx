@@ -1,7 +1,6 @@
 export { ActionLink } from './action-link'
 export { ActionTooltip } from './action-tooltip'
 export { ArticlePagination } from './ArticlePagination'
-export { Footer } from './footer'
 export { FooterSimple } from './footer-simple'
 export { GlowingBackdrop } from './GlowingBackdrop'
 export { GridBackdrop } from './GridBackdrop'

@@ -57,4 +57,5 @@ export interface SiteNavigation {
     footerLinks: Array<FooterConfig>;
     socialLinks: Array<SocialConfig>;
     sideNavigation: Record<NavigationKeys, NavigationEntry>;
+    sourceRepositoryNav: Record<string, NavigationEntry>
 }

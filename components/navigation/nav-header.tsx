@@ -11,11 +11,12 @@ import { MobileNav } from '@/components/navigation/mobile-nav'
 import { ActionLink } from '@/components/common/action-link'
 import { Logon } from '@/components/icons'
 
-import { getRepositoryLink } from '@/lib/generate-link'
 import { useSiteNavigation } from '@/hooks/server'
+import { siteNavigation } from '@/config/next.json.mjs'
 
 export const NavHeader = () => {
     const { navigationItems } = useSiteNavigation()
+    const { sourceRepositoryNav } = siteNavigation
 
     // Transform the navigation items to the required format
     const transformNavData = (sourceData: any[]) =>
@@ -27,7 +28,7 @@ export const NavHeader = () => {
     const headmap = transformNavData(navigationItems)
 
     const t = useTranslations()
-    const resumeLink = getRepositoryLink('repositories-source', 'system.links.resumemy')
+    const siteRepository = sourceRepositoryNav['site'].map((link: any) => ({ ...link, label: t(link.label) }))[0]
 
     return (
         <div className='w-full h-[60px] fixed top-0 left-0 right-0 z-30 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80'>
@@ -50,7 +51,7 @@ export const NavHeader = () => {
                         <div className='h-6 w-[1px] mx-2 bg-border/60' />
                         <LangToggle />
                         <ThemeToggleBtn />
-                        <ActionLink href={resumeLink.link} label={t(resumeLink.name as any)} icon={<GitHub />} target='_blank' />
+                        <ActionLink href={siteRepository.link} label={siteRepository.label} icon={<GitHub />} target='_blank' />
                     </div>
                     <div className='md:hidden flex items-center gap-1'>
                         <ThemeToggleBtn />

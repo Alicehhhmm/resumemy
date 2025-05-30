@@ -6,9 +6,14 @@
  * stripLangPrefixPath('/en/blog') => output：/blog
  */
 export const stripLangPrefixPath = (path: string | null) => {
-    if (!path) return path
-    return `/${path.substring(1).split('/')[1]}`
-}
+    if (!path || path === '/') return path;
+
+    const langPrefixReg = /^\/[a-z]{2}(?:-[A-Z]{2})?\//i;
+
+    if (langPrefixReg.test(path)) return path.replace(langPrefixReg, '/');
+
+    return path;
+};
 
 /**
  * Check if the path is active

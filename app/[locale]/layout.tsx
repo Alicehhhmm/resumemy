@@ -8,6 +8,9 @@ import { IBM_PLEX_MONO, OPEN_SANS } from '@/lib/next.fonts'
 import { cn } from '@/lib/utils'
 import { TopLoader } from '@/components/common'
 
+// TODO: Use dynamic routing configuration uniformly
+import { siteConfig } from '@/config/next.json.mjs'
+
 import '@/styles/globals.css'
 
 type RootProps = {
@@ -22,6 +25,7 @@ export async function generateMetadata({ params }: Omit<RootProps, 'children'>) 
     return {
         title: t('title'),
         description: t('description'),
+        icons: { icon: siteConfig.favicon },
     }
 }
 

@@ -1,5 +1,7 @@
 'use client'
+
 import type { FC, PropsWithChildren } from 'react'
+import { useEffect } from 'react'
 import type { BlogPostsRSC, LinkTab } from '@/types/blog'
 
 import { WithChatLayout } from '@/components/WithChatLayout'
@@ -7,7 +9,6 @@ import { BlogChatPostLayout } from '@/components/blog-chat/blog-chat-posts'
 
 import { BlogList } from './blog-list'
 import { useGlobClientContext } from '@/hooks/use-glob-context'
-import { useMemo } from 'react'
 import { useSidebarStore } from '@/hooks'
 
 interface BlogChatLayoutProps extends PropsWithChildren {
@@ -22,20 +23,23 @@ export const BlogChatLayout: FC<BlogChatLayoutProps> = ({ children, categories, 
     const { frontmatter, pathname } = useGlobClientContext()
     const { layout } = frontmatter
 
-    const { setBreadcrumbLinks } = useSidebarStore()
+    const { setBreadcrumbLinks, clearBreadcrumbs } = useSidebarStore()
 
-    const showPosts = useMemo(() => {
-        // 根据全局上下文，结合 pathname 获取选择的文章加入到面包屑
-        let selectPost = blogData.posts.find(p => p.slug === pathname)
-        if (selectPost) {
+    const showPosts = !!children && layout && SUPPORTED_LAYOUTS.includes(layout as SupportedLayout)
+
+    // Based on the current pathname, listen to the currently selected article.
+    useEffect(() => {
+        if (!showPosts) return
+
+        const selectedPost = blogData.posts.find(p => p.slug === pathname)
+        if (selectedPost) {
             setBreadcrumbLinks({
-                href: selectPost.slug,
-                label: selectPost.title,
+                href: selectedPost.slug,
+                label: selectedPost.title,
             })
         }
-
-        return Boolean(children && layout && SUPPORTED_LAYOUTS.includes(layout as SupportedLayout))
-    }, [children, layout, pathname])
+        
+    }, [showPosts, pathname, blogData.posts, setBreadcrumbLinks])
 
     return (
         <WithChatLayout modelKey={['blog-chat']} messages={{ channels: categories }}>

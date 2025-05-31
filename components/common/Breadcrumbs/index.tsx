@@ -44,7 +44,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ links = [], maxLength = 5, hideHome
     return (
         <Breadcrumb>
             <BreadcrumbList className='px-2'>
-                {!hideHome && <BreadcrumbHomeItem aria-label={homeLinkAriaLabel} />}
+                {hideHome && <BreadcrumbHomeItem aria-label={homeLinkAriaLabel} />}
                 {items}
             </BreadcrumbList>
         </Breadcrumb>

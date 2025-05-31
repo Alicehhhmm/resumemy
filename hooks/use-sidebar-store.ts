@@ -17,6 +17,7 @@ interface SidebarState {
     // 面包屑导航
     breadcrumbLinks: BreadcrumbType[]
     setBreadcrumbLinks: (val: BreadcrumbType) => void
+    clearBreadcrumbs: () => void
 }
 
 export const useSidebarStore = create<SidebarState>((set) => ({

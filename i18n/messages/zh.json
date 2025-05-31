@@ -90,6 +90,9 @@
             },
             "languageDropdown": {
                 "label": "选择语言"
+            },
+            "breadcrumbs": {
+                "navigateToHome": "导航到首页"
             }
         }
     }

@@ -8,3 +8,4 @@ export * from './icon';
 export * from './user';
 export * from './formatted-message';
 export * from './settings'
+export * from './links'

@@ -86,17 +86,31 @@
         }
     ],
     "sideNavigation": {
-        "blog-chat": {
-            "label": "components.navigation.blog.links.blog",
+        "blog": {
             "items": {
-                "blog": {
-                    "label": "components.navigation.blog.links.blogSide"
+                "all": {
+                    "label": "layouts.blog.categories.all",
+                    "link": "/blog/all"
                 },
-                "categories": {
-                    "label": "components.navigation.blog.links.categories"
+                "news": {
+                    "label": "layouts.blog.categories.news",
+                    "link": "/blog/news"
                 },
-                "tags": {
-                    "label": "components.navigation.blog.links.tags"
+                "announcements": {
+                    "label": "layouts.blog.categories.announcements",
+                    "link": "/blog/announcements"
+                },
+                "release": {
+                    "label": "layouts.blog.categories.release",
+                    "link": "/blog/release"
+                },
+                "vulnerability": {
+                    "label": "layouts.blog.categories.vulnerability",
+                    "link": "/blog/vulnerability"
+                },
+                "other": {
+                    "label": "layouts.blog.categories.other",
+                    "link": "/blog/other"
                 }
             }
         },

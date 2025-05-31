@@ -90,6 +90,9 @@
             },
             "languageDropdown": {
                 "label": "Choose Language"
+            },
+            "breadcrumbs": {
+                "navigateToHome": "Navigate to Home"
             }
         }
     }

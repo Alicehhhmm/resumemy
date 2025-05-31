@@ -9,6 +9,8 @@ import type { ChatSidebarType, ChannelType } from '@/types'
 import { ChatSidebarMenu } from './chat-sidebar-menu'
 import { ChatSidebarChannels } from './chat-sidebar-channels'
 
+import { useSidebarStore } from '@/hooks'
+
 interface ChatSidebarProps {
     data: ChatSidebarType
     sidebarProps?: React.ComponentProps<typeof Sidebar>
@@ -19,6 +21,8 @@ export const ChatSidebar: FC<ChatSidebarProps> = ({ data, sidebarProps }) => {
     const router = useRouter()
     const [channels, setChannels] = React.useState(data.messages?.channels || [])
 
+    const { setSelectChannel, setBreadcrumbLinks } = useSidebarStore()
+
     // 根据当前路由找到活动项
     const activeItem = React.useMemo(() => {
         return data.navMain.find(item => item.link === pathname) || data.navMain[0]
@@ -27,8 +31,9 @@ export const ChatSidebar: FC<ChatSidebarProps> = ({ data, sidebarProps }) => {
     const handleMenuClick = React.useCallback(
         (item: ChatSidebarType['navMain'][0]) => {
             if (data.messages?.channels) {
-                const channel = [...data.messages.channels].sort(() => Math.random() - 0.5)
-                setChannels(channel.slice(0, Math.max(5, Math.floor(Math.random() * 10) + 1)))
+                const channel = [...data.messages.channels]
+                // .sort(() => Math.random() - 0.5)
+                // setChannels(channel.slice(0, Math.max(5, Math.floor(Math.random() * 10) + 1)))
             }
         },
         [data.messages?.channels]
@@ -37,7 +42,11 @@ export const ChatSidebar: FC<ChatSidebarProps> = ({ data, sidebarProps }) => {
     const handleChannelClick = React.useCallback(
         (channel: ChannelType) => {
             if (channel.link) {
-                // 使用 Next.js 的路由导航
+                setSelectChannel(channel)
+                setBreadcrumbLinks({
+                    href: channel.link,
+                    label: channel.label,
+                })
                 router.push(channel.link)
             }
         },

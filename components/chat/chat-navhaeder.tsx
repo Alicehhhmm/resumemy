@@ -1,26 +1,25 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
+import { useTranslations } from 'next-intl'
+
 import { Separator } from '@/components/ui/separator'
-import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { SidebarTrigger } from '@/components/ui/sidebar'
 
-interface Props {}
+import Breadcrumbs from '@/components/common/Breadcrumbs'
 
-export const ChatNavHeader = ({}: Props) => {
+import { useSidebarStore } from '@/hooks'
+
+type ChatNavHeaderProps = {}
+
+export const ChatNavHeader = ({}: ChatNavHeaderProps) => {
+    const t = useTranslations()
+    const { breadcrumbLinks } = useSidebarStore()
+
     // TODO: add NextPage and BackPage components and changeLange btn, layout btn
+
     return (
-        <header className='h-[60px] z-50 sticky top-0 flex shrink-0 items-center gap-2 border-b bg-background p-4 z-90'>
+        <header className='h-[60px] z-50 sticky top-0 flex shrink-0 items-center gap-1 border-b bg-background p-4'>
             <SidebarTrigger className='-ml-1' />
-            <Separator orientation='vertical' className='mr-2 h-4' />
-            <Breadcrumb>
-                <BreadcrumbList>
-                    <BreadcrumbItem className='hidden md:block'>
-                        <BreadcrumbLink href='#'>All Inboxes</BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator className='hidden md:block' />
-                    <BreadcrumbItem>
-                        <BreadcrumbPage>Inbox</BreadcrumbPage>
-                    </BreadcrumbItem>
-                </BreadcrumbList>
-            </Breadcrumb>
+            <Separator orientation='vertical' className='h-4' />
+            <Breadcrumbs links={breadcrumbLinks} maxLength={4} homeLinkAriaLabel={t('components.common.breadcrumbs.navigateToHome')} />
         </header>
     )
 }

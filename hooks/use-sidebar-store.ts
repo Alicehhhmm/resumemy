@@ -1,24 +1,67 @@
-import { create } from "zustand";
+import { create } from "zustand"
+import type { ChatSidebarType, ChannelType } from '@/types'
+import type { BreadcrumbLinks } from '@/components/common/Breadcrumbs'
+
+interface BreadcrumbType extends BreadcrumbLinks { }
 
 interface SidebarState {
-    // 展开的菜单模块
     expandedSections: string[]
-    // 用于切换菜单模块展开状态
     toggleSection: (menuKey: string) => void
-    // 当前点击项
+
     activeItem: string | null
-    // 更新最新点击项
     setActiveItem: (href: string) => void
+
+    selectChannel: ChannelType | null
+    setSelectChannel: (val: ChannelType) => void
+
+    // 面包屑导航
+    breadcrumbLinks: BreadcrumbType[]
+    setBreadcrumbLinks: (val: BreadcrumbType) => void
 }
 
-export const useSidebarStore = create<SidebarState>(set => ({
+export const useSidebarStore = create<SidebarState>((set) => ({
     activeItem: null,
     expandedSections: [],
-    toggleSection: menuKey =>
-        set(state => ({
+    selectChannel: null,
+    selectPost: null,
+    breadcrumbLinks: [],
+
+    toggleSection: (menuKey) =>
+        set((state) => ({
             expandedSections: state.expandedSections.includes(menuKey)
-                ? state.expandedSections.filter(t => t !== menuKey)
+                ? state.expandedSections.filter((t) => t !== menuKey)
                 : [...state.expandedSections, menuKey],
         })),
-    setActiveItem: (href) => set({ activeItem: href })
+
+    // set method
+    setActiveItem: (href) => set({ activeItem: href }),
+
+    setSelectChannel: (val) => set({ selectChannel: val }),
+
+    setBreadcrumbLinks: (link) =>
+        set((state) => {
+            const { label, href } = link
+            if (!href) return {}
+
+            const parts = href.split('/').filter(Boolean)
+
+            // 构建当前层级路径
+            const levels: string[] = []
+            for (let i = 0; i < parts.length; i++) {
+                levels.push('/' + parts.slice(0, i + 1).join('/'))
+            }
+
+            // 保留属于当前路径祖先的面包屑
+            const filtered = state.breadcrumbLinks.filter((item) =>
+                item.href && levels.includes(item.href)
+            ).filter(i => i.href !== href)
+
+            const updated = [...filtered, { label, href }]
+            return { breadcrumbLinks: updated }
+        }),
+
+
+    // clear method
+    clearBreadcrumbs: () => set({ breadcrumbLinks: [] }),
+
 }))

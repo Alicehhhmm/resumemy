@@ -1,3 +1,5 @@
+export type PostLayoutType = 'grid' | 'list'
+
 /**
  * tabs 栏默认可预览类型
  */

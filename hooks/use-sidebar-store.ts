@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import type { ChatSidebarType, ChannelType } from '@/types'
+import type { PostLayoutType, ChannelType } from '@/types'
 import type { BreadcrumbLinks } from '@/components/common/Breadcrumbs'
 
 interface BreadcrumbType extends BreadcrumbLinks { }
@@ -18,6 +18,10 @@ interface SidebarState {
     breadcrumbLinks: BreadcrumbType[]
     setBreadcrumbLinks: (val: BreadcrumbType) => void
     clearBreadcrumbs: () => void
+
+    // 文章列表布局
+    postLayout: Array<PostLayoutType>
+    togglePostLayout: () => void
 }
 
 export const useSidebarStore = create<SidebarState>((set) => ({
@@ -26,6 +30,7 @@ export const useSidebarStore = create<SidebarState>((set) => ({
     selectChannel: null,
     selectPost: null,
     breadcrumbLinks: [],
+    postLayout: ['grid'],
 
     toggleSection: (menuKey) =>
         set((state) => ({
@@ -60,6 +65,10 @@ export const useSidebarStore = create<SidebarState>((set) => ({
             const updated = [...filtered, { label, href }]
             return { breadcrumbLinks: updated }
         }),
+
+    togglePostLayout: () => set((state) => ({
+        postLayout: state.postLayout?.includes('grid') ? ['list'] : ['grid']
+    })),
 
 
     // clear method

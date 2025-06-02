@@ -93,6 +93,9 @@
             },
             "breadcrumbs": {
                 "navigateToHome": "Navigate to Home"
+            },
+            "togglelayout": {
+                "label": "change layout"
             }
         }
     }

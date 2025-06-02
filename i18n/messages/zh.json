@@ -93,6 +93,9 @@
             },
             "breadcrumbs": {
                 "navigateToHome": "导航到首页"
+            },
+            "togglelayout": {
+                "label": "切换布局"
             }
         }
     }

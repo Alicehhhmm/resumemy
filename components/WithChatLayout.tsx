@@ -1,6 +1,7 @@
 'use client'
 
 import type { ReactNode, FC } from 'react'
+import { useRef } from 'react'
 
 import type { RichTranslationValues } from 'next-intl'
 import { useLocale } from 'next-intl'
@@ -10,7 +11,9 @@ import { Logon, ChatSidebarIconMap, ChannelsIconMap } from '@/components/icons'
 import { ChatLayout } from '@/components/chat/chat-layout'
 import type { ChatSidebarType, ChatModleType, MessagesType, NavigationKeys } from '@/types'
 
+import { useFullscreen } from '@/hooks/client'
 import { useSiteNavigation } from '@/hooks/server'
+import { useSidebarStore } from '@/hooks'
 import { getCurrentPathname } from '@/lib/next-router'
 
 interface WithChatLayoutProps {
@@ -25,6 +28,10 @@ export const WithChatLayout: FC<WithChatLayoutProps> = ({ modelKey, messages, co
     const locale = useLocale()
 
     const { getSideNavigation, chatNavigationItems } = useSiteNavigation()
+
+    // FullScreen
+    const sidebarInsetRef = useRef(null)
+    const [isFullscreen, { toggleFullscreen }] = useFullscreen(sidebarInsetRef)
 
     let navKeys = (modelKey as Array<NavigationKeys>) || []
 
@@ -80,5 +87,9 @@ export const WithChatLayout: FC<WithChatLayoutProps> = ({ modelKey, messages, co
         messages: mes,
     }
 
-    return <ChatLayout sidebarData={sidebarGroups}>{children}</ChatLayout>
+    return (
+        <ChatLayout toggleScreen={toggleFullscreen} sidebarData={sidebarGroups} ref={sidebarInsetRef}>
+            {children}
+        </ChatLayout>
+    )
 }

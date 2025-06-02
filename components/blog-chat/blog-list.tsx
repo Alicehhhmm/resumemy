@@ -1,9 +1,13 @@
-import * as React from 'react'
+'use client'
+
 import type { FC } from 'react'
+import { useTranslations } from 'next-intl'
 
 import type { BlogPostsRSC } from '@/types/blog'
-import { BlogPostCard } from '@/components/blog/blog-post-card'
-import { BlogGridCard } from '@/components/blog/blog-grid-card'
+import { BlogHeader } from '@/components/blog-chat'
+
+import { BlogPostCard } from '@/components/blog-chat/blog-post-card'
+import { BlogGridCard } from '@/components/blog-chat/blog-grid-card'
 import { useSidebarStore } from '@/hooks'
 
 interface BlogListProps {
@@ -12,12 +16,14 @@ interface BlogListProps {
 
 export const BlogList: FC<BlogListProps> = ({ data }) => {
     const { posts, pagination } = data
+    const t = useTranslations()
 
     const { postLayout, togglePostLayout } = useSidebarStore()
 
     return (
         <div className='flex flex-col gap-4'>
-            <h1 className='text-2xl font-bold'>博客文章</h1>
+            <BlogHeader cover='' title={t(`layouts.blog.title`)} description={t('layouts.blog.desc')} />
+
             {postLayout?.includes('grid') && (
                 <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8'>
                     {posts.map(post => (

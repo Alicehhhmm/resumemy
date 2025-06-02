@@ -2,9 +2,6 @@ import type { FC, PropsWithChildren } from 'react'
 import { getTranslations } from 'next-intl/server'
 
 import { getGlobClientContext } from '@/core/server'
-import { NavHeader } from '@/components/navigation/nav-header'
-// import WithFooterfrom '@/components/WithFooter'
-import { BlogHeader, WithBlogCategories } from '@/components/blog'
 
 import { BlogPreviewType, BlogCategory } from '@/types/blog'
 import { FetchBlogData } from '@/fatch-data'
@@ -44,17 +41,4 @@ export const BlogLayout: FC<PropsWithChildren> = async ({ children }) => {
             {children}
         </BlogChatLayout>
     )
-
-    // return (
-    //     <>
-    //         <NavHeader />
-    //         <main className='pt-navh min-h-[calc(100vh-60px)] bg-gray-50 dark:bg-fluo-background'>
-    //             <div className='max-w-5xl mx-auto p-6 overflow-auto dark:bg-fluo-background space-y-2'>
-    //                 <BlogHeader cover='' title={t(`layouts.blog.title`)} description={t('layouts.blog.desc')} />
-    //                 <WithBlogCategories blogData={blogData} categories={mapCategoriesToTabs(categories)} />
-    //             </div>
-    //         </main>
-    //         <WithFooter />
-    //     </>
-    // )
 }

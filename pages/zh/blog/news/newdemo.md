@@ -1,5 +1,5 @@
 ---
-title: Weekly Update - Feb 6th, 2015
+title: Weekly News dome
 author: Norush
 date: '2015-02-06T12:00:00.000Z'
 layout: blog-post

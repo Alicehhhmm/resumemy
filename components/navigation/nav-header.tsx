@@ -1,15 +1,10 @@
 'use client'
 
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
-import { ThemeToggleBtn } from '@/components/common/theme-toggle'
-import { NavItem } from '@/components/navigation/nav-item'
+import { ThemeToggleBtn, ActionLink, LangToggle } from '@/components/common'
+import { NavItem, MobileNav, NavLogo } from '@/components/navigation'
 import { GitHub } from '@/components/icons/social'
-import { LangToggle } from '@/components/common/lang-toggle'
-import { MobileNav } from '@/components/navigation/mobile-nav'
-import { ActionLink } from '@/components/common/action-link'
-import { Logon } from '@/components/icons'
 
 import { useSiteNavigation } from '@/hooks/server'
 import { siteNavigation } from '@/config/next.json.mjs'
@@ -35,12 +30,10 @@ export const NavHeader = () => {
             <div className='h-full px-4 sm:px-6 lg:px-20 flex items-center justify-between'>
                 {/* Logo */}
                 <div className='flex items-center space-x-2'>
-                    <Link href='/' className='flex items-center space-x-2'>
-                        <div className='flex aspect-square size-8 items-center justify-center rounded-full bg-fluo-logobg text-fluo-logo '>
-                            <Logon />
-                        </div>
+                    <div className='flex items-center space-x-2'>
+                        <NavLogo />
                         <h2 className='hidden font-bold lg:inline-block text-xl sm:text-2xl text-foreground'>Norush website</h2>
-                    </Link>
+                    </div>
                 </div>
 
                 <div className='flex items-center gap-2'>

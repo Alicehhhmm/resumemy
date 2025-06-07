@@ -5,10 +5,5 @@ type ChatContentMainProps = {
 }
 
 export const ChatContentMain: FC<ChatContentMainProps> = ({ children }) => {
-
-    return (
-        <div className='flex flex-1 flex-col gap-4 p-4'>
-            {children}
-        </div>
-    )
+    return <div className='flex flex-1 flex-col gap-4 p-4 dark:bg-fluo-background'>{children}</div>
 }

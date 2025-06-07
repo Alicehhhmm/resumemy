@@ -18,7 +18,7 @@ const ArticleCover: FC<ArticleCoverProps> = ({ type = '', title, className }) =>
         <div className={styles.container} aria-hidden={true}>
             <HexagonGrid className={styles.hexagon} stopOpacity='0.2' />
             <Kail className={styles.logo} />
-            {title}
+            <p className={styles.p}>{title}</p>
         </div>
     </div>
 )

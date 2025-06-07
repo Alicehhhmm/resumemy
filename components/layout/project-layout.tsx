@@ -3,11 +3,11 @@ import type { FC, PropsWithChildren } from 'react'
 import { ProjectSidebar } from '@/components/projects/project-sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 
-import { WithBreadcrumbs } from '@/components/WithBreadcrumbs'
 import { ContentMain } from '@/components/projects/content-main'
 
 import { getProjects } from '@/fatch-data/fetch-projects-data'
 import { DEFAULT_PAGE_SIZE } from '@/lib/constants'
+import { ContentHeader } from '../projects/content-header'
 
 export const ProjectLayout: FC<PropsWithChildren> = async ({ children }) => {
     // Get initial projects for SSR
@@ -24,7 +24,7 @@ export const ProjectLayout: FC<PropsWithChildren> = async ({ children }) => {
             <SidebarProvider>
                 <ProjectSidebar />
                 <SidebarInset>
-                    <WithBreadcrumbs navKeys={['project']}/>
+                    <ContentHeader />
                     <ContentMain initialProjects={initialProjects}>{children}</ContentMain>
                 </SidebarInset>
             </SidebarProvider>

@@ -37,10 +37,10 @@ export const WithChatLayout: FC<WithChatLayoutProps> = ({ modelKey, messages, co
 
     // TODO : other navigation items form localization or context
     // NOTE: for exmaple bookmarks
-    // const mappedSidebarItems = getSideNavigation(navKeys, context).map(([_, { label, items }]) => ({
-    //     groupName: label,
-    //     items: items.map(([, item]) => item),
-    // }))
+    const mappedSidebarItems = getSideNavigation(navKeys, context).map(([_, { label, items }]) => ({
+        groupName: label,
+        items: items.map(([, item]) => item),
+    }))
 
     let currentPathname = getCurrentPathname(locale, pathname)
 
@@ -54,18 +54,30 @@ export const WithChatLayout: FC<WithChatLayoutProps> = ({ modelKey, messages, co
     }
 
     let mes: ChatSidebarType['messages'] = {}
-    if (messages) {
+    if (messages || mappedSidebarItems) {
         // TODO: mergen mappedSidebarItems and messages.channels
+        let newChannels: any = []
 
-        const newChannels = messages.channels?.map(item => ({
-            ...item,
-            icon: ChannelsIconMap[item.key] || '',
-            desc: 'This is a new channel for discussion',
-            isActive: false,
-        }))
+        if (navKeys.includes('blog')) {
+            newChannels = messages.channels?.map(item => ({
+                ...item,
+                icon: ChannelsIconMap[item.key] || '',
+                desc: 'This is a new channel for discussion',
+                isActive: false,
+            }))
+        }
+
+        if (navKeys.includes('bookmarks')) {
+            newChannels = mappedSidebarItems[0].items.map(item => ({
+                ...item,
+                icon: ChannelsIconMap['all'] || '',
+                desc: 'There are 21 bookmarks',
+                isActive: false,
+            }))
+        }
 
         mes = {
-            channels: newChannels || [],
+            channels: newChannels,
         }
     }
 

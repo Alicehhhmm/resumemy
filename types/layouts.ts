@@ -5,5 +5,6 @@ export type Layouts =
     | 'blog-post'
     | 'project'
     | 'article'
+    | 'bookmarks'
     | 'booklet';
 

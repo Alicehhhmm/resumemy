@@ -41,12 +41,8 @@ export const BlogChatLayout: FC<BlogChatLayoutProps> = ({ children, categories, 
     }, [showPosts, pathname, blogData.posts, setBreadcrumbLinks])
 
     return (
-        <WithChatLayout modelKey={['blog-chat']} messages={{ channels: categories }}>
-            {showPosts ? (
-                <BlogChatPostLayout >{children}</BlogChatPostLayout>
-            ) : (
-                <BlogList data={blogData} categories={categories} />
-            )}
+        <WithChatLayout modelKey={['blog']} messages={{ channels: categories }}>
+            {showPosts ? <BlogChatPostLayout>{children}</BlogChatPostLayout> : <BlogList data={blogData} categories={categories} />}
         </WithChatLayout>
     )
 }

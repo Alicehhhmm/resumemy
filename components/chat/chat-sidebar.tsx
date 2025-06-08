@@ -10,6 +10,7 @@ import { ChatSidebarMenu } from './chat-sidebar-menu'
 import { ChatSidebarChannels } from './chat-sidebar-channels'
 
 import { useSidebarStore } from '@/hooks'
+import { stripLangPrefixPath } from '@/utils/paths'
 
 interface ChatSidebarProps {
     data: ChatSidebarType
@@ -25,7 +26,8 @@ export const ChatSidebar: FC<ChatSidebarProps> = ({ data, sidebarProps }) => {
 
     // 根据当前路由找到活动项
     const activeItem = React.useMemo(() => {
-        return data.navMain.find(item => item.link === pathname) || data.navMain[0]
+        const currentPath = stripLangPrefixPath(pathname)
+        return data.navMain.find(item => item.link === currentPath) || data.navMain[0]
     }, [pathname, data.navMain])
 
     const handleMenuClick = React.useCallback(

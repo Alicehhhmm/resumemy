@@ -80,6 +80,21 @@
                 "articles": "文章",
                 "column": "专栏"
             }
+        },
+        "bookmarks": {
+            "title": "收藏夹",
+            "desc": "收录工作中可能用到的工具、文档和资源",
+            "categories": {
+                "tools": "工具",
+                "books": "书籍",
+                "frontend": "前端",
+                "rust": "Rust语言",
+                "editor": "编辑器",
+                "design": "设计",
+                "icons": "图标",
+                "inspiration": "灵感",
+                "material": "素材"
+            }
         }
     },
     "components": {

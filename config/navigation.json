@@ -87,6 +87,7 @@
     ],
     "sideNavigation": {
         "blog": {
+            "label": "system.nav.blog",
             "items": {
                 "all": {
                     "label": "layouts.blog.categories.all",
@@ -115,11 +116,52 @@
             }
         },
         "booklet": {
-            "label": "components.navigation.booklet.links.booklet",
+            "label": "components.navigation.booklet.label",
             "items": {
                 "canvas": {
                     "label": "components.navigation.booklet.links.canvas",
                     "link": "/booklet/canvas"
+                }
+            }
+        },
+        "bookmarks": {
+            "label": "system.nav.bookmarks",
+            "items": {
+                "tools": {
+                    "label": "layouts.bookmarks.categories.tools",
+                    "link": "/bookmarks/tools"
+                },
+                "books": {
+                    "label": "layouts.bookmarks.categories.books",
+                    "link": "/bookmarks/books"
+                },
+                "frontend": {
+                    "label": "layouts.bookmarks.categories.frontend",
+                    "link": "/bookmarks/frontend"
+                },
+                "rust": {
+                    "label": "layouts.bookmarks.categories.rust",
+                    "link": "/bookmarks/rust"
+                },
+                "editor": {
+                    "label": "layouts.bookmarks.categories.editor",
+                    "link": "/bookmarks/editor"
+                },
+                "design": {
+                    "label": "layouts.bookmarks.categories.design",
+                    "link": "/bookmarks/design"
+                },
+                "icons": {
+                    "label": "layouts.bookmarks.categories.icons",
+                    "link": "/bookmarks/icons"
+                },
+                "inspiration": {
+                    "label": "layouts.bookmarks.categories.inspiration",
+                    "link": "/bookmarks/inspiration"
+                },
+                "material": {
+                    "label": "layouts.bookmarks.categories.material",
+                    "link": "/bookmarks/material"
                 }
             }
         }

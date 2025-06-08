@@ -80,6 +80,21 @@
                 "articles": "Articles",
                 "column": "Column"
             }
+        },
+        "bookmarks": {
+            "title": "Bookmarks",
+            "desc": "Collect tools, documents and resources that may be used in work",
+            "categories": {
+                "tools": "Tools",
+                "books": "Books",
+                "frontend": "Frontend",
+                "rust": "Rust",
+                "editor": "Editors",
+                "design": "Design",
+                "icons": "Icons",
+                "inspiration": "Inspiration",
+                "material": "Materials"
+            }
         }
     },
     "components": {

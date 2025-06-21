@@ -6,5 +6,6 @@ export type Layouts =
     | 'project'
     | 'article'
     | 'bookmarks'
+    | 'bookmarks-category'
     | 'booklet';
 

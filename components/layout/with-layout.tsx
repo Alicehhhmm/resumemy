@@ -9,8 +9,10 @@ import {
     PostLayout,
     ProjectLayout,
     BookletLayout,
-    BookmarkLayout,
+    // BookmarkLayout,
 } from '@/components/layout'
+
+import BookmarkLayout from '@/components/layout/bookmark-layout'
 
 const layouts = {
     home: HomeLayout,
@@ -19,6 +21,7 @@ const layouts = {
     project: ProjectLayout,
     booklet: BookletLayout,
     bookmarks: BookmarkLayout,
+    'bookmarks-category': BookmarkLayout,
     'blog-post': BlogLayout,
     'blog-category': BlogLayout,
 } satisfies Record<Layouts, FC>
@@ -27,6 +30,7 @@ type WithLayoutProps<Layouts> = PropsWithChildren<{ layout: Layouts }>
 
 const WithLayout: FC<WithLayoutProps<Layouts>> = ({ layout, children }) => {
     const LayoutComponent = layouts[layout] ?? DefaultLayout
+    console.log(`Using layout: ${layout}`, layouts, LayoutComponent.name)
 
     return <LayoutComponent>{children}</LayoutComponent>
 }

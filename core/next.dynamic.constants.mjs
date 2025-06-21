@@ -3,6 +3,7 @@
 import { join } from 'node:path'
 import { defaultLocale } from './next.locales.mjs'
 import { provideBlogCategories } from './providers/blogData'
+import { provideBookmarksCategories } from './providers/bookmarks.data'
 
 /**
  * This is a list of all static routes or pages from the Website that we do not
@@ -32,4 +33,8 @@ export const DYNAMIC_ROUTES = new Map([
     ['blog', 'blog-category'],
     ...provideBlogCategories().map(c => [`blog/${c}`, 'blog-category']),
     ...provideBlogCategories().map(c => [join('blog', c), 'blog-category']),
+    // Provides Routes for all Bookmarks Categories
+    ['bookmarks', 'bookmarks-category'],
+    ...provideBookmarksCategories().map(c => [`bookmarks/${c}`, 'bookmarks-category']),
+    ...provideBookmarksCategories().map(c => [join('bookmarks', c), 'bookmarks-category']),
 ])

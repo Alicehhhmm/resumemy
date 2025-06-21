@@ -12,6 +12,8 @@ export const BookmarkLayout: FC<PropsWithChildren> = async ({ children }) => {
 
     const { list } = await getBookmarksData(pathname)
 
+    // TODO: filter list link use raindrop.io 
+
     return (
         <WithChatLayout modelKey={['bookmarks']} messages={{ channels: [] }}>
             <BookmarkList list={list} />

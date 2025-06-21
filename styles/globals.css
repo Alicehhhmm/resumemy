@@ -8,6 +8,7 @@
 @tailwind components;
 @tailwind utilities;
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@import './normalize.css';
 @import './nrbase.css';
 @import './scrollbar.css';
 @import './markdown.css';

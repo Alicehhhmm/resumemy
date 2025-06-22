@@ -27,6 +27,7 @@
         "@radix-ui/react-tooltip": "^1.2.6",
         "@react-three/drei": "10.0.0-rc.1",
         "@react-three/fiber": "9.0.0-rc.5",
+        "@tanstack/react-query": "^5.81.2",
         "@types/three": "^0.173.0",
         "@vcarl/remark-headings": "^0.1.0",
         "class-variance-authority": "^0.7.1",
@@ -36,9 +37,10 @@
         "gsap": "^3.12.7",
         "immer": "^10.1.1",
         "lucide-react": "^0.469.0",
-        "next": "15.1.3",
+        "next": "^15.3.4",
         "next-intl": "^3.26.3",
         "next-themes": "^0.4.4",
+        "query-string": "^9.2.1",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-resizable-panels": "^2.1.7",
@@ -56,6 +58,7 @@
         "uuid": "^11.1.0",
         "vfile": "^6.0.3",
         "vfile-matter": "^5.0.0",
+        "zod": "^3.25.67",
         "zustand": "^5.0.3"
     },
     "devDependencies": {

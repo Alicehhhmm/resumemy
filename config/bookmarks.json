@@ -1,38 +1,38 @@
 {
     "tools": [
-        { "link": "https://code.visualstudio.com", "desc": "强大的开源代码编辑器" },
-        { "link": "https://www.postman.com", "desc": "API开发与测试工具" }
+        { "link": "https://code.visualstudio.com", "title": "强大的开源代码编辑器" },
+        { "link": "https://www.postman.com", "title": "API开发与测试工具" }
     ],
     "books": [
-        { "link": "https://book.douban.com/subject/10546125/", "desc": "前端开发经典书籍" },
-        { "link": "https://book.douban.com/subject/30328134/", "desc": "Rust语言权威指南" }
+        { "link": "https://book.douban.com/subject/10546125/", "title": "前端开发经典书籍" },
+        { "link": "https://book.douban.com/subject/30328134/", "title": "Rust语言权威指南" }
     ],
     "frontend": [
-        { "link": "https://developer.mozilla.org", "desc": "Web开发权威文档" },
-        { "link": "https://reactjs.org", "desc": "React框架官方文档" }
+        { "link": "https://developer.mozilla.org", "title": "Web开发权威文档" },
+        { "link": "https://reactjs.org", "title": "React框架官方文档" }
     ],
     "rust": [
-        { "link": "https://doc.rust-lang.org", "desc": "Rust语言官方文档" },
-        { "link": "https://crates.io", "desc": "Rust包管理器" }
+        { "link": "https://doc.rust-lang.org", "title": "Rust语言官方文档" },
+        { "link": "https://crates.io", "title": "Rust包管理器" }
     ],
     "editor": [
-        { "link": "https://www.sublimetext.com", "desc": "轻量级代码编辑器" },
-        { "link": "https://www.jetbrains.com/webstorm", "desc": "专业前端IDE" }
+        { "link": "https://www.sublimetext.com", "title": "轻量级代码编辑器" },
+        { "link": "https://www.jetbrains.com/webstorm", "title": "专业前端IDE" }
     ],
     "design": [
-        { "link": "https://www.figma.com", "desc": "协作式UI设计工具" },
-        { "link": "https://www.canva.com", "desc": "简单易用的设计平台" }
+        { "link": "https://www.figma.com", "title": "协作式UI设计工具" },
+        { "link": "https://www.canva.com", "title": "简单易用的设计平台" }
     ],
     "icons": [
-        { "link": "https://fontawesome.com", "desc": "经典图标库" },
-        { "link": "https://iconify.design", "desc": "统一图标框架" }
+        { "link": "https://fontawesome.com", "title": "经典图标库" },
+        { "link": "https://iconify.design", "title": "统一图标框架" }
     ],
     "inspiration": [
-        { "link": "https://dribbble.com", "desc": "设计师灵感社区" },
-        { "link": "https://www.awwwards.com", "desc": "优秀网站设计集合" }
+        { "link": "https://dribbble.com", "title": "设计师灵感社区" },
+        { "link": "https://www.awwwards.com", "title": "优秀网站设计集合" }
     ],
     "material": [
-        { "link": "https://unsplash.com", "desc": "高质量免费图片库" },
-        { "link": "https://fonts.google.com", "desc": "免费开源字体库" }
+        { "link": "https://unsplash.com", "title": "高质量免费图片库" },
+        { "link": "https://fonts.google.com", "title": "免费开源字体库" }
     ]
 }

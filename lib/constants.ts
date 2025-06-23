@@ -22,3 +22,7 @@ export const DEFAULT_PAGE_SIZE = 6
 
 // Artificial delay for demo purposes (ms)
 export const DEMO_LOADING_DELAY = 600
+
+// The Default Raindrop. io collections ID 
+// that needs to be rendered in this project
+export const DEFAULT_RAINDROP_COLLECTIONS_ID = 56759839

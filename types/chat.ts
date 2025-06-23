@@ -5,6 +5,7 @@ import type {
     RIconType,
     NavigationKeys,
     NavItemsType,
+    BookmarkItemType
 } from '@/types'
 
 export type ChatModleType =
@@ -28,15 +29,8 @@ export interface ChannelType extends LinkTab {
     isActive?: boolean
 }
 
-export interface BookmarksType {
-    label: string
-    link: string
-    description: string
-    date: Date
-}
-
 export interface MessagesType {
-    bookmarks?: BookmarksType[]
+    bookmarks?: BookmarkItemType[]
     channels?: ChannelType[]
 }
 

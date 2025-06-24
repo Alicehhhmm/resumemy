@@ -26,6 +26,7 @@ export interface ChannelType extends LinkTab {
     label: string
     icon?: RIconType
     desc?: string
+    count?: number
     isActive?: boolean
 }
 

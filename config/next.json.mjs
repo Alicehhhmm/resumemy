@@ -10,4 +10,5 @@ export const siteNavigation = _siteNavigation;
 /** @type {import('./types').SiteSettings} */
 export const siteConfig = _siteSettings
 
+/** @type {import('./types').SiteConfigBookmarks} */
 export const bookmarksJSON = _bookmarks;

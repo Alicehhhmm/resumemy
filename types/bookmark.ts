@@ -1,3 +1,5 @@
+export type BookmarksCategory = IntlMessageKeys<'layouts.bookmarks.categories'>;
+
 export interface BookmarkItemType {
     title: string;
     link: string;
@@ -6,8 +8,12 @@ export interface BookmarkItemType {
     cover?: string
     icon?: string;
     tags?: string[];
-    category?: string;
+    category?: BookmarksCategory;
 }
+
+export type SiteConfigBookmarks = {
+    [key in BookmarksCategory]?: BookmarkItemType[];
+};
 
 export interface RaindropCollection {
     _id: number

@@ -85,6 +85,7 @@
             "title": "收藏夹",
             "desc": "收录工作中可能用到的工具、文档和资源",
             "categories": {
+                "all": "所有标签",
                 "tools": "工具",
                 "books": "书籍",
                 "frontend": "前端",

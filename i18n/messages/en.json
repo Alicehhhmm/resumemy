@@ -85,6 +85,7 @@
             "title": "Bookmarks",
             "desc": "Collect tools, documents and resources that may be used in work",
             "categories": {
+                "all": "All",
                 "tools": "Tools",
                 "books": "Books",
                 "frontend": "Frontend",

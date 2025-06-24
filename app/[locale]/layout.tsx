@@ -35,9 +35,7 @@ export default async function RootLayout({ children, params }: RootProps) {
     return (
         <html lang={locale} suppressHydrationWarning>
             {/* dev: react-scan */}
-            <head>
-                <script crossOrigin='anonymous' src='//unpkg.com/react-scan/dist/auto.global.js' />
-            </head>
+
             <body className={cn(OPEN_SANS.className, IBM_PLEX_MONO.variable)}>
                 <TailwindIndicator />
                 <Toaster />

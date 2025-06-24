@@ -24,7 +24,7 @@ export const BookmarkList: FC<BookmarkListProps> = ({ list }) => {
     )
 
     return (
-        <div className='bg-white'>
+        <div className=''>
             <MasonryGrid columns='3' gap='md'>
                 {memoizedBookmarks}
             </MasonryGrid>

@@ -68,12 +68,29 @@ export const WithChatLayout: FC<WithChatLayoutProps> = ({ modelKey, messages, co
         }
 
         if (navKeys.includes('bookmarks')) {
-            newChannels = mappedSidebarItems[0].items.map(item => ({
-                ...item,
-                icon: ChannelsIconMap['all'] || '',
-                desc: 'There are 21 bookmarks',
-                isActive: false,
-            }))
+            const channelMap = new Map(messages.channels?.map(c => [c.link, c]) ?? [])
+            console.log(`[WithChatLayout]: getSideNavigation:`, getSideNavigation(navKeys, context))
+            console.log(`[WithChatLayout]: mappedSidebarItems:`, mappedSidebarItems)
+            console.log(`[WithChatLayout]: messages.bookmarks:`, messages.bookmarks)
+
+            newChannels = mappedSidebarItems[0].items.map(item => {
+                const matched = channelMap.get(item.link)
+
+                if (matched) {
+                    return {
+                        ...item,
+                        icon: ChannelsIconMap['all'] ?? '',
+                        desc: matched?.desc ?? 'No bookmarks',
+                    }
+                } else {
+                    return {
+                        ...item,
+                        icon: ChannelsIconMap['all'] || '',
+                        desc: `${messages.bookmarks?.length} bookmarks` || 'No bookmarks',
+                        isActive: false,
+                    }
+                }
+            })
         }
 
         mes = {

@@ -49,17 +49,11 @@ async function fetchFromRaindrop<T = unknown> (url: string): Promise<T | null> {
         }
 
         const res = await fetch(url, createRequestOptions())
-        console.log(`[RAINDROP_API]: Fetching URL: ${url}`)
         if (!res.ok) {
-            console.error(`[RAINDROP_ERROR]: HTTP Error ${res.status}: ${res.statusText}`)
-            return null
+            throw new Error(`[RAINDROP_ERROR]: HTTP error! status: ${res.status}`)
         }
 
-        const data = await res.json() as T
-        console.log(`[RAINDROP_API]: Response data:`, data)
-        console.log(`[RAINDROP_API]: Response status: ${res.status} - ${res.statusText}`);
-
-        return data
+        return await res.json()
     } catch (error: any) {
         console.error(`[RAINDROP_ERROR]: Raindrop fetch failed: ${error.message}`)
         return null
@@ -120,8 +114,6 @@ export async function getBookmarksByCollection (query: unknown): Promise<Raindro
             tag: parsed.tag,
         },
     })
-    console.log(`[RAINDROP_API]: Fetching bookmarks with URL: ${url}`);
-
 
     const data = await fetchFromRaindrop<RaindropResponse>(url)
     return data?.items ?? null

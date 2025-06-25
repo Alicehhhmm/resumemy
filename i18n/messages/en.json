@@ -89,12 +89,15 @@
                 "tools": "Tools",
                 "books": "Books",
                 "frontend": "Frontend",
+                "backend": "Backend",
                 "rust": "Rust",
                 "editor": "Editors",
                 "design": "Design",
                 "icons": "Icons",
+                "css": "CSS",
                 "inspiration": "Inspiration",
-                "material": "Materials"
+                "material": "Materials",
+                "github-start": "Github Start"
             }
         }
     },

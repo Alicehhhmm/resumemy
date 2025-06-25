@@ -89,12 +89,15 @@
                 "tools": "工具",
                 "books": "书籍",
                 "frontend": "前端",
+                "backend": "后端",
                 "rust": "Rust语言",
                 "editor": "编辑器",
                 "design": "设计",
                 "icons": "图标",
+                "css": "样式",
                 "inspiration": "灵感",
-                "material": "素材"
+                "material": "素材",
+                "github-start": "Github Start"
             }
         }
     },

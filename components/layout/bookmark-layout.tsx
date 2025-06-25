@@ -1,5 +1,4 @@
 import type { FC, PropsWithChildren } from 'react'
-
 import { WithChatLayout } from '@/components/WithChatLayout'
 import { BookmarkList } from '@/components/bookmarks'
 
@@ -12,7 +11,7 @@ export const BookmarkLayout: FC<PropsWithChildren> = async ({ children }) => {
 
     return (
         <WithChatLayout modelKey={['bookmarks']} messages={{ channels, bookmarks }}>
-            <BookmarkList list={bookmarks} />
+            <BookmarkList pathname={pathname} initialData={bookmarks} />
         </WithChatLayout>
     )
 }

@@ -21,12 +21,11 @@ export const getBookmarksByCategory = cache(async (category: string): Promise<Bo
 
 /**
  * 根据当前路由返回所有书签相关的数据
- * @params pathname - 当前路由
+ * @params category - 当前路由
+ * @param page - 当前页面
  * @returns Object<{ list: BookmarkItemType[], categories: string[] }>
  */
-export const getBookmarksData = cache(async (pathname: string) => {
-    const [, , category] = pathname.split('/')
-
+export const getBookmarksData = cache(async (category: BookmarksCategory, page: number | string) => {
     const list = await getBookmarksByCategory(category)
     const categories = provideBookmarksCategories()
 

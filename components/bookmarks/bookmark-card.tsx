@@ -29,7 +29,7 @@ export const BookmarkCard: FC<BookmarkCardProps> = ({ item, className = '' }) =>
                 <Card className='relative h-full rounded-xl overflow-hidden border border-gray-100 bg-white transition-all duration-300 shadow-sm hover:shadow-md'>
                     <div className='relative h-44 bg-gray-100 aspect-1200/630 overflow-hidden rounded-lg'>
                         <img
-                            src={cover ?? '/placeholder.svg'}
+                            src={cover ? cover : '/placeholder.svg'}
                             alt={title}
                             width={1200}
                             height={630}

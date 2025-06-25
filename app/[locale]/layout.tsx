@@ -1,12 +1,12 @@
 import { getTranslations } from 'next-intl/server'
 
-import { LocaleProvider } from '@/components/providers/locale-provider'
-import { RThemeProvider } from '@/components/providers/theme-providers'
-import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Toaster } from '@/components/ui/sonner'
-import { IBM_PLEX_MONO, OPEN_SANS } from '@/lib/next.fonts'
-import { cn } from '@/lib/utils'
 import { TopLoader } from '@/components/common'
+import { TailwindIndicator } from '@/components/tailwind-indicator'
+import { RThemeProvider, LocaleProvider, QueryProvider } from '@/components/providers'
+
+import { cn } from '@/lib/utils'
+import { IBM_PLEX_MONO, OPEN_SANS } from '@/lib/next.fonts'
 
 // TODO: Use dynamic routing configuration uniformly
 import { siteConfig } from '@/config/next.json.mjs'
@@ -42,7 +42,7 @@ export default async function RootLayout({ children, params }: RootProps) {
                 <LocaleProvider locale={locale}>
                     <RThemeProvider>
                         <TopLoader />
-                        {children}
+                        <QueryProvider>{children}</QueryProvider>
                     </RThemeProvider>
                 </LocaleProvider>
             </body>

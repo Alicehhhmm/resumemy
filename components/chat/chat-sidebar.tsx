@@ -22,7 +22,7 @@ export const ChatSidebar: FC<ChatSidebarProps> = ({ data, sidebarProps }) => {
     const router = useRouter()
     const [channels, setChannels] = React.useState(data.messages?.channels || [])
 
-    const { setSelectChannel, setBreadcrumbLinks } = useSidebarStore()
+    const { setSelectChannel, setBreadcrumbLinks, clearBreadcrumbs } = useSidebarStore()
 
     // 根据当前路由找到活动项
     const activeItem = React.useMemo(() => {
@@ -33,9 +33,7 @@ export const ChatSidebar: FC<ChatSidebarProps> = ({ data, sidebarProps }) => {
     const handleMenuClick = React.useCallback(
         (item: ChatSidebarType['navMain'][0]) => {
             if (data.messages?.channels) {
-                const channel = [...data.messages.channels]
-                // .sort(() => Math.random() - 0.5)
-                // setChannels(channel.slice(0, Math.max(5, Math.floor(Math.random() * 10) + 1)))
+                clearBreadcrumbs()
             }
         },
         [data.messages?.channels]

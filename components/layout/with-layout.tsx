@@ -22,7 +22,6 @@ type WithLayoutProps<Layouts> = PropsWithChildren<{ layout: Layouts }>
 
 const WithLayout: FC<WithLayoutProps<Layouts>> = ({ layout, children }) => {
     const LayoutComponent = layouts[layout] ?? DefaultLayout
-    console.log('LayoutComponent', layout, layouts)
 
     return <LayoutComponent>{children}</LayoutComponent>
 }

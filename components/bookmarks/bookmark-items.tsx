@@ -33,7 +33,6 @@ async function fetchBookmarks({ pageParam = 1, pathname }: FetchBookmarksProps):
 
     const res = await fetch(fetchURL)
     const ruslt = await res.json()
-    console.log('res.json()', fetchURL)
 
     if (!res.ok) throw new Error('Network error')
     return ruslt

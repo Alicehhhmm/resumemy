@@ -5,7 +5,7 @@ import { BookmarkList } from '@/components/bookmarks'
 import { getGlobClientContext } from '@/core/server'
 import { loadBookmarks } from '@/fatch-data/fatch-bookmark-data'
 
-export const BookmarkLayout: FC<PropsWithChildren> = async ({ children }) => {
+const BookmarkLayout: FC<PropsWithChildren> = async ({ children }) => {
     const { pathname } = getGlobClientContext()
     const { bookmarks, channels } = await loadBookmarks(pathname)
 

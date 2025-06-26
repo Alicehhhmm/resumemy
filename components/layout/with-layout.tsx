@@ -1,17 +1,9 @@
 import type { FC, PropsWithChildren } from 'react'
 import type { Layouts } from '@/types/layouts'
 
-import {
-    DefaultLayout,
-    HomeLayout,
-    BlogLayout,
-    ArticleLayout,
-    PostLayout,
-    ProjectLayout,
-    BookletLayout,
-    // BookmarkLayout,
-} from '@/components/layout'
+import { DefaultLayout, HomeLayout, ArticleLayout, PostLayout, ProjectLayout, BookletLayout } from '@/components/layout'
 
+import BlogLayout from '@/components/layout/blog-layout'
 import BookmarkLayout from '@/components/layout/bookmark-layout'
 
 const layouts = {
@@ -30,6 +22,7 @@ type WithLayoutProps<Layouts> = PropsWithChildren<{ layout: Layouts }>
 
 const WithLayout: FC<WithLayoutProps<Layouts>> = ({ layout, children }) => {
     const LayoutComponent = layouts[layout] ?? DefaultLayout
+    console.log('LayoutComponent', layout, layouts)
 
     return <LayoutComponent>{children}</LayoutComponent>
 }

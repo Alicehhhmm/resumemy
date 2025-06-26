@@ -20,7 +20,7 @@ const getBlogCategory = async (pathname: string) => {
     return { category, posts, pagination, page: Number(page) }
 }
 
-export const BlogLayout: FC<PropsWithChildren> = async ({ children }) => {
+const BlogLayout: FC<PropsWithChildren> = async ({ children }) => {
     const t = await getTranslations()
     const { pathname } = getGlobClientContext()
 
@@ -42,3 +42,5 @@ export const BlogLayout: FC<PropsWithChildren> = async ({ children }) => {
         </BlogChatLayout>
     )
 }
+
+export default BlogLayout

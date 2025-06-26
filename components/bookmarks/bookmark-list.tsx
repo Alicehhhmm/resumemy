@@ -1,33 +1,23 @@
 'use client'
 
 import type { FC } from 'react'
-import { useMemo } from 'react'
-import type { BookmarkItemType } from '@/types'
+import { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 
-import { BookmarkCard } from '@/components/bookmarks'
-import { MasonryGrid } from '@/components/common'
-import { ScaleInWhenVisible } from '@/components/motions/scroll-animation'
+import type { BookmarkItemType } from '@/types'
+import { BookmarkSkeleton, BookmarkItems } from '@/components/bookmarks'
 
 interface BookmarkListProps {
-    list: BookmarkItemType[]
+    initialData: BookmarkItemType[]
+    pathname: string
 }
 
-export const BookmarkList: FC<BookmarkListProps> = ({ list }) => {
-    const memoizedBookmarks = useMemo(
-        () =>
-            list.map((item, index) => (
-                <ScaleInWhenVisible key={`bookmark_animate_key${index}`} delay={index * 0.05}>
-                    <BookmarkCard item={item} />
-                </ScaleInWhenVisible>
-            )),
-        [list]
-    )
-
+export const BookmarkList: FC<BookmarkListProps> = ({ pathname, initialData }) => {
     return (
-        <div className=''>
-            <MasonryGrid columns='3' gap='md'>
-                {memoizedBookmarks}
-            </MasonryGrid>
-        </div>
+        <ErrorBoundary fallback={<p className='text-red-500'>加载书签时出错</p>}>
+            <Suspense fallback={<BookmarkSkeleton />}>
+                <BookmarkItems pathname={pathname} />
+            </Suspense>
+        </ErrorBoundary>
     )
 }

@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
 import { MasonryGrid } from '@/components/common'
 
-export const BookmarkListSkeleton: FC = () => {
+export const BookmarkSkeleton: FC = () => {
     return (
         <MasonryGrid columns='3' gap='md' padding='md'>
             {Array.from({ length: 3 }).map((_, i) => (

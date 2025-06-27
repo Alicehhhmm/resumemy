@@ -44,7 +44,7 @@ main {
 
         &[id] a {
             @apply text-neutral-900
-        dark:text-white;
+        dark:text-white/60;
         }
     }
 
@@ -57,7 +57,7 @@ main {
     strong {
         @apply font-semibold
       text-neutral-900
-      dark:text-white;
+      dark:text-white/60;
     }
 
     pre {
@@ -74,12 +74,12 @@ main {
         font-semibold
         text-neutral-900
         dark:bg-neutral-900
-        dark:text-white;
+        dark:text-white/60;
     }
 
     p {
         @apply text-neutral-900
-      dark:text-white;
+      dark:text-white/50;
     }
 
     a,
@@ -113,7 +113,7 @@ main {
       pr-5
       leading-6
       text-neutral-900
-      dark:text-white;
+      dark:text-white/60;
 
         li div:has(> pre) {
             @apply !my-1;
@@ -125,7 +125,7 @@ main {
       px-5
       leading-6
       text-neutral-900
-      dark:text-white;
+      dark:text-white/60;
 
         li div:has(> pre) {
             @apply !my-1;
@@ -156,7 +156,7 @@ main {
         py-2
         text-neutral-900
         dark:border-neutral-800
-        dark:text-white;
+        dark:text-white/60;
 
             > a {
                 @apply pr-2;

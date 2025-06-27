@@ -20,7 +20,7 @@ interface ChatSidebarChannelsProps {
 
 export const ChatSidebarChannels: FC<ChatSidebarChannelsProps> = ({ activeItem, channels, onChannelClick }) => {
     return (
-        <Sidebar collapsible='none' className='hidden flex-1 md:flex bg-background/60'>
+        <Sidebar collapsible='none' className='hidden flex-1 md:flex bg-sidebar-accent/50 text-sidebar-accent-foreground/60'>
             <ChannelsHeader activeItem={activeItem} />
             <ChannelsContent channels={channels} onChannelClick={onChannelClick} />
         </Sidebar>

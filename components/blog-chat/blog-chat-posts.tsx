@@ -9,7 +9,7 @@ export const BlogChatPostLayout: FC<ChatPostLayoutProps> = ({ children }) => {
     // TODO: add bg-meash and update styles
 
     return (
-        <div className='p-0'>
+        <div className='dark:bg-muted/30'>
             <PostLayout>{children}</PostLayout>
         </div>
     )

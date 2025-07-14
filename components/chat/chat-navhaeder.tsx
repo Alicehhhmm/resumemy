@@ -20,7 +20,7 @@ export const ChatNavHeader: FC<ChatNavHeaderProps> = ({ fullScreen }) => {
     const { postLayout, togglePostLayout } = useSidebarStore()
 
     return (
-        <header className='h-[60px] z-50 sticky top-0 flex items-center justify-between gap-1 border-b dark:bg-sidebar p-4 shadow-inset-md'>
+        <header className='h-[60px] z-50 sticky top-0 flex items-center justify-between gap-1 border-b bg-background dark:bg-sidebar p-4 shadow-inset-md'>
             <div className='flex shrink-0 items-center gap-1 max-sm:hidden'>
                 <SidebarTrigger className='-ml-1' />
                 <Separator orientation='vertical' className='h-4' />

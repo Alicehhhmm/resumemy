@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
 import { NavTeam, NavMain, NavUser } from '@/components/navigation'
 import { ChatSidebarIconMap } from '@/components/icons'
+import { ChatSidebarTools } from '@/components/chat/chat-sidebar-tools'
 
 import type { TeamType, NavigationKeys, PageSidebarType } from '@/types'
 
@@ -73,6 +74,7 @@ export const WithPageSidebar: FC<WithPageSidebarProps> = ({ modelKey, context, s
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={data.navMain} />
+                <ChatSidebarTools className='mt-auto' />
             </SidebarContent>
             <SidebarFooter>
                 <NavUser user={data.user} />

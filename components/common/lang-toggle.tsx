@@ -21,9 +21,10 @@ interface LanguageSwitcherProps {
     className?: string
     currentLanguage?: Locale
     options?: LanguageOption[]
+    showLabel?: boolean
 }
 
-export const LangToggle: FC<LanguageSwitcherProps> = ({ className, currentLanguage, options = [] }) => {
+export const LangToggle: FC<LanguageSwitcherProps> = ({ className, currentLanguage, options = [], showLabel = false }) => {
     const { replace } = useRouter()
     const pathname = usePathname()
     const locales = useLocale()
@@ -70,6 +71,7 @@ export const LangToggle: FC<LanguageSwitcherProps> = ({ className, currentLangua
             trigger={
                 <button
                     className={cn(
+                        'flex gap-1',
                         'rounded-lg p-2 transition-all duration-300 ease-out',
                         'hover:bg-gray-100 dark:hover:bg-fluo-background',
                         'text-gray-600/90 hover:text-primary dark:text-gray-400/90',
@@ -80,6 +82,7 @@ export const LangToggle: FC<LanguageSwitcherProps> = ({ className, currentLangua
                     aria-label={ariaLabel}
                 >
                     <LanguagesIcon className='size-5' />
+                    {showLabel && <p className='text-sm text-muted-foreground'>{groups[0].label}</p>}
                 </button>
             }
             groups={groups}
